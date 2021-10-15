@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dice : MonoBehaviour
+public class DiceV2 : MonoBehaviour
 {
     private int randomNumber;
 
@@ -11,12 +11,13 @@ public class Dice : MonoBehaviour
     public int maxNumber = 6;
 
     private float currentTime;
+    private float pauseTime = 0.2f;
 
     public float finalTime = 5f;
 
     public Text numberText;
 
-    
+
 
     void Start()
     {
@@ -26,15 +27,15 @@ public class Dice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime -= 1f * Time.deltaTime;
+        currentTime -= pauseTime * Time.deltaTime;
 
-        if(currentTime >= 0)
+        if (currentTime >= 0)
         {
             randomNumber = Random.Range(minNumber, maxNumber);
             numberText.text = randomNumber.ToString();
-            
+
         }
-        
 
     }
+
 }
