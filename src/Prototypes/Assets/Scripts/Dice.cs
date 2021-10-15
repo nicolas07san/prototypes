@@ -16,8 +16,6 @@ public class Dice : MonoBehaviour
 
     public Text numberText;
 
-    
-
     void Start()
     {
         currentTime = finalTime;
