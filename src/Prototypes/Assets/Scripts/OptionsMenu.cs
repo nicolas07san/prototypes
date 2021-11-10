@@ -8,6 +8,7 @@ public class OptionsMenu : MonoBehaviour
     Resolution[] resolutions;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
+    public TMPro.TMP_Dropdown qualityDropdown;
 
     private void Start()
     {
@@ -33,6 +34,9 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        qualityDropdown.value = 5;
+        qualityDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
