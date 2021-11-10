@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 6628431429723579897}
   - component: {fileID: 6628431429723579896}
   m_Layer: 5
-  m_Name: Monkey D. Luffy
+  m_Name: Monkey D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
