@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class CardSelection : MonoBehaviour
 {
-    [SerializeField]private Button previousButton;
-    [SerializeField]private Button nextButton;
+    [SerializeField] private Button previousButton;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Button selectButton;
+
+    [SerializeField] private GameObject playerHand;
 
     private int currentCard = 0;
 
     private void Awake()
     {
-        SelectCard(0);
+        currentCard = 0;
+        SelectCard(currentCard);
     }
 
     public void SelectCard(int index)
@@ -23,8 +27,12 @@ public class CardSelection : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(i == index);
-
         }
+    }
+
+    public void SaveCard()
+    {
+        transform.GetChild(currentCard).gameObject.transform.SetParent(playerHand.transform);
     }
 
     public void ChangeCard(int change)

@@ -5,13 +5,14 @@ using UnityEngine;
 public class CardSelectionAnimation : MonoBehaviour
 {
     private Vector3 initialPosition;
-    [SerializeField]private Vector3 finalPosition;
+    private Vector3 finalPosition;
 
-    [SerializeField] private float animationSpeed;
+    private float animationSpeed = 0.1f;
 
     private void Awake()
     {
         initialPosition = transform.position;
+        finalPosition = transform.parent.position;
     }
 
     private void Update()
