@@ -17,5 +17,11 @@ MonoBehaviour:
   attack1Name: Rocket
   attack1Dmg: 10
   attack1Cost: 5
+  attack2Name: Pistol
+  attack2Dmg: 5
+  attack2Cost: 2
+  attack3Name: Gatling Gun
+  attack3Dmg: 15
+  attack3Cost: 10
   health: 60
   shield: 25
