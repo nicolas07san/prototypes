@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -35,8 +34,7 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-        qualityDropdown.value = 5;
-        qualityDropdown.RefreshShownValue();
+
     }
 
     public void SetResolution(int resolutionIndex)
