@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
-  m_Name: Ichigo
+  m_Name: Ichigo Kurosaki
   m_EditorClassIdentifier: 
-  characterName: Ichigo
+  characterName: Ichigo Kurosaki
   artwork: {fileID: 21300000, guid: b37e3f34873a2af4289e0441dcd8161f, type: 3}
   attack1Name: Corte
   attack1Dmg: 3
   attack1Cost: 1
+  attack2Name: Getsuga Tensho
+  attack2Dmg: 10
+  attack2Cost: 5
+  attack3Name: 'Kuroi Getsuga  '
+  attack3Dmg: 15
+  attack3Cost: 10
   health: 50
   shield: 10

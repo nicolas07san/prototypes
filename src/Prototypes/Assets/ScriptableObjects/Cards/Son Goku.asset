@@ -15,7 +15,13 @@ MonoBehaviour:
   characterName: Son Goku
   artwork: {fileID: 21300000, guid: b06df240c964b2a43ad71bb91f7ffa1f, type: 3}
   attack1Name: Kamehameha
-  attack1Dmg: 15
-  attack1Cost: 10
+  attack1Dmg: 10
+  attack1Cost: 7
+  attack2Name: Genki Dama
+  attack2Dmg: 20
+  attack2Cost: 15
+  attack3Name: Chute
+  attack3Dmg: 5
+  attack3Cost: 3
   health: 50
   shield: 20

@@ -17,5 +17,11 @@ MonoBehaviour:
   attack1Name: Rasengan
   attack1Dmg: 6
   attack1Cost: 4
+  attack2Name: Kage Bunshin
+  attack2Dmg: 5
+  attack2Cost: 5
+  attack3Name: Shuriken
+  attack3Dmg: 2
+  attack3Cost: 1
   health: 50
   shield: 25

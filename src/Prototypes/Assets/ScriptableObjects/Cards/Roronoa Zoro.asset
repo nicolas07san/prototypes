@@ -17,5 +17,11 @@ MonoBehaviour:
   attack1Name: Onigiri
   attack1Dmg: 8
   attack1Cost: 4
+  attack2Name: Nigiri
+  attack2Dmg: 4
+  attack2Cost: 2
+  attack3Name: Yaki Onigiri
+  attack3Dmg: 12
+  attack3Cost: 6
   health: 60
   shield: 20
