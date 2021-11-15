@@ -11,20 +11,20 @@ public class Card : ScriptableObject
 
     [Header("Attack 1")]
     public string attack1Name;
-    public int attack1Dmg;
     public int attack1Cost;
+    public int attack1Dmg;
 
     [Header("Attack 2")]
     public string attack2Name;
-    public int attack2Dmg;
     public int attack2Cost;
+    public int attack2Dmg;
 
     [Header("Attack 3")]
     public string attack3Name;
-    public int attack3Dmg;
     public int attack3Cost;
+    public int attack3Dmg;
 
     [Header("Base Stats")]
-    public int health;
     public int shield;
+    public int health; 
 }
