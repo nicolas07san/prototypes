@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
+  m_Name: Krass Morg
+  m_EditorClassIdentifier: 
+  characterName: Krass Morg
+  artwork: {fileID: 21300000, guid: f32b053cca518f34cb9e8b3d1756478a, type: 3}
+  attack1Name: Bola de fogo
+  attack1Cost: 5
+  attack1Dmg: 5
+  attack2Name: Escudo de gelo
+  attack2Cost: 3
+  attack2Dmg: 8
+  attack3Name: "M\xEDssil estelar"
+  attack3Cost: 8
+  attack3Dmg: 10
+  health: 20
+  shield: 40

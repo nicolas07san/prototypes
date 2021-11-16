@@ -34,7 +34,7 @@ public class CardSelection : MonoBehaviour
     {
 
         GameObject card = transform.GetChild(currentCard).gameObject;
-        Vector3 distance = new Vector3(-25 * playerHand.transform.childCount, -25 * playerHand.transform.childCount);
+        Vector3 distance = new Vector3(-35 * playerHand.transform.childCount, -35 * playerHand.transform.childCount);
         card.transform.position = Vector3.Lerp(card.transform.position, playerHand.transform.position + distance, 1f);
 
         card.transform.SetParent(playerHand.transform);
