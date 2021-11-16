@@ -25,6 +25,6 @@ public class Card : ScriptableObject
     public int attack3Dmg;
 
     [Header("Base Stats")]
+    public int health;
     public int shield;
-    public int health; 
 }

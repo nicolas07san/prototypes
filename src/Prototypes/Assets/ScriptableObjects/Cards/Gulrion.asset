@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
+  m_Name: Gulrion
+  m_EditorClassIdentifier: 
+  characterName: Gulrion
+  artwork: {fileID: 21300000, guid: b2873678a47917d418e501122861098b, type: 3}
+  attack1Name: Espiral da morte
+  attack1Cost: 1
+  attack1Dmg: 5
+  attack2Name: Dreno de alma
+  attack2Cost: 3
+  attack2Dmg: 6
+  attack3Name: Ira sombria
+  attack3Cost: 2
+  attack3Dmg: 7
+  health: 10
+  shield: 50

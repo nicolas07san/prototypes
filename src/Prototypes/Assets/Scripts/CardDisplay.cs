@@ -16,16 +16,19 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TMP_Text atk1NameText;
     [SerializeField] private TMP_Text atk1CostText;
     [SerializeField] private TMP_Text atk1DmgText;
+    [SerializeField] private Button atk1Button;
 
     [Header("Attack 2")]
     [SerializeField] private TMP_Text atk2NameText;
     [SerializeField] private TMP_Text atk2CostText;
     [SerializeField] private TMP_Text atk2DmgText;
+    [SerializeField] private Button atk2Button;
 
     [Header("Attack 3")]
     [SerializeField] private TMP_Text atk3NameText;
     [SerializeField] private TMP_Text atk3CostText;
     [SerializeField] private TMP_Text atk3DmgText;
+    [SerializeField] private Button atk3Button;
 
     [Header("Base Stats")]
     [SerializeField] private TMP_Text healthText;
@@ -37,6 +40,11 @@ public class CardDisplay : MonoBehaviour
         nameText.text = card.characterName;
 
         artworkImage.sprite = card.artwork;
+
+        //Buttons
+        atk1Button.interactable = false;
+        atk2Button.interactable = false;
+        atk3Button.interactable = false;
 
         // Attack 1
         atk1NameText.text = card.attack1Name;
