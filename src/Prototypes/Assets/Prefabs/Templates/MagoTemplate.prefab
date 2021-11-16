@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6264831852157026217}
   - component: {fileID: 6264831852157026218}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 6264831852687070685}
   - component: {fileID: 6264831852687070686}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 6264831853056194163}
   - component: {fileID: 6264831853056194156}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 6264831853094246752}
   - component: {fileID: 6264831853094246753}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1310,7 +1310,7 @@ GameObject:
   - component: {fileID: 6264831853407592653}
   - component: {fileID: 6264831853407592654}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1802,7 +1802,7 @@ GameObject:
   - component: {fileID: 6264831853876293137}
   - component: {fileID: 6264831853876293138}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2022,13 +2022,13 @@ MonoBehaviour:
   nameText: {fileID: 6264831853323986913}
   artworkImage: {fileID: 6264831852591084050}
   atk1NameText: {fileID: 6264831852698607536}
-  atk1DmgText: {fileID: 6264831853407592654}
-  atk1CostText: {fileID: 6264831853876293138}
+  atk1CostText: {fileID: 6264831853407592654}
+  atk1DmgText: {fileID: 6264831853876293138}
   atk2NameText: {fileID: 6264831852129704885}
-  atk2DmgText: {fileID: 6264831853056194156}
-  atk2CostText: {fileID: 6264831852157026218}
+  atk2CostText: {fileID: 6264831853056194156}
+  atk2DmgText: {fileID: 6264831852157026218}
   atk3NameText: {fileID: 6264831853803389818}
-  atk3DmgText: {fileID: 6264831852687070686}
-  atk3CostText: {fileID: 6264831853094246753}
+  atk3CostText: {fileID: 6264831852687070686}
+  atk3DmgText: {fileID: 6264831853094246753}
   healthText: {fileID: 6264831852587690133}
   shieldText: {fileID: 6264831853756809787}

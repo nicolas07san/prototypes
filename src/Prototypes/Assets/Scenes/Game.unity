@@ -472,9 +472,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ametista
       objectReference: {fileID: 0}
-    - target: {fileID: 4466958794396645698, guid: 7803a8e7d2fa57d4a88e5048a7f38f96, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7803a8e7d2fa57d4a88e5048a7f38f96, type: 3}

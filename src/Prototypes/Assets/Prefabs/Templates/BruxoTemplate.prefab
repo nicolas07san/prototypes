@@ -60,14 +60,14 @@ MonoBehaviour:
   nameText: {fileID: 2093255003142346515}
   artworkImage: {fileID: 2093255003891827424}
   atk1NameText: {fileID: 2093255003733061442}
-  atk1DmgText: {fileID: 2093255003092226108}
-  atk1CostText: {fileID: 2093255002623532768}
+  atk1CostText: {fileID: 2093255003092226108}
+  atk1DmgText: {fileID: 2093255002623532768}
   atk2NameText: {fileID: 2093255004369988423}
-  atk2DmgText: {fileID: 2093255003409024670}
-  atk2CostText: {fileID: 2093255004258914136}
+  atk2CostText: {fileID: 2093255003409024670}
+  atk2DmgText: {fileID: 2093255004258914136}
   atk3NameText: {fileID: 2093255002695316360}
-  atk3DmgText: {fileID: 2093255003711038764}
-  atk3CostText: {fileID: 2093255003321559443}
+  atk3CostText: {fileID: 2093255003711038764}
+  atk3DmgText: {fileID: 2093255003321559443}
   healthText: {fileID: 2093255003895289959}
   shieldText: {fileID: 2093255002642215625}
 --- !u!1 &2093255002516292057
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2093255002623532771}
   - component: {fileID: 2093255002623532768}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 2093255003092226111}
   - component: {fileID: 2093255003092226108}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 2093255003321559442}
   - component: {fileID: 2093255003321559443}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1127,7 +1127,7 @@ GameObject:
   - component: {fileID: 2093255003409024641}
   - component: {fileID: 2093255003409024670}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 2093255003711038767}
   - component: {fileID: 2093255003711038764}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1738,7 +1738,7 @@ GameObject:
   - component: {fileID: 2093255004258914139}
   - component: {fileID: 2093255004258914136}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

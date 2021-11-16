@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6261921099068927539}
   - component: {fileID: 6261921099068927536}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 6261921099451064974}
   - component: {fileID: 6261921099451064975}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 6261921099572219293}
   - component: {fileID: 6261921099572219266}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 6261921099583243335}
   - component: {fileID: 6261921099583243332}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1497,7 +1497,7 @@ GameObject:
   - component: {fileID: 6261921100362995199}
   - component: {fileID: 6261921100362995196}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1679,14 +1679,14 @@ MonoBehaviour:
   nameText: {fileID: 6261921100915825679}
   artworkImage: {fileID: 6261921100021598716}
   atk1NameText: {fileID: 6261921099057390686}
-  atk1DmgText: {fileID: 6261921100831693600}
-  atk1CostText: {fileID: 6261921100362995196}
+  atk1CostText: {fileID: 6261921100831693600}
+  atk1DmgText: {fileID: 6261921100362995196}
   atk2NameText: {fileID: 6261921099694448731}
-  atk2DmgText: {fileID: 6261921099572219266}
-  atk2CostText: {fileID: 6261921099583243332}
+  atk2CostText: {fileID: 6261921099572219266}
+  atk2DmgText: {fileID: 6261921100362995196}
   atk3NameText: {fileID: 6261921100166412436}
-  atk3DmgText: {fileID: 6261921099068927536}
-  atk3CostText: {fileID: 6261921099451064975}
+  atk3CostText: {fileID: 6261921099068927536}
+  atk3DmgText: {fileID: 6261921099451064975}
   healthText: {fileID: 6261921100024468347}
   shieldText: {fileID: 6261921100147194325}
 --- !u!1 &6261921100740149232
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 6261921100831693603}
   - component: {fileID: 6261921100831693600}
   m_Layer: 5
-  m_Name: Damage
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
