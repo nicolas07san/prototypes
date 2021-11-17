@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class CardSelection : MonoBehaviour
 {
     [Header("Buttons")]
-    [SerializeField] private Button previousButton;
-    [SerializeField] private Button nextButton;
     [SerializeField] private Button selectButton;
     [SerializeField] private Button undoButton;
     [SerializeField] private Button confirmButton;
@@ -14,9 +12,8 @@ public class CardSelection : MonoBehaviour
     [Header("Game Objects")]
     [SerializeField] private GameObject playerHand;
     [SerializeField] private GameObject enemyHand;
-    
-    private int currentCard = 0;
 
+    private int currentCard = 0;
 
     private void Awake()
     {
@@ -89,6 +86,8 @@ public class CardSelection : MonoBehaviour
             GameObject card = transform.GetChild(index).gameObject;
             card.SetActive(false);
             card.transform.SetParent(enemyHand.transform);
+
+            playerHand.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

@@ -7,31 +7,34 @@ public class Dice : MonoBehaviour
 {
     private int randomNumber;
 
-    public int minNumber = 1;
-    public int maxNumber = 6;
+    private int minNumber = 1;
+    private int maxNumber = 6;
 
-    private float currentTime;
+    private float rollTime = 3f;
+    private int numberOfRolls = 100;
 
-    public float finalTime = 5f;
-
-    public Text numberText;
+    [SerializeField] private TMPro.TMP_Text numberText;
 
     void Start()
     {
-        currentTime = finalTime;
+        StartCoroutine(RollDice());
     }
-    
 
-    void Update()
+    public IEnumerator RollDice()
     {
-        currentTime -= 1f * Time.deltaTime;
-
-        if(currentTime >= 0)
+        for(int i = 0; i < numberOfRolls; i++)
         {
             randomNumber = Random.Range(minNumber, maxNumber);
             numberText.text = randomNumber.ToString();
-            
+            yield return new WaitForSecondsRealtime(rollTime/numberOfRolls);
         }
-        
+    }
+
+    public int RandomNumber
+    {
+        get
+        {
+            return this.randomNumber;
+        }
     }
 }
