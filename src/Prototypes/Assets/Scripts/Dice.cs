@@ -20,8 +20,8 @@ public class Dice : MonoBehaviour
     {
         currentTime = finalTime;
     }
+    
 
-    // Update is called once per frame
     void Update()
     {
         currentTime -= 1f * Time.deltaTime;
@@ -33,6 +33,5 @@ public class Dice : MonoBehaviour
             
         }
         
-
     }
 }
