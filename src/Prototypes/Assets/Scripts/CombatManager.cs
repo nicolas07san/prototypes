@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-
     [SerializeField] private GameObject playerHand;
     [SerializeField] private GameObject enemyHand;
     [SerializeField] private GameObject dice;
@@ -14,14 +13,14 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
-        playerHand.transform.position = Vector3.Lerp(playerHand.transform.position, playerHandPosition, 100f);
-        enemyHand.transform.position = Vector3.Lerp(enemyHand.transform.position, enemyHandPosition, 100f );
+        playerHand.transform.localPosition = playerHandPosition;
+        enemyHand.transform.localPosition = enemyHandPosition;
 
-        PlaceCards(playerHand);
-        PlaceCards(enemyHand);
+        InitialCardPlacement(playerHand);
+        InitialCardPlacement(enemyHand);
     }
     
-    private void PlaceCards(GameObject cardHand)
+    private void InitialCardPlacement(GameObject cardHand)
     {
 
         for(int i = 0; i < cardHand.transform.childCount; i++)
@@ -31,13 +30,19 @@ public class CombatManager : MonoBehaviour
 
             if(i == 0)
             {
-                card.transform.position = cardHand.transform.position;
+                card.transform.localPosition = Vector3.zero;
             }
-            else
+            else if(i == 1)
             {
                 card.transform.localScale = new Vector3(0.5f, 0.5f);
-                card.transform.position = cardHand.transform.position - new Vector3(50*i, 50);
+                card.transform.localPosition = new Vector3(100, -500);
             }
+            else if (i == 2)
+            {
+                card.transform.localScale = new Vector3(0.5f, 0.5f);
+                card.transform.localPosition = new Vector3(-100, -500);
+            }
+
 
             card.SetActive(true);
 
