@@ -13,9 +13,19 @@ public class CombatManager : MonoBehaviour
     private Vector3 playerHandPosition = new Vector3(-600, 0);
     private Vector3 enemyHandPosition = new Vector3(600, 0);
 
-    private int randomNumber;
-
+    private int diceNumber;
     private int round = 1;
+
+    // Player stats
+    private int playerMana = 0;
+    private int playerShield;
+    private int playerHealth;
+
+    // Enemy stats
+    private int enemyMana = 0;
+    private int enemyShield;
+    private int enemyHealth;
+
 
     void Start()
     {
@@ -89,9 +99,21 @@ public class CombatManager : MonoBehaviour
 
         for (int i = 0; i < 100; i++)
         {
-            randomNumber = Random.Range(1, 6);
-            diceText.text = randomNumber.ToString();
+            diceNumber = Random.Range(1, 6);
+            diceText.text = diceNumber.ToString();
             yield return new WaitForSecondsRealtime(3f / 100);
         }
+    }
+
+    public void UpdateStats()
+    {
+        GameObject playerCard = playerHand.transform.GetChild(round - 1).gameObject;
+        GameObject enemyCard = enemyHand.transform.GetChild(round - 1).gameObject;
+
+        playerShield = playerCard.GetComponent<Card>().shield;
+        playerHealth = playerCard.GetComponent<Card>().health;
+
+        enemyShield = enemyCard.GetComponent<Card>().shield;
+        enemyHealth = enemyCard.GetComponent<Card>().health;
     }
 }
