@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &231744736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -700,18 +700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2061310103}
     m_Modifications:
-    - target: {fileID: 865694128591516930, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
-      propertyPath: m_text
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8638518319046319042, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
       propertyPath: m_Name
       value: Dice
       objectReference: {fileID: 0}
-    - target: {fileID: 8638518319046319044, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
-      propertyPath: numberText
-      value: 
-      objectReference: {fileID: 988003685}
     - target: {fileID: 8638518319046319045, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -782,7 +774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638518319046319045, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 275
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8638518319046319045, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -798,11 +790,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
---- !u!1 &681340540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8638518319046319042, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
-  m_PrefabInstance: {fileID: 681340539}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &762209965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1377,17 +1364,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2236197833505874930, guid: 4dfa5142f5ceb9f4cad4a5fa23bdfb1c, type: 3}
   m_PrefabInstance: {fileID: 969773538}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &988003685 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 865694128591516930, guid: adcc554311c14ce4c92054ecc6582bd6, type: 3}
-  m_PrefabInstance: {fileID: 681340539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1053170945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,7 +3395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2061310103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3454,4 +3430,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHand: {fileID: 1053170945}
   enemyHand: {fileID: 1663312207}
-  dice: {fileID: 681340540}
+  diceText: {fileID: 0}
