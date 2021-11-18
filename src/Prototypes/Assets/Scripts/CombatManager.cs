@@ -14,8 +14,8 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
-        playerHand.transform.position = playerHandPosition;
-        enemyHand.transform.position = enemyHandPosition;
+        playerHand.transform.position = Vector3.Lerp(playerHand.transform.position, playerHandPosition, 100f);
+        enemyHand.transform.position = Vector3.Lerp(enemyHand.transform.position, enemyHandPosition, 100f );
 
         PlaceCards(playerHand);
         PlaceCards(enemyHand);
