@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerHand;
     [SerializeField] private GameObject enemyHand;
 
-    [SerializeField] private TMPro.TMP_Text diceText;
-    [SerializeField] private TMPro.TMP_Text roundText;
+    [SerializeField] private TMP_Text diceText;
+    [SerializeField] private TMP_Text roundText;
 
-    private Vector3 playerHandPosition = new Vector3(-600, 0);
-    private Vector3 enemyHandPosition = new Vector3(600, 0);
+    [Header("Player Stats")]
+    [SerializeField] private TMP_Text playerManaText;
+    [SerializeField] private TMP_Text playerShieldText;
+    [SerializeField] private TMP_Text playerHealthText;
+
+    [Header("Enemy")]
+    [SerializeField] private TMP_Text enemyManaText;
+    [SerializeField] private TMP_Text enemyShieldText;
+    [SerializeField] private TMP_Text enemyHealthText;
+
+    private Vector3 playerHandPosition = new Vector3(-700, 0);
+    private Vector3 enemyHandPosition = new Vector3(700, 0);
 
     private int diceNumber;
     private int round = 1;
@@ -20,12 +32,17 @@ public class CombatManager : MonoBehaviour
     private int playerMana = 0;
     private int playerShield;
     private int playerHealth;
+    private GameObject playerAtk1;
+    private GameObject playerAtk2;
+    private GameObject playerAtk3;
 
     // Enemy stats
     private int enemyMana = 0;
     private int enemyShield;
     private int enemyHealth;
-
+    private GameObject enemyAtk1;
+    private GameObject enemyAtk2;
+    private GameObject enemyAtk3;
 
     void Start()
     {
@@ -34,6 +51,7 @@ public class CombatManager : MonoBehaviour
 
         InitialCardPlacement(playerHand);
         InitialCardPlacement(enemyHand);
+        GetInitialBasicStats();
 
         StartCoroutine(StartRoundAnimation());
         
@@ -49,17 +67,17 @@ public class CombatManager : MonoBehaviour
 
             if(i == 0)
             {
-                card.transform.localPosition = Vector3.zero;
+                card.transform.localPosition = new Vector3(0, 200);
             }
             else if(i == 1)
             {
                 card.transform.localScale = new Vector3(0.5f, 0.5f);
-                card.transform.localPosition = new Vector3(100, -500);
+                card.transform.localPosition = new Vector3(100, -300);
             }
             else if (i == 2)
             {
                 card.transform.localScale = new Vector3(0.5f, 0.5f);
-                card.transform.localPosition = new Vector3(-100, -500);
+                card.transform.localPosition = new Vector3(-100, -300);
             }
 
 
@@ -69,7 +87,7 @@ public class CombatManager : MonoBehaviour
     }
 
     public IEnumerator StartRoundAnimation() {
-        Debug.Log("Coroutine Iniciada");
+
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
 
@@ -81,7 +99,6 @@ public class CombatManager : MonoBehaviour
         while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
         {
             roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.0125f);
-            Debug.Log("Dentro do While");
             yield return null;
         }
 
@@ -103,17 +120,84 @@ public class CombatManager : MonoBehaviour
             diceText.text = diceNumber.ToString();
             yield return new WaitForSecondsRealtime(3f / 100);
         }
+
+        playerMana += diceNumber;
+        StartCoroutine(UpdateStatText(playerManaText, playerMana));
+
+        enemyMana += diceNumber;
+        StartCoroutine(UpdateStatText(enemyManaText, enemyMana));
+
+        yield return null;
     }
 
-    public void UpdateStats()
+    public void AttackController()
     {
-        GameObject playerCard = playerHand.transform.GetChild(round - 1).gameObject;
-        GameObject enemyCard = enemyHand.transform.GetChild(round - 1).gameObject;
+        
+        
+    }
 
-        playerShield = playerCard.GetComponent<Card>().shield;
-        playerHealth = playerCard.GetComponent<Card>().health;
+    public void GetInitialBasicStats()
+    {
+        GameObject playerCard = playerHand.transform.GetChild(0).gameObject;
+        GameObject enemyCard = enemyHand.transform.GetChild(0).gameObject;
 
-        enemyShield = enemyCard.GetComponent<Card>().shield;
-        enemyHealth = enemyCard.GetComponent<Card>().health;
+        playerShield = int.Parse(playerCard.transform.Find("Shield").GetComponent<TMP_Text>().text);
+        playerShieldText.text = playerShield.ToString();
+
+        playerHealth = int.Parse(playerCard.transform.Find("Health").GetComponent<TMP_Text>().text);
+        playerHealthText.text = playerHealth.ToString();
+
+        playerAtk1 = playerCard.transform.Find("Attack1").gameObject;
+        playerAtk2 = playerCard.transform.Find("Attack2").gameObject;
+        playerAtk3 = playerCard.transform.Find("Attack3").gameObject;
+
+        enemyShield = int.Parse(enemyCard.transform.Find("Shield").GetComponent<TMP_Text>().text);
+        enemyShieldText.text = enemyShield.ToString();
+
+        enemyHealth = int.Parse(enemyCard.transform.Find("Health").GetComponent<TMP_Text>().text);
+        enemyHealthText.text = enemyHealth.ToString();
+
+        enemyAtk1 = enemyCard.transform.Find("Attack1").gameObject;
+        enemyAtk2 = enemyCard.transform.Find("Attack2").gameObject;
+        enemyAtk3 = enemyCard.transform.Find("Attack3").gameObject;
+
+    }
+
+    public IEnumerator UpdateStatText(TMP_Text statText,int statVariable)
+    {
+        int valueDifference = 0;
+
+        if(int.Parse(statText.text) < statVariable)
+        {
+            valueDifference = int.Parse(statText.text) - statVariable;
+            valueDifference *= -1;
+        }
+        else
+        {
+            valueDifference = int.Parse(statText.text) - statVariable;
+        }
+        
+
+        if(valueDifference > 0)
+        {
+            for(int i = valueDifference; i > 0; i--)
+            {
+                statText.text = (int.Parse(statText.text) + 1).ToString();
+                yield return new WaitForSeconds(3f/valueDifference);
+            }
+        }
+
+        else if(valueDifference < 0)
+        {
+            for(int i = valueDifference; i < 0; i++)
+            {
+                statText.text = (int.Parse(statText.text) - 1).ToString();
+                yield return new WaitForSeconds(3f/(valueDifference *-1));
+            }
+        }
+
+        statText.text = statVariable.ToString();
+
+        yield return null;
     }
 }

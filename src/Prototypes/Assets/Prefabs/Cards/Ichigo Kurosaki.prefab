@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113527647507164022}
   m_Layer: 5
-  m_Name: Attack 1
+  m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113527648183497032}
   m_Layer: 5
-  m_Name: Attack 3
+  m_Name: Attack3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,7 +1092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2113527648425274310
 RectTransform:
   m_ObjectHideFlags: 0
