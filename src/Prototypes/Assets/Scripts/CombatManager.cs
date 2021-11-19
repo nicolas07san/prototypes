@@ -51,7 +51,7 @@ public class CombatManager : MonoBehaviour
 
         InitialCardPlacement(playerHand);
         InitialCardPlacement(enemyHand);
-        GetInitialBasicStats();
+        StartCoroutine(GetInitialBasicStats());
 
         StartCoroutine(StartRoundAnimation());
         
@@ -136,10 +136,10 @@ public class CombatManager : MonoBehaviour
         
     }
 
-    public void GetInitialBasicStats()
+    public IEnumerator GetInitialBasicStats()
     {
         GameObject playerCard = playerHand.transform.GetChild(0).gameObject;
-        GameObject enemyCard = enemyHand.transform.GetChild(0).gameObject;
+        
 
         playerShield = int.Parse(playerCard.transform.Find("Shield").GetComponent<TMP_Text>().text);
         playerShieldText.text = playerShield.ToString();
@@ -150,6 +150,10 @@ public class CombatManager : MonoBehaviour
         playerAtk1 = playerCard.transform.Find("Attack1").gameObject;
         playerAtk2 = playerCard.transform.Find("Attack2").gameObject;
         playerAtk3 = playerCard.transform.Find("Attack3").gameObject;
+
+        yield return null;
+
+        GameObject enemyCard = enemyHand.transform.GetChild(0).gameObject;
 
         enemyShield = int.Parse(enemyCard.transform.Find("Shield").GetComponent<TMP_Text>().text);
         enemyShieldText.text = enemyShield.ToString();
@@ -183,7 +187,7 @@ public class CombatManager : MonoBehaviour
             for(int i = valueDifference; i > 0; i--)
             {
                 statText.text = (int.Parse(statText.text) + 1).ToString();
-                yield return new WaitForSeconds(3f/valueDifference);
+                yield return new WaitForSeconds(2f/valueDifference);
             }
         }
 
@@ -192,7 +196,7 @@ public class CombatManager : MonoBehaviour
             for(int i = valueDifference; i < 0; i++)
             {
                 statText.text = (int.Parse(statText.text) - 1).ToString();
-                yield return new WaitForSeconds(3f/(valueDifference *-1));
+                yield return new WaitForSeconds(2f/(valueDifference *-1));
             }
         }
 
