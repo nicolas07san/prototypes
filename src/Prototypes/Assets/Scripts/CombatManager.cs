@@ -23,6 +23,11 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text enemyShieldText;
     [SerializeField] private TMP_Text enemyHealthText;
 
+    [Header("Screens Contol")]
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private GameObject gameoverScreen;
+    [SerializeField] private Button passButton;
+
     private Vector3 playerHandPosition = new Vector3(-700, 0);
     private Vector3 enemyHandPosition = new Vector3(700, 0);
 
@@ -112,7 +117,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public IEnumerator StartRoundAnimation() {
+    private IEnumerator StartRoundAnimation() {
 
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
@@ -137,8 +142,9 @@ public class CombatManager : MonoBehaviour
 
     }
 
-    public IEnumerator RollDice()
+    private IEnumerator RollDice()
     {
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < 100; i++)
         {
@@ -158,7 +164,7 @@ public class CombatManager : MonoBehaviour
         AttackController();
     }
 
-    public void AttackController()
+    private void AttackController()
     {   
         if(playerMana >= playerAtk1Cost || playerMana >= playerAtk2Cost || playerMana >= playerAtk3Cost)
         {
@@ -171,14 +177,12 @@ public class CombatManager : MonoBehaviour
             if (playerMana >= playerAtk3Cost)
                 playerAtk3Button.interactable = true;
         }
-        else
-        {
-            StartCoroutine(Pass());
-        }
-
+       
+        passButton.gameObject.SetActive(true);
+        
     }
 
-    public IEnumerator GetInitialBasicStats()
+    private IEnumerator GetInitialBasicStats()
     {
         diceText.text = 0.ToString();
 
@@ -269,7 +273,7 @@ public class CombatManager : MonoBehaviour
 
     }
 
-    public IEnumerator UpdateStatText(TMP_Text statText,int statVariable)
+    private IEnumerator UpdateStatText(TMP_Text statText,int statVariable)
     {
         int valueDifference = 0;
         float animationTime = 1f;
@@ -309,7 +313,7 @@ public class CombatManager : MonoBehaviour
         yield return null;
     }
 
-    public void playerAttack(int attackCost, int attackDamage)
+    private void playerAttack(int attackCost, int attackDamage)
     {
         playerMana -= attackCost;
         StartCoroutine(UpdateStatText(playerManaText, playerMana));
@@ -336,10 +340,10 @@ public class CombatManager : MonoBehaviour
         playerAtk2Button.interactable = false;
         playerAtk3Button.interactable = false;
 
-        StartCoroutine(Pass());
+        Pass();
     }
 
-    public void enemyAttackController()
+    private void enemyAttackController()
     {
         if (enemyMana >= enemyAtk1Cost || enemyMana >= enemyAtk2Cost || enemyMana >= enemyAtk3Cost)
         {
@@ -403,7 +407,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void enemyAttack(int attackCost, int attackDamage)
+    private void enemyAttack(int attackCost, int attackDamage)
     {
         enemyMana -= attackCost;
         StartCoroutine(UpdateStatText(enemyManaText, enemyMana));
@@ -427,10 +431,9 @@ public class CombatManager : MonoBehaviour
 
     }
     
-    public IEnumerator Pass()
+    public void Pass()
     {
         enemyAttackController();
-        yield return new WaitForSeconds(2f);
 
         if (playerHealth <= 0 || enemyHealth <= 0)
         {
@@ -445,13 +448,13 @@ public class CombatManager : MonoBehaviour
             {
                 if(playerWins >= 2)
                 {
-                    Debug.Log("Vitória do Jogador");
-                    SceneManager.LoadScene("MainGame");
+                    victoryScreen.SetActive(true);
+                    Time.timeScale = 0f;
                 }
                 else
                 {
-                    Debug.Log("Vitória do Inimigo");
-                    SceneManager.LoadScene("MainGame");
+                    gameoverScreen.SetActive(false);
+                    Time.timeScale = 0f;
                 }
             }
             else
@@ -459,13 +462,10 @@ public class CombatManager : MonoBehaviour
                 Destroy(playerHand.transform.GetChild(0).gameObject);
                 Destroy(enemyHand.transform.GetChild(0).gameObject);
 
-                yield return null;
                 InitialCardPlacement(playerHand);
 
-                yield return null;
                 InitialCardPlacement(enemyHand);
 
-                yield return null;
                 StartCoroutine(GetInitialBasicStats());
             }
             
