@@ -144,7 +144,6 @@ public class CombatManager : MonoBehaviour
 
     private IEnumerator RollDice()
     {
-        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < 100; i++)
         {
@@ -340,7 +339,9 @@ public class CombatManager : MonoBehaviour
         playerAtk2Button.interactable = false;
         playerAtk3Button.interactable = false;
 
-        Pass();
+        passButton.gameObject.SetActive(false);
+
+        StartCoroutine(Pass());
     }
 
     private void enemyAttackController()
@@ -431,9 +432,10 @@ public class CombatManager : MonoBehaviour
 
     }
     
-    public void Pass()
+    private IEnumerator Pass()
     {
         enemyAttackController();
+        yield return new WaitForSeconds(2f);
 
         if (playerHealth <= 0 || enemyHealth <= 0)
         {
@@ -446,25 +448,32 @@ public class CombatManager : MonoBehaviour
 
             if(playerWins >= 2 || enemyWins >= 2)
             {
+
+                yield return null;
+
                 if(playerWins >= 2)
                 {
                     victoryScreen.SetActive(true);
-                    Time.timeScale = 0f;
                 }
-                else
+                else if(enemyWins >= 2)
                 {
-                    gameoverScreen.SetActive(false);
-                    Time.timeScale = 0f;
+                    gameoverScreen.SetActive(true);
                 }
+
+                Time.timeScale = 0f;
             }
             else
             {
                 Destroy(playerHand.transform.GetChild(0).gameObject);
                 Destroy(enemyHand.transform.GetChild(0).gameObject);
 
+                yield return null;
+
                 InitialCardPlacement(playerHand);
+                yield return null;
 
                 InitialCardPlacement(enemyHand);
+                yield return null;
 
                 StartCoroutine(GetInitialBasicStats());
             }
@@ -472,10 +481,17 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-
-            StopAllCoroutines();
+            yield return null;
 
             StartCoroutine(RollDice());
         }
+    }
+
+    public void PassButton()
+    {
+        playerAtk1Button.interactable = false;
+        playerAtk2Button.interactable = false;
+        playerAtk3Button.interactable = false;
+        StartCoroutine(Pass());
     }
 }
