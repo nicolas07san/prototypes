@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CombatManager : MonoBehaviour
@@ -33,6 +34,8 @@ public class CombatManager : MonoBehaviour
     private int playerShield;
     private int playerHealth;
 
+    private int playerWins = 0;
+
     // Attack 1
     private Button playerAtk1Button;
     private int playerAtk1Cost;
@@ -52,6 +55,8 @@ public class CombatManager : MonoBehaviour
     private int enemyMana = 0;
     private int enemyShield;
     private int enemyHealth;
+
+    private int enemyWins = 0;
 
     // Attack 1
     private int enemyAtk1Cost;
@@ -87,6 +92,7 @@ public class CombatManager : MonoBehaviour
 
             if(i == 0)
             {
+                card.transform.localScale = new Vector3(1, 1);
                 card.transform.localPosition = new Vector3(0, 200);
             }
             else if(i == 1)
@@ -167,13 +173,15 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            enemyAttackController();
+            StartCoroutine(Pass());
         }
 
     }
 
     public IEnumerator GetInitialBasicStats()
     {
+        diceText.text = 0.ToString();
+
         GameObject playerCard = playerHand.transform.GetChild(0).gameObject;
 
         GameObject playerAtk1 = playerCard.transform.Find("Attack1").gameObject;
@@ -188,6 +196,9 @@ public class CombatManager : MonoBehaviour
         playerHealth = int.Parse(playerCard.transform.Find("Health").GetComponent<TMP_Text>().text);
         playerHealthText.text = playerHealth.ToString();
 
+        playerMana = 0;
+        playerManaText.text = playerMana.ToString();
+
         yield return null;
 
         // Attack 1
@@ -197,12 +208,16 @@ public class CombatManager : MonoBehaviour
 
         playerAtk1Button.onClick.AddListener(delegate { playerAttack(playerAtk1Cost, playerAtk1Damage); });
 
+        yield return null;
+
         // Attack 2
         playerAtk2Button = playerAtk2.transform.Find("Button").GetComponent<Button>();
         playerAtk2Cost = int.Parse(playerAtk2.transform.Find("Cost").GetComponent<TMP_Text>().text);
         playerAtk2Damage = int.Parse(playerAtk2.transform.Find("Damage").GetComponent<TMP_Text>().text);
 
         playerAtk2Button.onClick.AddListener(delegate { playerAttack(playerAtk2Cost, playerAtk2Damage); });
+
+        yield return null;
 
         // Attack 3
         playerAtk3Button = playerAtk3.transform.Find("Button").GetComponent<Button>();
@@ -227,21 +242,28 @@ public class CombatManager : MonoBehaviour
         enemyHealth = int.Parse(enemyCard.transform.Find("Health").GetComponent<TMP_Text>().text);
         enemyHealthText.text = enemyHealth.ToString();
 
+        enemyMana = 0;
+        enemyManaText.text = enemyMana.ToString();
+
         yield return null;
 
         // Attack 1
         enemyAtk1Cost = int.Parse(enemyAtk1.transform.Find("Cost").GetComponent<TMP_Text>().text);
         enemyAtk1Damage = int.Parse(enemyAtk1.transform.Find("Damage").GetComponent<TMP_Text>().text);
 
+        yield return null;
+
         // Attack 2
         enemyAtk2Cost = int.Parse(enemyAtk2.transform.Find("Cost").GetComponent<TMP_Text>().text);
         enemyAtk2Damage = int.Parse(enemyAtk2.transform.Find("Damage").GetComponent<TMP_Text>().text);
+
+        yield return null;
 
         // Attack 3
         enemyAtk3Cost = int.Parse(enemyAtk3.transform.Find("Cost").GetComponent<TMP_Text>().text);
         enemyAtk3Damage = int.Parse(enemyAtk3.transform.Find("Damage").GetComponent<TMP_Text>().text);
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(StartRoundAnimation());
 
@@ -314,7 +336,7 @@ public class CombatManager : MonoBehaviour
         playerAtk2Button.interactable = false;
         playerAtk3Button.interactable = false;
 
-        enemyAttackController();
+        StartCoroutine(Pass());
     }
 
     public void enemyAttackController()
@@ -403,5 +425,57 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(playerHealthText, playerHealth));
         }
 
+    }
+    
+    public IEnumerator Pass()
+    {
+        enemyAttackController();
+        yield return new WaitForSeconds(2f);
+
+        if (playerHealth <= 0 || enemyHealth <= 0)
+        {
+            round += 1;
+
+            if (playerHealth <= 0)
+                enemyWins += 1;
+            else if (enemyHealth <= 0)
+                playerWins += 1;
+
+            if(playerWins >= 2 || enemyWins >= 2)
+            {
+                if(playerWins >= 2)
+                {
+                    Debug.Log("Vitória do Jogador");
+                    SceneManager.LoadScene("MainGame");
+                }
+                else
+                {
+                    Debug.Log("Vitória do Inimigo");
+                    SceneManager.LoadScene("MainGame");
+                }
+            }
+            else
+            {
+                Destroy(playerHand.transform.GetChild(0).gameObject);
+                Destroy(enemyHand.transform.GetChild(0).gameObject);
+
+                yield return null;
+                InitialCardPlacement(playerHand);
+
+                yield return null;
+                InitialCardPlacement(enemyHand);
+
+                yield return null;
+                StartCoroutine(GetInitialBasicStats());
+            }
+            
+        }
+        else
+        {
+
+            StopAllCoroutines();
+
+            StartCoroutine(RollDice());
+        }
     }
 }
