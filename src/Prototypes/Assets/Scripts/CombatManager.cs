@@ -15,13 +15,23 @@ public class CombatManager : MonoBehaviour
 
     [Header("Player Stats")]
     [SerializeField] private TMP_Text playerManaText;
-    [SerializeField] private TMP_Text playerShieldText;
-    [SerializeField] private TMP_Text playerHealthText;
+    [SerializeField] private TMP_Text playerManaTextDifference;
 
-    [Header("Enemy")]
+    [SerializeField] private TMP_Text playerShieldText;
+    [SerializeField] private TMP_Text playerShieldTextDifference;
+
+    [SerializeField] private TMP_Text playerHealthText;
+    [SerializeField] private TMP_Text playerHealthTextDiffernce;
+
+    [Header("Enemy Stats")]
     [SerializeField] private TMP_Text enemyManaText;
+    [SerializeField] private TMP_Text enemyManaTextDifference;
+
     [SerializeField] private TMP_Text enemyShieldText;
+    [SerializeField] private TMP_Text enemyShieldTextDifference;
+
     [SerializeField] private TMP_Text enemyHealthText;
+    [SerializeField] private TMP_Text enemyHealthTextDifference;
 
     [Header("Screens Contol")]
     [SerializeField] private GameObject victoryScreen;
@@ -33,6 +43,9 @@ public class CombatManager : MonoBehaviour
 
     private int diceNumber;
     private int round = 1;
+
+    private Color32 decreaseColor = new Color32(226, 20, 20, 255);
+    private Color32 increaseColor = new Color32(20, 226, 20, 255);
 
     // Player stats
     private int playerMana = 0;
@@ -115,70 +128,6 @@ public class CombatManager : MonoBehaviour
             card.SetActive(true);
 
         }
-    }
-
-    private IEnumerator StartRoundAnimation() {
-
-        Vector3 startPosition = new Vector3(0, -200);
-        Vector3 finalPosition = new Vector3(0, 200);
-
-        roundText.gameObject.SetActive(true);
-        roundText.transform.localPosition = startPosition;
-        roundText.text = "Round " + round;
-        
-
-        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
-        {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.0125f);
-            yield return null;
-        }
-
-        roundText.transform.localPosition = finalPosition;
-        roundText.gameObject.SetActive(false);
-
-        StartCoroutine(RollDice());
-
-        yield return null;
-
-    }
-
-    private IEnumerator RollDice()
-    {
-
-        for (int i = 0; i < 100; i++)
-        {
-            diceNumber = Random.Range(1, 6);
-            diceText.text = diceNumber.ToString();
-            yield return new WaitForSecondsRealtime(3f / 100);
-        }
-
-        playerMana += diceNumber;
-        StartCoroutine(UpdateStatText(playerManaText, playerMana));
-
-        enemyMana += diceNumber;
-        StartCoroutine(UpdateStatText(enemyManaText, enemyMana));
-
-        yield return null;
-
-        AttackController();
-    }
-
-    private void AttackController()
-    {   
-        if(playerMana >= playerAtk1Cost || playerMana >= playerAtk2Cost || playerMana >= playerAtk3Cost)
-        {
-            if (playerMana >= playerAtk1Cost)
-                playerAtk1Button.interactable = true;
-
-            if (playerMana >= playerAtk2Cost)
-                playerAtk2Button.interactable = true;
-
-            if (playerMana >= playerAtk3Cost)
-                playerAtk3Button.interactable = true;
-        }
-       
-        passButton.gameObject.SetActive(true);
-        
     }
 
     private IEnumerator GetInitialBasicStats()
@@ -272,7 +221,71 @@ public class CombatManager : MonoBehaviour
 
     }
 
-    private IEnumerator UpdateStatText(TMP_Text statText,int statVariable)
+    private IEnumerator StartRoundAnimation() {
+
+        Vector3 startPosition = new Vector3(0, -200);
+        Vector3 finalPosition = new Vector3(0, 200);
+
+        roundText.gameObject.SetActive(true);
+        roundText.transform.localPosition = startPosition;
+        roundText.text = "Round " + round;
+        
+
+        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
+        {
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.0125f);
+            yield return null;
+        }
+
+        roundText.transform.localPosition = finalPosition;
+        roundText.gameObject.SetActive(false);
+
+        StartCoroutine(RollDice());
+
+        yield return null;
+
+    }
+
+    private IEnumerator RollDice()
+    {
+
+        for (int i = 0; i < 100; i++)
+        {
+            diceNumber = Random.Range(1, 6);
+            diceText.text = diceNumber.ToString();
+            yield return new WaitForSecondsRealtime(3f / 100);
+        }
+
+        playerMana += diceNumber;
+        StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
+
+        enemyMana += diceNumber;
+        StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
+
+        yield return null;
+
+        AttackController();
+    }
+
+    private void AttackController()
+    {   
+        if(playerMana >= playerAtk1Cost || playerMana >= playerAtk2Cost || playerMana >= playerAtk3Cost)
+        {
+            if (playerMana >= playerAtk1Cost)
+                playerAtk1Button.interactable = true;
+
+            if (playerMana >= playerAtk2Cost)
+                playerAtk2Button.interactable = true;
+
+            if (playerMana >= playerAtk3Cost)
+                playerAtk3Button.interactable = true;
+        }
+       
+        passButton.gameObject.SetActive(true);
+        
+    }
+
+    private IEnumerator UpdateStatText(TMP_Text statText, TMP_Text statTextDifference,int statVariable)
     {
         int valueDifference = 0;
         float animationTime = 1f;
@@ -291,6 +304,12 @@ public class CombatManager : MonoBehaviour
 
         if(valueDifference > 0)
         {
+            statTextDifference.color = increaseColor;
+            statTextDifference.text = "+" + valueDifference;
+            statTextDifference.gameObject.SetActive(true);
+
+            yield return null;
+
             for(int i = valueDifference; i > 0; i--)
             {
                 statText.text = (int.Parse(statText.text) + 1).ToString();
@@ -300,6 +319,12 @@ public class CombatManager : MonoBehaviour
 
         else if(valueDifference < 0)
         {
+            statTextDifference.color = decreaseColor;
+            statTextDifference.text = "" + valueDifference;
+            statTextDifference.gameObject.SetActive(true);
+
+            yield return null;
+
             for(int i = valueDifference; i < 0; i++)
             {
                 statText.text = (int.Parse(statText.text) - 1).ToString();
@@ -308,6 +333,7 @@ public class CombatManager : MonoBehaviour
         }
 
         statText.text = statVariable.ToString();
+        statTextDifference.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -315,7 +341,7 @@ public class CombatManager : MonoBehaviour
     private void playerAttack(int attackCost, int attackDamage)
     {
         playerMana -= attackCost;
-        StartCoroutine(UpdateStatText(playerManaText, playerMana));
+        StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
 
         if(enemyShield > 0)
         {
@@ -323,7 +349,7 @@ public class CombatManager : MonoBehaviour
             if (enemyShield < 0)
                 enemyShield = 0;
 
-            StartCoroutine(UpdateStatText(enemyShieldText, enemyShield));
+            StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
         }
 
         else
@@ -332,7 +358,7 @@ public class CombatManager : MonoBehaviour
             if (enemyHealth < 0)
                 enemyHealth = 0;
 
-            StartCoroutine(UpdateStatText(enemyHealthText, enemyHealth));
+            StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
         }
 
         playerAtk1Button.interactable = false;
@@ -411,14 +437,14 @@ public class CombatManager : MonoBehaviour
     private void enemyAttack(int attackCost, int attackDamage)
     {
         enemyMana -= attackCost;
-        StartCoroutine(UpdateStatText(enemyManaText, enemyMana));
+        StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
 
         if(playerShield > 0)
         {
             playerShield -= attackDamage;
             if (playerShield < 0)
                 playerShield = 0;
-            StartCoroutine(UpdateStatText(playerShieldText, playerShield));
+            StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
         }
 
         else
@@ -427,7 +453,7 @@ public class CombatManager : MonoBehaviour
             if (playerHealth < 0)
                 playerHealth = 0;
 
-            StartCoroutine(UpdateStatText(playerHealthText, playerHealth));
+            StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDiffernce, playerHealth));
         }
 
     }
@@ -494,4 +520,5 @@ public class CombatManager : MonoBehaviour
         playerAtk3Button.interactable = false;
         StartCoroutine(Pass());
     }
+
 }
