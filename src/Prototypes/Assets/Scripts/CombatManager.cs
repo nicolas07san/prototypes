@@ -38,6 +38,10 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject gameoverScreen;
     [SerializeField] private Button passButton;
 
+    [Header("Victory Count")]
+    [SerializeField] private GameObject playerWinCount;
+    [SerializeField] private GameObject enemyWinCount;
+
     private Vector3 playerHandPosition = new Vector3(-700, 0);
     private Vector3 enemyHandPosition = new Vector3(700, 0);
 
@@ -468,9 +472,17 @@ public class CombatManager : MonoBehaviour
             round += 1;
 
             if (playerHealth <= 0)
+            {
                 enemyWins += 1;
+                enemyWinCount.transform.GetChild(enemyWins-1).GetComponent<Image>().color = increaseColor;
+            }
+                
             else if (enemyHealth <= 0)
+            {
                 playerWins += 1;
+                playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = increaseColor;
+            }
+                
 
             if(playerWins >= 2 || enemyWins >= 2)
             {
