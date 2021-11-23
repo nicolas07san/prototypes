@@ -237,7 +237,7 @@ public class CombatManager : MonoBehaviour
 
         while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.0125f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.03f);
             yield return null;
         }
 
@@ -262,6 +262,8 @@ public class CombatManager : MonoBehaviour
 
         playerMana += diceNumber;
         StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
+
+        diceNumber = Random.Range(1, 6);
 
         enemyMana += diceNumber;
         StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));

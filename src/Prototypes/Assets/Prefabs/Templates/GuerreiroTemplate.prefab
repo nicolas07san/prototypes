@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 868213189719149641}
   - component: {fileID: 5069287606050065441}
   m_Layer: 5
-  m_Name: ' SelectButton'
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1211,7 +1211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152131551966154027}
   m_Layer: 5
-  m_Name: Attack 3
+  m_Name: Attack3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1994,7 +1994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152131552910923541}
   m_Layer: 5
-  m_Name: Attack 1
+  m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2035,7 +2035,7 @@ GameObject:
   - component: {fileID: 8136678397127230706}
   - component: {fileID: 6243730607131443470}
   m_Layer: 5
-  m_Name: ' SelectButton'
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2290,7 @@ GameObject:
   - component: {fileID: 8561259451165773424}
   - component: {fileID: 4582814850062031172}
   m_Layer: 5
-  m_Name: ' SelectButton'
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,13 +15,13 @@ MonoBehaviour:
   characterName: Krass Morg
   artwork: {fileID: 21300000, guid: f32b053cca518f34cb9e8b3d1756478a, type: 3}
   attack1Name: Bola de fogo
-  attack1Cost: 5
+  attack1Cost: 2
   attack1Dmg: 5
-  attack2Name: Escudo de gelo
-  attack2Cost: 3
+  attack2Name: Seta de Gelo
+  attack2Cost: 4
   attack2Dmg: 8
   attack3Name: "M\xEDssil estelar"
-  attack3Cost: 8
+  attack3Cost: 7
   attack3Dmg: 10
   health: 20
-  shield: 40
+  shield: 45

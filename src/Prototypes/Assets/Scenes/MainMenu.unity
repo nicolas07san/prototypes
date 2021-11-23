@@ -988,7 +988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Eldwin's War
+  m_text: Ewldin's War
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 63bd4c4c7368d3f459bb31be505b543d, type: 2}
   m_sharedMaterial: {fileID: 6371884950825266522, guid: 63bd4c4c7368d3f459bb31be505b543d, type: 2}
