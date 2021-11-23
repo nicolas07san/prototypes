@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class CardSelection : MonoBehaviour
 {
-    [SerializeField] private Button previousButton;
-    [SerializeField] private Button nextButton;
+    [Header("Buttons")]
     [SerializeField] private Button selectButton;
     [SerializeField] private Button undoButton;
+    [SerializeField] private Button confirmButton;
 
+    [Header("Game Objects")]
     [SerializeField] private GameObject playerHand;
+    [SerializeField] private GameObject enemyHand;
 
     private int currentCard = 0;
 
@@ -23,6 +25,7 @@ public class CardSelection : MonoBehaviour
     {
         undoButton.interactable = (playerHand.transform.childCount > 0);
         selectButton.interactable = (playerHand.transform.childCount < 3);
+        confirmButton.interactable = (playerHand.transform.childCount == 3);
 
         for(int i = 0; i < transform.childCount; i++)
         {
@@ -73,5 +76,18 @@ public class CardSelection : MonoBehaviour
     public void BackButton()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ConfirmButton()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            int index = Random.Range(0, transform.childCount - 1);
+            GameObject card = transform.GetChild(index).gameObject;
+            card.SetActive(false);
+            card.transform.SetParent(enemyHand.transform);
+
+            playerHand.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }
