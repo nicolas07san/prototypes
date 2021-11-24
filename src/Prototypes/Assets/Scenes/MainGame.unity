@@ -7818,7 +7818,7 @@ MonoBehaviour:
   playerShieldText: {fileID: 1320268174}
   playerShieldTextDifference: {fileID: 67471151}
   playerHealthText: {fileID: 926640738}
-  playerHealthTextDiffernce: {fileID: 1007683428}
+  playerHealthTextDifference: {fileID: 1007683428}
   enemyManaText: {fileID: 634973769}
   enemyManaTextDifference: {fileID: 1610748860}
   enemyShieldText: {fileID: 1948723611}

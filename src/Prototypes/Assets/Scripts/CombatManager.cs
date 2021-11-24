@@ -51,8 +51,6 @@ public class CombatManager : MonoBehaviour
     private Color32 decreaseColor = new Color32(226, 20, 20, 255);
     private Color32 increaseColor = new Color32(20, 226, 20, 255);
 
-    private AudioManager audioManager = AudioManager.instance;
-
     // Player stats
     private int playerMana = 0;
     private int playerShield;
@@ -103,7 +101,7 @@ public class CombatManager : MonoBehaviour
         InitialCardPlacement(playerHand);
         InitialCardPlacement(enemyHand);
 
-        audioManager.Play("CombatTheme");
+        AudioManager.instance.Play("CombatTheme");
 
         StartCoroutine(GetInitialBasicStats());
 
@@ -232,11 +230,13 @@ public class CombatManager : MonoBehaviour
 
     private IEnumerator StartRoundAnimation() {
 
-        if (audioManager.IsPlaying("SuddenDeathTheme"))
-            audioManager.Stop("SuddentDeathTheme");
+        if (AudioManager.instance.IsPlaying("SuddenDeathTheme"))
+            AudioManager.instance.Stop("SuddenDeathTheme");
 
-        if (!audioManager.IsPlaying("CombatTheme"))
-            audioManager.Play("CombatTheme");
+        if (!AudioManager.instance.IsPlaying("CombatTheme"))
+            AudioManager.instance.Play("CombatTheme");
+
+        yield return null;
 
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
@@ -248,7 +248,7 @@ public class CombatManager : MonoBehaviour
 
         while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.03f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.05f);
             yield return null;
         }
 
@@ -378,7 +378,7 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
         }
 
-        audioManager.Play("DamageSound");
+        AudioManager.instance.Play("DamageSound");
 
         playerAtk1Button.interactable = false;
         playerAtk2Button.interactable = false;
@@ -475,7 +475,7 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
         }
 
-        audioManager.Play("DamageSound");
+        AudioManager.instance.Play("DamageSound");
 
     }
     
@@ -511,19 +511,20 @@ public class CombatManager : MonoBehaviour
 
                 if (playerWins >= 2 || enemyWins >= 2)
                 {
-                    audioManager.Stop("CombatTheme");
+                    AudioManager.instance.Stop("CombatTheme");
+                    AudioManager.instance.Stop("SuddenDeathTheme");
 
                     yield return null;
 
                     if (playerWins >= 2)
                     {
                         victoryScreen.SetActive(true);
-                        audioManager.Play("VictorySound");
+                        AudioManager.instance.Play("VictorySound");
                     }
                     else if (enemyWins >= 2)
                     {
                         gameoverScreen.SetActive(true);
-                        audioManager.Play("DefeatSound");
+                        AudioManager.instance.Play("DefeatSound");
                     }
 
                     Time.timeScale = 0f;
@@ -564,11 +565,35 @@ public class CombatManager : MonoBehaviour
 
     private IEnumerator SuddenDeath()
     {
-        if (audioManager.IsPlaying("CombatTheme"))
-            audioManager.Stop("CombatTheme");
+        if (AudioManager.instance.IsPlaying("CombatTheme"))
+            AudioManager.instance.Stop("CombatTheme");
 
-        if (!audioManager.IsPlaying("SuddenDeathTheme"))
-            audioManager.Play("SuddentDeathTheme");
+        if (!AudioManager.instance.IsPlaying("SuddenDeathTheme"))
+            AudioManager.instance.Play("SuddenDeathTheme");
+
+        yield return null;
+
+        playerHealth = 10;
+        playerHealthText.text = playerHealth.ToString();
+
+        playerShield = 10;
+        playerShieldText.text = playerShield.ToString();
+
+        playerMana = 0;
+        playerManaText.text = playerMana.ToString();
+
+        yield return null;
+
+        enemyHealth = 10;
+        enemyHealthText.text = enemyHealth.ToString();
+
+        enemyShield = 10;
+        enemyShieldText.text = enemyShield.ToString();
+
+        enemyMana = 0;
+        enemyManaText.text = enemyMana.ToString();
+
+        yield return null;
 
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
@@ -579,26 +604,12 @@ public class CombatManager : MonoBehaviour
 
         while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.03f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.05f);
             yield return null;
         }
 
         roundText.transform.localPosition = finalPosition;
         roundText.gameObject.SetActive(false);
-
-        playerHealth += 10;
-        UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
-
-        playerShield += 10;
-        UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
-
-        yield return null;
-
-        enemyHealth += 10;
-        UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
-
-        enemyShield += 10;
-        UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana);
 
         yield return null;
 
