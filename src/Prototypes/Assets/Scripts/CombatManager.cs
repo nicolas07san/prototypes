@@ -51,6 +51,8 @@ public class CombatManager : MonoBehaviour
     private Color32 decreaseColor = new Color32(226, 20, 20, 255);
     private Color32 increaseColor = new Color32(20, 226, 20, 255);
 
+    private AudioManager audioManager;
+
     // Player stats
     private int playerMana = 0;
     private int playerShield;
@@ -94,11 +96,15 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
+        audioManager = AudioManager.instance;
+
         playerHand.transform.localPosition = playerHandPosition;
         enemyHand.transform.localPosition = enemyHandPosition;
 
         InitialCardPlacement(playerHand);
         InitialCardPlacement(enemyHand);
+
+        audioManager.Play("CombatTheme");
 
         StartCoroutine(GetInitialBasicStats());
 
@@ -367,6 +373,8 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
         }
 
+        audioManager.Play("DamageSound");
+
         playerAtk1Button.interactable = false;
         playerAtk2Button.interactable = false;
         playerAtk3Button.interactable = false;
@@ -462,6 +470,8 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDiffernce, playerHealth));
         }
 
+        audioManager.Play("DamageSound");
+
     }
     
     private IEnumerator Pass()
@@ -488,16 +498,19 @@ public class CombatManager : MonoBehaviour
 
             if(playerWins >= 2 || enemyWins >= 2)
             {
+                audioManager.Stop("CombatTheme");
 
                 yield return null;
 
                 if(playerWins >= 2)
                 {
                     victoryScreen.SetActive(true);
+                    audioManager.Play("VictorySound");
                 }
                 else if(enemyWins >= 2)
                 {
                     gameoverScreen.SetActive(true);
+                    audioManager.Play("DefeatSound");
                 }
 
                 Time.timeScale = 0f;
