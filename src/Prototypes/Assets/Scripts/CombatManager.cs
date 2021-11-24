@@ -21,7 +21,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text playerShieldTextDifference;
 
     [SerializeField] private TMP_Text playerHealthText;
-    [SerializeField] private TMP_Text playerHealthTextDiffernce;
+    [SerializeField] private TMP_Text playerHealthTextDifference;
 
     [Header("Enemy Stats")]
     [SerializeField] private TMP_Text enemyManaText;
@@ -51,7 +51,7 @@ public class CombatManager : MonoBehaviour
     private Color32 decreaseColor = new Color32(226, 20, 20, 255);
     private Color32 increaseColor = new Color32(20, 226, 20, 255);
 
-    private AudioManager audioManager;
+    private AudioManager audioManager = AudioManager.instance;
 
     // Player stats
     private int playerMana = 0;
@@ -96,7 +96,6 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
-        audioManager = AudioManager.instance;
 
         playerHand.transform.localPosition = playerHandPosition;
         enemyHand.transform.localPosition = enemyHandPosition;
@@ -232,6 +231,12 @@ public class CombatManager : MonoBehaviour
     }
 
     private IEnumerator StartRoundAnimation() {
+
+        if (audioManager.IsPlaying("SuddenDeathTheme"))
+            audioManager.Stop("SuddentDeathTheme");
+
+        if (!audioManager.IsPlaying("CombatTheme"))
+            audioManager.Play("CombatTheme");
 
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
@@ -467,7 +472,7 @@ public class CombatManager : MonoBehaviour
             if (playerHealth < 0)
                 playerHealth = 0;
 
-            StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDiffernce, playerHealth));
+            StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
         }
 
         audioManager.Play("DamageSound");
@@ -481,54 +486,63 @@ public class CombatManager : MonoBehaviour
 
         if (playerHealth <= 0 || enemyHealth <= 0)
         {
-            round += 1;
 
-            if (playerHealth <= 0)
+            if (playerHealth <= 0 && enemyHealth <= 0)
             {
-                enemyWins += 1;
-                enemyWinCount.transform.GetChild(enemyWins-1).GetComponent<Image>().color = increaseColor;
+                StartCoroutine(SuddenDeath());
             }
-                
-            else if (enemyHealth <= 0)
-            {
-                playerWins += 1;
-                playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = increaseColor;
-            }
-                
 
-            if(playerWins >= 2 || enemyWins >= 2)
-            {
-                audioManager.Stop("CombatTheme");
-
-                yield return null;
-
-                if(playerWins >= 2)
-                {
-                    victoryScreen.SetActive(true);
-                    audioManager.Play("VictorySound");
-                }
-                else if(enemyWins >= 2)
-                {
-                    gameoverScreen.SetActive(true);
-                    audioManager.Play("DefeatSound");
-                }
-
-                Time.timeScale = 0f;
-            }
             else
             {
-                Destroy(playerHand.transform.GetChild(0).gameObject);
-                Destroy(enemyHand.transform.GetChild(0).gameObject);
+                round += 1;
 
-                yield return null;
+                if (playerHealth <= 0)
+                {
+                    enemyWins += 1;
+                    enemyWinCount.transform.GetChild(enemyWins - 1).GetComponent<Image>().color = increaseColor;
+                }
 
-                InitialCardPlacement(playerHand);
-                yield return null;
+                else if (enemyHealth <= 0)
+                {
+                    playerWins += 1;
+                    playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = increaseColor;
+                }
 
-                InitialCardPlacement(enemyHand);
-                yield return null;
 
-                StartCoroutine(GetInitialBasicStats());
+                if (playerWins >= 2 || enemyWins >= 2)
+                {
+                    audioManager.Stop("CombatTheme");
+
+                    yield return null;
+
+                    if (playerWins >= 2)
+                    {
+                        victoryScreen.SetActive(true);
+                        audioManager.Play("VictorySound");
+                    }
+                    else if (enemyWins >= 2)
+                    {
+                        gameoverScreen.SetActive(true);
+                        audioManager.Play("DefeatSound");
+                    }
+
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    Destroy(playerHand.transform.GetChild(0).gameObject);
+                    Destroy(enemyHand.transform.GetChild(0).gameObject);
+
+                    yield return null;
+
+                    InitialCardPlacement(playerHand);
+                    yield return null;
+
+                    InitialCardPlacement(enemyHand);
+                    yield return null;
+
+                    StartCoroutine(GetInitialBasicStats());
+                }
             }
             
         }
@@ -548,4 +562,47 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(Pass());
     }
 
+    private IEnumerator SuddenDeath()
+    {
+        if (audioManager.IsPlaying("CombatTheme"))
+            audioManager.Stop("CombatTheme");
+
+        if (!audioManager.IsPlaying("SuddenDeathTheme"))
+            audioManager.Play("SuddentDeathTheme");
+
+        Vector3 startPosition = new Vector3(0, -200);
+        Vector3 finalPosition = new Vector3(0, 200);
+
+        roundText.gameObject.SetActive(true);
+        roundText.transform.localPosition = startPosition;
+        roundText.text = "Morte Súbita";
+
+        while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
+        {
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.03f);
+            yield return null;
+        }
+
+        roundText.transform.localPosition = finalPosition;
+        roundText.gameObject.SetActive(false);
+
+        playerHealth += 10;
+        UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
+
+        playerShield += 10;
+        UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
+
+        yield return null;
+
+        enemyHealth += 10;
+        UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
+
+        enemyShield += 10;
+        UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana);
+
+        yield return null;
+
+        StartCoroutine(RollDice());
+        
+    }
 }

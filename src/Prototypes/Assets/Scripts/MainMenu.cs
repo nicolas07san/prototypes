@@ -7,12 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     public void Start()
     {
-        FindObjectOfType<AudioManager>().Play("MenuTheme");
+        AudioManager.instance.Stop("VictorySound");
+        AudioManager.instance.Stop("DefeatSound");
+        AudioManager.instance.Play("MenuTheme");
     }
 
     public void PlayGame()
     {
-        FindObjectOfType<AudioManager>().Stop("MenuTheme");
+        AudioManager.instance.Stop("MenuTheme");
         SceneManager.LoadScene("MainGame");
     }
 

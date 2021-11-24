@@ -23,6 +23,8 @@ public class CardSelection : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.Stop("VictorySound");
+        AudioManager.instance.Stop("DefeatSound");
         AudioManager.instance.Play("CardSelectionTheme");
     }
 

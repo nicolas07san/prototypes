@@ -44,12 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: CardFlip
-    clip: {fileID: 8300000, guid: 235d3e25f86f50f43b349a1ccd790739, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: MenuTheme
     clip: {fileID: 8300000, guid: cb645ea9b62616a4dba819076b08f862, type: 3}
     volume: 0.6
@@ -68,6 +62,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: SuddenDeathTheme
+    clip: {fileID: 8300000, guid: 824bf89b7644a844ebb997a9155fcb37, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   - name: DefeatSound
     clip: {fileID: 8300000, guid: 3a6e98b094000174ab27f8c4f8f0ab4c, type: 3}
     volume: 0.7
@@ -82,6 +82,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DamageSound
     clip: {fileID: 8300000, guid: 47d5ebee61acde8498593c955f7af8b3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CardFlip
+    clip: {fileID: 8300000, guid: 235d3e25f86f50f43b349a1ccd790739, type: 3}
     volume: 1
     pitch: 1
     loop: 0
