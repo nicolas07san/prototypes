@@ -246,9 +246,9 @@ public class CombatManager : MonoBehaviour
         roundText.text = "Round " + round;
         
 
-        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
+        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.05f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 2f * Time.deltaTime);
             yield return null;
         }
 
@@ -602,9 +602,9 @@ public class CombatManager : MonoBehaviour
         roundText.transform.localPosition = startPosition;
         roundText.text = "Morte Súbita";
 
-        while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
+        while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.05f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 2f * Time.deltaTime);
             yield return null;
         }
 
