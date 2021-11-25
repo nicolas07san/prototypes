@@ -243,7 +243,7 @@ public class CombatManager : MonoBehaviour
 
         roundText.gameObject.SetActive(true);
         roundText.transform.localPosition = startPosition;
-        roundText.text = "Round " + round;
+        roundText.text = "Rodada " + round;
         
 
         while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
