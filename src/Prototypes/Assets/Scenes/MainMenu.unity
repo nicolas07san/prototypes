@@ -2248,9 +2248,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<color=#FC7A1E>O Combate\n\n<color=#FFFFFF> O primeiro jogador a eliminar
-    a carta inimiga vence a rodada.\n\nO combate funciona em um formato de melhor
+    o personagem inimigo vence a rodada.\n\nO combate funciona em um formato de melhor
     de tr\xEAs ou seja o primeiro a vencer duas rodadas vence.\n \nO icone         
-    representas as vit\xF3rias.\n\n\n"
+    representa as vit\xF3rias.\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
@@ -2519,9 +2519,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<color=#FC7A1E>Informa\xE7\xF5es B\xE1sicas\n\n<color=#FFFFFF> O icone         
-    representa o escudo. O escudo impede que dano seja causado a vida da carta.\n\nO
-    icone          representa a vida da carta. Caso a vida da carta chegue a zero
-    ela \xE9 eliminada.\n"
+    representa o escudo. O escudo impede que dano seja causado a vida do personagem.\n\nO
+    icone          representa a vida do personagem. Caso a vida do personagem chegue
+    a zero ela \xE9 eliminada.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
@@ -3702,8 +3702,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<color=#FC7A1E>O Combate\n\n<color=#FFFFFF> Antes de iniciar o combate
-    \xE9 necess\xE1rio escolher tr\xEAs cartas.\n \nEssas tr\xEAs cartas ser\xE3o
-    utilizadas pelo jogador durante o combate.\n\n\n"
+    \xE9 necess\xE1rio escolher tr\xEAs personagens.\n \nEsses tr\xEAs personagens
+    ser\xE3o utilizados pelo jogador durante o combate.\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
@@ -4195,7 +4195,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<color=#FC7A1E>Informa\xE7\xF5es B\xE1sicas\n\n<color=#FFFFFF> O icone         
-    representa a enegia atual durante o comabte e o custo de cada ataque.\n\nO icone         
+    representa a enegia atual durante o combate e o custo de cada ataque.\n\nO icone         
     representa o dano que ser\xE1 causado pelo ataque.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
@@ -6424,7 +6424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1784561435
 Transform:
   m_ObjectHideFlags: 0
