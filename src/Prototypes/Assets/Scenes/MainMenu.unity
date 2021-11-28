@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_text: "<color=#FC7A1E>Informa\xE7\xF5es B\xE1sicas\n\n<color=#FFFFFF> O icone         
     representa o escudo. O escudo impede que dano seja causado a vida do personagem.\n\nO
     icone          representa a vida do personagem. Caso a vida do personagem chegue
-    a zero ela \xE9 eliminada.\n"
+    a zero ele \xE9 eliminado.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
