@@ -15,13 +15,13 @@ MonoBehaviour:
   characterName: Gulrion
   artwork: {fileID: 21300000, guid: b2873678a47917d418e501122861098b, type: 3}
   attack1Name: Espiral da morte
-  attack1Cost: 1
+  attack1Cost: 2
   attack1Dmg: 5
   attack2Name: Dreno de alma
   attack2Cost: 3
-  attack2Dmg: 6
+  attack2Dmg: 7
   attack3Name: Ira sombria
-  attack3Cost: 2
-  attack3Dmg: 7
-  health: 10
+  attack3Cost: 6
+  attack3Dmg: 10
+  health: 15
   shield: 50

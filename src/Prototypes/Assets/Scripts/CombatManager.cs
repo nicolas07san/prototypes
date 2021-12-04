@@ -21,7 +21,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text playerShieldTextDifference;
 
     [SerializeField] private TMP_Text playerHealthText;
-    [SerializeField] private TMP_Text playerHealthTextDiffernce;
+    [SerializeField] private TMP_Text playerHealthTextDifference;
 
     [Header("Enemy Stats")]
     [SerializeField] private TMP_Text enemyManaText;
@@ -94,11 +94,14 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
+
         playerHand.transform.localPosition = playerHandPosition;
         enemyHand.transform.localPosition = enemyHandPosition;
 
         InitialCardPlacement(playerHand);
         InitialCardPlacement(enemyHand);
+
+        AudioManager.instance.Play("CombatTheme");
 
         StartCoroutine(GetInitialBasicStats());
 
@@ -227,17 +230,25 @@ public class CombatManager : MonoBehaviour
 
     private IEnumerator StartRoundAnimation() {
 
+        if (AudioManager.instance.IsPlaying("SuddenDeathTheme"))
+            AudioManager.instance.Stop("SuddenDeathTheme");
+
+        if (!AudioManager.instance.IsPlaying("CombatTheme"))
+            AudioManager.instance.Play("CombatTheme");
+
+        yield return null;
+
         Vector3 startPosition = new Vector3(0, -200);
         Vector3 finalPosition = new Vector3(0, 200);
 
         roundText.gameObject.SetActive(true);
         roundText.transform.localPosition = startPosition;
-        roundText.text = "Round " + round;
+        roundText.text = "Rodada " + round;
         
 
-        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.05f)
+        while(Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
         {
-            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 0.0125f);
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 2f * Time.deltaTime);
             yield return null;
         }
 
@@ -262,6 +273,8 @@ public class CombatManager : MonoBehaviour
 
         playerMana += diceNumber;
         StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
+
+        diceNumber = Random.Range(1, 6);
 
         enemyMana += diceNumber;
         StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
@@ -365,6 +378,8 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
         }
 
+        AudioManager.instance.Play("DamageSound");
+
         playerAtk1Button.interactable = false;
         playerAtk2Button.interactable = false;
         playerAtk3Button.interactable = false;
@@ -457,8 +472,10 @@ public class CombatManager : MonoBehaviour
             if (playerHealth < 0)
                 playerHealth = 0;
 
-            StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDiffernce, playerHealth));
+            StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
         }
+
+        AudioManager.instance.Play("DamageSound");
 
     }
     
@@ -469,51 +486,64 @@ public class CombatManager : MonoBehaviour
 
         if (playerHealth <= 0 || enemyHealth <= 0)
         {
-            round += 1;
 
-            if (playerHealth <= 0)
+            if (playerHealth <= 0 && enemyHealth <= 0)
             {
-                enemyWins += 1;
-                enemyWinCount.transform.GetChild(enemyWins-1).GetComponent<Image>().color = increaseColor;
+                StartCoroutine(SuddenDeath());
             }
-                
-            else if (enemyHealth <= 0)
-            {
-                playerWins += 1;
-                playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = increaseColor;
-            }
-                
 
-            if(playerWins >= 2 || enemyWins >= 2)
-            {
-
-                yield return null;
-
-                if(playerWins >= 2)
-                {
-                    victoryScreen.SetActive(true);
-                }
-                else if(enemyWins >= 2)
-                {
-                    gameoverScreen.SetActive(true);
-                }
-
-                Time.timeScale = 0f;
-            }
             else
             {
-                Destroy(playerHand.transform.GetChild(0).gameObject);
-                Destroy(enemyHand.transform.GetChild(0).gameObject);
+                round += 1;
 
-                yield return null;
+                if (playerHealth <= 0)
+                {
+                    enemyWins += 1;
+                    enemyWinCount.transform.GetChild(enemyWins - 1).GetComponent<Image>().color = increaseColor;
+                }
 
-                InitialCardPlacement(playerHand);
-                yield return null;
+                else if (enemyHealth <= 0)
+                {
+                    playerWins += 1;
+                    playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = increaseColor;
+                }
 
-                InitialCardPlacement(enemyHand);
-                yield return null;
 
-                StartCoroutine(GetInitialBasicStats());
+                if (playerWins >= 2 || enemyWins >= 2)
+                {
+                    AudioManager.instance.Stop("CombatTheme");
+                    AudioManager.instance.Stop("SuddenDeathTheme");
+
+                    yield return null;
+
+                    if (playerWins >= 2)
+                    {
+                        victoryScreen.SetActive(true);
+                        AudioManager.instance.Play("VictorySound");
+                    }
+                    else if (enemyWins >= 2)
+                    {
+                        gameoverScreen.SetActive(true);
+                        AudioManager.instance.Play("DefeatSound");
+                    }
+
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    Destroy(playerHand.transform.GetChild(0).gameObject);
+                    Destroy(enemyHand.transform.GetChild(0).gameObject);
+
+                    yield return null;
+
+                    InitialCardPlacement(playerHand);
+                    yield return null;
+
+                    InitialCardPlacement(enemyHand);
+                    yield return null;
+
+                    StartCoroutine(GetInitialBasicStats());
+                }
             }
             
         }
@@ -533,4 +563,57 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(Pass());
     }
 
+    private IEnumerator SuddenDeath()
+    {
+        if (AudioManager.instance.IsPlaying("CombatTheme"))
+            AudioManager.instance.Stop("CombatTheme");
+
+        if (!AudioManager.instance.IsPlaying("SuddenDeathTheme"))
+            AudioManager.instance.Play("SuddenDeathTheme");
+
+        yield return null;
+
+        playerHealth = 10;
+        playerHealthText.text = playerHealth.ToString();
+
+        playerShield = 10;
+        playerShieldText.text = playerShield.ToString();
+
+        playerMana = 0;
+        playerManaText.text = playerMana.ToString();
+
+        yield return null;
+
+        enemyHealth = 10;
+        enemyHealthText.text = enemyHealth.ToString();
+
+        enemyShield = 10;
+        enemyShieldText.text = enemyShield.ToString();
+
+        enemyMana = 0;
+        enemyManaText.text = enemyMana.ToString();
+
+        yield return null;
+
+        Vector3 startPosition = new Vector3(0, -200);
+        Vector3 finalPosition = new Vector3(0, 200);
+
+        roundText.gameObject.SetActive(true);
+        roundText.transform.localPosition = startPosition;
+        roundText.text = "Morte Súbita";
+
+        while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
+        {
+            roundText.transform.localPosition = Vector3.Lerp(roundText.transform.localPosition, finalPosition, 2f * Time.deltaTime);
+            yield return null;
+        }
+
+        roundText.transform.localPosition = finalPosition;
+        roundText.gameObject.SetActive(false);
+
+        yield return null;
+
+        StartCoroutine(RollDice());
+        
+    }
 }

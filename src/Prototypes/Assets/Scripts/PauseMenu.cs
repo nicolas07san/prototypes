@@ -40,12 +40,14 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        FindObjectOfType<AudioManager>().Stop("CombatTheme");
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
 
     public void RestartScene()
     {
+        FindObjectOfType<AudioManager>().Stop("CombatTheme");
         SceneManager.LoadScene("MainGame");
         Time.timeScale = 1f;
     }

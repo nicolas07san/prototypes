@@ -21,6 +21,13 @@ public class CardSelection : MonoBehaviour
         SelectCard(currentCard);
     }
 
+    private void Start()
+    {
+        AudioManager.instance.Stop("VictorySound");
+        AudioManager.instance.Stop("DefeatSound");
+        AudioManager.instance.Play("CardSelectionTheme");
+    }
+
     public void SelectCard(int index)
     {
         undoButton.interactable = (playerHand.transform.childCount > 0);
@@ -67,7 +74,7 @@ public class CardSelection : MonoBehaviour
         else if (currentCard < 0)
             currentCard = transform.childCount - 1;
 
-        Debug.Log("currentCard = " + currentCard);
+        AudioManager.instance.Play("CardFlip");
             
         SelectCard(currentCard);
 
@@ -76,6 +83,7 @@ public class CardSelection : MonoBehaviour
     public void BackButton()
     {
         SceneManager.LoadScene("MainMenu");
+        AudioManager.instance.Stop("CardSelectionTheme");
     }
 
     public void ConfirmButton()
@@ -89,5 +97,7 @@ public class CardSelection : MonoBehaviour
 
             playerHand.transform.GetChild(i).gameObject.SetActive(false);
         }
+
+        AudioManager.instance.Stop("CardSelectionTheme");
     }
 }
