@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CombatManager : MonoBehaviour
@@ -600,7 +598,7 @@ public class CombatManager : MonoBehaviour
 
         roundText.gameObject.SetActive(true);
         roundText.transform.localPosition = startPosition;
-        roundText.text = "Morte Súbita";
+        roundText.text = "Morte SÃºbita";
 
         while (Vector3.Distance(roundText.transform.localPosition, finalPosition) > 0.5f)
         {
