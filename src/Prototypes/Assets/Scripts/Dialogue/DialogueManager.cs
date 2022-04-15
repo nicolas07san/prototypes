@@ -8,11 +8,19 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueText;
 
+    [SerializeField] private TMP_Text nameText;
+
     [SerializeField] private TextAsset inkJsonFile;
 
-    private Story currentStory;
+    [SerializeField] private Animator portraitAnimator;
 
-    private bool dialogueIsPlaying;
+    [SerializeField] private Animator layoutAnimator;
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "portrait";
+    private const string LAYOUT_TAG = "position";
+
+    private Story currentStory;
     
     private void Start()
     {
@@ -27,21 +35,55 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void LoadStory(TextAsset inkJSON)
+    private void LoadStory(TextAsset inkJSON)
     {
         currentStory =  new Story(inkJSON.text);
         ContinueStory();
     }
 
-    public void ContinueStory()
+    private void ContinueStory()
     {
         if(currentStory.canContinue)
         {
             dialogueText.text = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
             dialogueText.text = "Fim da história";
+        }
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+
+        foreach(string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if(splitTag.Length != 2)
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+            
+            switch(tagKey)
+            {
+                case SPEAKER_TAG:
+                    nameText.text = tagValue;
+                    break;
+                case PORTRAIT_TAG:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                case LAYOUT_TAG:
+                    layoutAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
+                
         }
     }
 
