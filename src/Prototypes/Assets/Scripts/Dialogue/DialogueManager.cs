@@ -7,7 +7,7 @@ using Ink.Runtime;
 public class DialogueManager : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] private float typingSpeed = 0.05f;
+    [SerializeField] private float typingSpeed = 0.04f;
 
     [Header("Dialogue UI")]
     [SerializeField] private TMP_Text dialogueText;
@@ -29,6 +29,9 @@ public class DialogueManager : MonoBehaviour
 
     private bool canContinueToNextLine = false;
     private bool skipLine;
+
+    private string dialogueName = "TestScene";
+    private int lineNumber;
     
     private void Start()
     {
@@ -39,6 +42,10 @@ public class DialogueManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canContinueToNextLine)
         {
+            if(DialogueAudioManager.instance.IsPlaying(dialogueName, lineNumber))
+            {
+                DialogueAudioManager.instance.Stop(dialogueName, lineNumber);
+            }
             ContinueStory();
         }
         else if(Input.GetMouseButtonDown(0))
@@ -50,6 +57,7 @@ public class DialogueManager : MonoBehaviour
     private void LoadStory(TextAsset inkJSON)
     {
         currentStory =  new Story(inkJSON.text);
+        lineNumber = -1;
         ContinueStory();
     }
 
@@ -57,11 +65,16 @@ public class DialogueManager : MonoBehaviour
     {
         if(currentStory.canContinue)
         {
+            lineNumber += 1;
+
             if(displayLineCoroutine != null)
                 StopCoroutine(displayLineCoroutine);
 
             displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
+            
+            DialogueAudioManager.instance.Play(dialogueName, lineNumber);
+            
         }
         else
         {

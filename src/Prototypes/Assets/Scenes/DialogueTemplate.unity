@@ -726,6 +726,124 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1588754336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588754338}
+  - component: {fileID: 1588754337}
+  m_Layer: 0
+  m_Name: DialogueAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1588754337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588754336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b39c8ac9c4a4747b171915a5b163f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogues:
+  - name: TestScene
+    lines:
+    - name: L01
+      clip: {fileID: 8300000, guid: 92d219ca66ee010429b3834fceaaa289, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L02
+      clip: {fileID: 8300000, guid: c07f19aea4315ed46baec498ba21bc3f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L03
+      clip: {fileID: 8300000, guid: f59c2a8f9e011a7469b50f2c8a4a6844, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L04
+      clip: {fileID: 8300000, guid: e3a3e2d064c8d4443a5432e28d1e79bf, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L5
+      clip: {fileID: 8300000, guid: 272e03fc988116f42a734259562edd60, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L06
+      clip: {fileID: 8300000, guid: 4d6c4b18d88f08c4f9ce491672ca871f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L07
+      clip: {fileID: 8300000, guid: 27e3fe223f4d67c45aa585cbd523f3d1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L08
+      clip: {fileID: 8300000, guid: a89eb82bd973489419c090685e0c8f23, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L09
+      clip: {fileID: 8300000, guid: d9eef4e6203127842987777a6e1fb6b1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L10
+      clip: {fileID: 8300000, guid: 1f44541e7e1f1aa43a6b96c020d32fc9, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L11
+      clip: {fileID: 8300000, guid: 8003975293673d7488f260b027fce838, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L12
+      clip: {fileID: 8300000, guid: 18c97c3caa1386a498cc2db03ec1eaad, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+--- !u!4 &1588754338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588754336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 474.73328, y: 323.7538, z: -52.963448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666422004
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +1091,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54bd2d5a619ee847915426aa3460cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 0}
-  mesh: {fileID: 0}
-  vertices: []
