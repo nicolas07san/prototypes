@@ -6,21 +6,29 @@ using Ink.Runtime;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] private float typingSpeed = 0.05f;
+
+    [Header("Dialogue UI")]
     [SerializeField] private TMP_Text dialogueText;
-
     [SerializeField] private TMP_Text nameText;
-
-    [SerializeField] private TextAsset inkJsonFile;
-
+    [SerializeField] private GameObject continueIcon;
     [SerializeField] private Animator portraitAnimator;
-
     [SerializeField] private Animator layoutAnimator;
+
+    [Header("Story")]
+    [SerializeField] private TextAsset inkJsonFile;
 
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
     private const string LAYOUT_TAG = "position";
 
     private Story currentStory;
+
+    private Coroutine displayLineCoroutine;
+
+    private bool canContinueToNextLine = false;
+    private bool skipLine;
     
     private void Start()
     {
@@ -29,9 +37,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && canContinueToNextLine)
         {
             ContinueStory();
+        }
+        else if(Input.GetMouseButtonDown(0))
+        {
+            skipLine = true;
         }
     }
 
@@ -45,13 +57,17 @@ public class DialogueManager : MonoBehaviour
     {
         if(currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            if(displayLineCoroutine != null)
+                StopCoroutine(displayLineCoroutine);
+
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
         }
         else
         {
             dialogueText.text = "Fim da história";
         }
+
     }
 
     private void HandleTags(List<string> currentTags)
@@ -85,6 +101,52 @@ public class DialogueManager : MonoBehaviour
             }
                 
         }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        // empty the dialogue text
+        dialogueText.text = "";
+
+        //hide items while text is typing
+        continueIcon.SetActive(false);
+
+        canContinueToNextLine = false;
+
+        bool isAddingRichTextTag = false;
+
+        // display each letter one at a time
+        foreach(char letter in line.ToCharArray())
+        {
+            if(skipLine)
+            {
+                dialogueText.text = line;
+                break;
+            }
+
+            if(letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+
+                if(letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+        }
+
+        continueIcon.SetActive(true);
+
+        skipLine = false;
+        canContinueToNextLine = true;
+
     }
 
 }

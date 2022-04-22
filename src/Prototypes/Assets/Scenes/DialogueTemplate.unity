@@ -406,11 +406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7ee0de1ebae17488f667cef396f35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typingSpeed: 0.04
   dialogueText: {fileID: 699116379}
   nameText: {fileID: 1819836059}
-  inkJsonFile: {fileID: 4900000, guid: 9f16eba441d095a4cb5da9b9867bdf88, type: 3}
+  continueIcon: {fileID: 315610282}
   portraitAnimator: {fileID: 1508603540}
   layoutAnimator: {fileID: 614703808}
+  inkJsonFile: {fileID: 4900000, guid: 9f16eba441d095a4cb5da9b9867bdf88, type: 3}
 --- !u!1 &699116377
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +837,7 @@ GameObject:
   - component: {fileID: 1819836058}
   - component: {fileID: 1819836060}
   - component: {fileID: 1819836059}
+  - component: {fileID: 1819836061}
   m_Layer: 5
   m_Name: NameText
   m_TagString: Untagged
@@ -958,3 +961,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819836057}
   m_CullTransparentMesh: 1
+--- !u!114 &1819836061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819836057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54bd2d5a619ee847915426aa3460cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 0}
+  mesh: {fileID: 0}
+  vertices: []
