@@ -5,8 +5,8 @@ using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
-    [SerializeField] private GameObject playerHand;
-    [SerializeField] private GameObject enemyHand;
+    private GameObject playerHand;
+    private GameObject enemyHand;
 
     [SerializeField] private TMP_Text diceText;
     [SerializeField] private TMP_Text roundText;
@@ -89,6 +89,13 @@ public class CombatManager : MonoBehaviour
     // Attack 3
     private int enemyAtk3Cost;
     private int enemyAtk3Damage;
+
+
+    void Awake()
+    {
+        playerHand = LevelManager.playerHand;
+        enemyHand = LevelManager.enemyHand;
+    }
 
     void Start()
     {
