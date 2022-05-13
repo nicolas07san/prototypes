@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.instance.Stop("MenuTheme");
-        SceneManager.LoadScene("MainGame");
+        LevelManager.instance.LoadScene("CardSelection");
     }
 
     public void QuitGame()

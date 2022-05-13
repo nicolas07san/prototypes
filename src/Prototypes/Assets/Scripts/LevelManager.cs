@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,11 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public static GameObject playerHand;
     public static GameObject enemyHand;
+
+    [SerializeField] private GameObject transitionCanvas;
+    [SerializeField] private Animator transition;
+    [SerializeField] private int transitionTimeMiliseconds = 1000;
+
     void Awake()
     {
         if(instance == null)
@@ -21,8 +27,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneName)
+    public async void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        var scene = SceneManager.LoadSceneAsync(sceneName);
+        scene.allowSceneActivation = false;
+
+        transitionCanvas.SetActive(true);
+        transition.SetTrigger("Start");
+
+        await Task.Delay(transitionTimeMiliseconds);
+
+        transitionCanvas.SetActive(false);
+
+        scene.allowSceneActivation = true;
     }
 }
