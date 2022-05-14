@@ -7,18 +7,17 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public static GameObject playerHand;
-    public static GameObject enemyHand;
 
     [SerializeField] private GameObject transitionCanvas;
     [SerializeField] private Animator transition;
     [SerializeField] private int transitionTimeMiliseconds = 1000;
-
+    
     void Awake()
     {
         if(instance == null)
         {
             instance = this;
+
             DontDestroyOnLoad(gameObject);
         }
         else

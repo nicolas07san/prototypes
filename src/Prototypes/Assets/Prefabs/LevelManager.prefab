@@ -167,6 +167,8 @@ MonoBehaviour:
   transitionCanvas: {fileID: 2160448344021380078}
   transition: {fileID: 2160448344021380075}
   transitionTimeMiliseconds: 1000
+  playerHandObjectIndex: 1
+  enemyHandObjectIndex: 2
 --- !u!1 &2160448345567662947
 GameObject:
   m_ObjectHideFlags: 0

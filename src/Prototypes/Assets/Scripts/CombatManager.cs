@@ -5,8 +5,8 @@ using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
-    private GameObject playerHand;
-    private GameObject enemyHand;
+    [SerializeField] private GameObject playerHand;
+    [SerializeField] private GameObject enemyHand;
 
     [SerializeField] private TMP_Text diceText;
     [SerializeField] private TMP_Text roundText;
@@ -93,8 +93,21 @@ public class CombatManager : MonoBehaviour
 
     void Awake()
     {
-        playerHand = LevelManager.playerHand;
-        enemyHand = LevelManager.enemyHand;
+        for(int i = 0; i < 3; i ++)
+        {
+            Transform playerCard;
+            Transform enemyCard;
+            
+            playerCard = LevelManager.instance.transform.GetChild(1).transform.GetChild(0);
+            enemyCard =  LevelManager.instance.transform.GetChild(2).transform.GetChild(0);
+
+            playerCard.SetParent(playerHand.transform);
+            enemyCard.SetParent(enemyHand.transform);
+        }
+
+        Destroy(LevelManager.instance.transform.GetChild(1).gameObject);
+        Destroy(LevelManager.instance.transform.GetChild(2).gameObject);
+        
     }
 
     void Start()
