@@ -78,7 +78,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "Fim da história";
+            dialogueText.text = "...";
+            LevelManager.instance.LoadScene("Combat");
         }
 
     }
