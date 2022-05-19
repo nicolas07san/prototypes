@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 397989999}
   - component: {fileID: 397989998}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PreviousButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,16 +224,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397989996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.7500002, y: 0.7500002, z: 1}
   m_Children: []
-  m_Father: {fileID: 812317022}
-  m_RootOrder: 4
+  m_Father: {fileID: 1090825634}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -570, y: 0}
+  m_AnchoredPosition: {x: -570, y: 75.000015}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397989998
@@ -279,7 +279,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 397989999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1090825635}
+        m_TargetAssemblyTypeName: LevelChanger, Assembly-CSharp
+        m_MethodName: ChangeLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &397989999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -406,7 +418,7 @@ GameObject:
   - component: {fileID: 546533311}
   - component: {fileID: 546533310}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,16 +431,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546533308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.7500002, y: 0.7500002, z: 1}
   m_Children: []
-  m_Father: {fileID: 812317022}
-  m_RootOrder: 5
+  m_Father: {fileID: 1090825634}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 570, y: 0}
+  m_AnchoredPosition: {x: 570.0001, y: 75}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546533310
@@ -474,7 +486,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 546533311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1090825635}
+        m_TargetAssemblyTypeName: LevelChanger, Assembly-CSharp
+        m_MethodName: ChangeLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &546533311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,8 +570,6 @@ RectTransform:
   - {fileID: 431929876}
   - {fileID: 1026863293}
   - {fileID: 45493544}
-  - {fileID: 397989997}
-  - {fileID: 546533309}
   m_Father: {fileID: 1639729598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -692,7 +714,7 @@ RectTransform:
   m_Children:
   - {fileID: 1648526563}
   m_Father: {fileID: 1151217756}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -915,6 +937,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026863292}
   m_CullTransparentMesh: 1
+--- !u!1 &1090825633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1090825634}
+  - component: {fileID: 1090825635}
+  m_Layer: 5
+  m_Name: LevelChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1090825634
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090825633}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 397989997}
+  - {fileID: 546533309}
+  m_Father: {fileID: 1151217756}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1090825635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090825633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c87690f80221e248acf6f9c2b60bf27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: 68f5161015b007e4186aab5aefc02937, type: 2}
+  - {fileID: 11400000, guid: 3bc9923068f5428438bfacce2224b5f9, type: 2}
+  - {fileID: 11400000, guid: 9a47460eb737b4c47bc196fa63d47288, type: 2}
+  levelDisplay: {fileID: 1639729599}
 --- !u!1 &1151217752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1085,7 @@ RectTransform:
   m_Children:
   - {fileID: 1616962555}
   - {fileID: 1639729598}
+  - {fileID: 1090825634}
   - {fileID: 903301124}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1101,6 +1179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639729598}
+  - component: {fileID: 1639729599}
   m_Layer: 0
   m_Name: LevelDisplay
   m_TagString: Untagged
@@ -1123,6 +1202,21 @@ Transform:
   m_Father: {fileID: 1151217756}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1639729599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639729597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23f8340a20f5d143b516b1d1ab28da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: {fileID: 1671194491}
+  levelDescription: {fileID: 1026863294}
+  levelImage: {fileID: 431929877}
 --- !u!1 &1648526562
 GameObject:
   m_ObjectHideFlags: 0

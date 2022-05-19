@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9911a3a9129243c4a8d6933ec4d9dbb4, type: 3}
-  m_Name: New Level
+  m_Name: Level01
   m_EditorClassIdentifier: 
   levelIndex: 0
-  levelName: First Level
+  levelName: The Moonlight Battle
   levelDescription: The epic tale begins!
-  nameColor: {r: 0, g: 0, b: 0, a: 0}
   levelImage: {fileID: 21300000, guid: 1c19fc7ec54a0b84e9d0cc5c403dbe4d, type: 3}
   inkJsonFile: {fileID: 4900000, guid: 9f16eba441d095a4cb5da9b9867bdf88, type: 3}
   playerHand: {fileID: 2253106233985121612, guid: 1fb63dc881a1c7949a1413b3ec55105c, type: 3}

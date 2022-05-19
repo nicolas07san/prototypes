@@ -7,7 +7,6 @@ public class Level : ScriptableObject
     public int levelIndex;
     public string levelName;
     public string levelDescription;
-    public Color nameColor;
     public Sprite levelImage;
     public TextAsset inkJsonFile;
     public GameObject playerHand;
