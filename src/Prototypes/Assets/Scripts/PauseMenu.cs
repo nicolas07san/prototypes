@@ -41,14 +41,32 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         FindObjectOfType<AudioManager>().Stop("CombatTheme");
-        SceneManager.LoadScene("MainMenu");
+        LevelManager.instance.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
 
-    public void RestartScene()
+    public void Continue()
     {
         FindObjectOfType<AudioManager>().Stop("CombatTheme");
-        SceneManager.LoadScene("MainGame");
+
+        if(CombatManager.isCampaignLevel)
+        {
+            LevelManager.instance.LoadScene("LevelSelection");
+
+            if(CombatManager.playerWin)
+            {
+                PlayerPrefs.SetInt("lastUnlockedLevel", LevelManager.instance.level.levelIndex + 1);
+                PlayerPrefs.Save();
+            }
+
+            LevelManager.instance.level = null;
+            
+        }
+        else
+        {
+            LevelManager.instance.LoadScene("CardSelection");
+        }
+            
         Time.timeScale = 1f;
     }
 }

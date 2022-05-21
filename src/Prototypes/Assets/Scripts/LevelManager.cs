@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+    public Level level;
 
     [SerializeField] private GameObject transitionCanvas;
     [SerializeField] private Animator transition;
@@ -19,11 +20,14 @@ public class LevelManager : MonoBehaviour
             instance = this;
 
             DontDestroyOnLoad(gameObject);
+
+            level = null;
         }
         else
         {
             Destroy(gameObject);
         }
+
     }
 
     public async void LoadScene(string sceneName)

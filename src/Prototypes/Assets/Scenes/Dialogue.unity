@@ -469,6 +469,7 @@ MonoBehaviour:
   continueIcon: {fileID: 315610282}
   portraitAnimator: {fileID: 1508603540}
   layoutAnimator: {fileID: 614703808}
+  backgroundImage: {fileID: 833684890}
   inkJsonFile: {fileID: 4900000, guid: 9f16eba441d095a4cb5da9b9867bdf88, type: 3}
 --- !u!1 &699116377
 GameObject:
@@ -655,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

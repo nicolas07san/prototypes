@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text diceText;
     [SerializeField] private TMP_Text roundText;
 
+    [SerializeField] private Image backgroundImage;
+
     [Header("Player Stats")]
     [SerializeField] private TMP_Text playerManaText;
     [SerializeField] private TMP_Text playerManaTextDifference;
@@ -39,6 +41,9 @@ public class CombatManager : MonoBehaviour
     [Header("Victory Count")]
     [SerializeField] private GameObject playerWinCount;
     [SerializeField] private GameObject enemyWinCount;
+
+    [Header("Backgrounds")]
+    [SerializeField] private Sprite[] backgrounds;
 
     private Vector3 playerHandPosition = new Vector3(-700, 0);
     private Vector3 enemyHandPosition = new Vector3(700, 0);
@@ -90,9 +95,24 @@ public class CombatManager : MonoBehaviour
     private int enemyAtk3Cost;
     private int enemyAtk3Damage;
 
+    // Campaign
+    public static bool isCampaignLevel;
+    public static bool playerWin;
 
     void Awake()
     {
+        if(LevelManager.instance.level == null)
+        {
+            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length - 1)];
+            backgroundImage.sprite = randomBg;
+        }
+        else
+        {   
+            backgroundImage.sprite = LevelManager.instance.level.levelImage;
+            isCampaignLevel = true;
+        }
+            
+
         for(int i = 0; i < 3; i ++)
         {
             Transform playerCard;
@@ -536,6 +556,7 @@ public class CombatManager : MonoBehaviour
 
                     if (playerWins >= 2)
                     {
+                        playerWin = true;
                         victoryScreen.SetActive(true);
                         AudioManager.instance.Play("VictorySound");
                     }
