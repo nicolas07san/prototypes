@@ -48,15 +48,20 @@ public class PauseMenu : MonoBehaviour
 
         if(CombatManager.isCampaignLevel)
         {
-            LevelManager.instance.LoadScene("LevelSelection");
 
             if(CombatManager.playerWin)
             {
-                PlayerPrefs.SetInt("lastUnlockedLevel", LevelManager.instance.level.levelIndex + 1);
-                PlayerPrefs.Save();
+                if(PlayerPrefs.GetInt("lastUnlockedLevel", 0) < LevelManager.instance.level.levelIndex)
+                {
+                    PlayerPrefs.SetInt("lastUnlockedLevel", LevelManager.instance.level.levelIndex + 1);
+                    PlayerPrefs.Save();
+                }
+                
             }
 
             LevelManager.instance.level = null;
+
+            LevelManager.instance.LoadScene("LevelSelection");
             
         }
         else
