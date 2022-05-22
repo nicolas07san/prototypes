@@ -17,5 +17,5 @@ MonoBehaviour:
   levelDescription: 'Sounds scary '
   levelImage: {fileID: 21300000, guid: 25a4e1d58fcfeed4f93fc74acb88ccbf, type: 3}
   inkJsonFile: {fileID: 4900000, guid: 5b982d2f5d71f5e4787b173b62cbc01a, type: 3}
-  playerHand: {fileID: 0}
-  enemyHand: {fileID: 0}
+  playerHand: {fileID: 7351525181105374572, guid: fc7f14cf335e02f42a26f46326d6a35c, type: 3}
+  enemyHand: {fileID: 8277905035101643716, guid: 016fa3773d6f08544b42899b41a56697, type: 3}
