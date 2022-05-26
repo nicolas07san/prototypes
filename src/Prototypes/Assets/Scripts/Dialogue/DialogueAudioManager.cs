@@ -1,12 +1,14 @@
-using System;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class DialogueAudioManager : MonoBehaviour
 {
     public DialogueAudio[] dialogues;
 
     public static DialogueAudioManager instance;
+
+    private string currentDialogueName;
+
+    private DialogueAudio currentDialogue;
 
     void Awake()
     {
@@ -18,43 +20,48 @@ public class DialogueAudioManager : MonoBehaviour
             return;
         }
 
+        currentDialogueName = LevelManager.instance.level.inkJsonFile.name;
+
         foreach(DialogueAudio dialogue in dialogues)
         {
-            foreach(Sound sound in dialogue.lines)
+            if(dialogue.name == currentDialogueName)
             {
+                currentDialogue = dialogue;
+
+                foreach(Sound sound in dialogue.lines)
+                {
                 sound.source = gameObject.AddComponent<AudioSource>();
 
                 sound.source.clip = sound.clip;
                 sound.source.volume = sound.volume;
                 sound.source.pitch = sound.pitch;
                 sound.source.loop = sound.loop;
+                }
             }
-            
+             
         }
     }
 
-    public void Play(string name, int lineNumber)
+    public void Play(int lineNumber)
     {
-        DialogueAudio dialogue = Array.Find(dialogues, dialogue => dialogue.name == name); 
-        Sound s = dialogue.lines[lineNumber];
+        Sound s = currentDialogue.lines[lineNumber];
 
         if (s == null)
         {
-            Debug.LogWarning("Dialogue " + name + " line " + lineNumber + " not found");
+            Debug.LogWarning("Dialogue " + currentDialogueName + " line " + lineNumber + " not found");
             return;
         }
-            
+
         s.source.Play();
     }
 
-    public void Stop(string name, int lineNumber)
-    {
-        DialogueAudio dialogue = Array.Find(dialogues, dialogue => dialogue.name == name); 
-        Sound s = dialogue.lines[lineNumber];
+    public void Stop(int lineNumber)
+    { 
+        Sound s = currentDialogue.lines[lineNumber];
 
         if (s == null)
         {
-            Debug.LogWarning("Dialogue " + name + " line " + lineNumber + " not found");
+            Debug.LogWarning("Dialogue " + currentDialogueName + " line " + lineNumber + " not found");
             return;
         }
 
@@ -62,14 +69,13 @@ public class DialogueAudioManager : MonoBehaviour
 
     }
 
-    public bool IsPlaying(string name, int lineNumber)
+    public bool IsPlaying(int lineNumber)
     {
-        DialogueAudio dialogue = Array.Find(dialogues, dialogue => dialogue.name == name); 
-        Sound s = dialogue.lines[lineNumber];
+        Sound s = currentDialogue.lines[lineNumber];
 
         if (s == null)
         {
-            Debug.LogWarning("Dialogue " + name + " line " + lineNumber + " not found");
+            Debug.LogWarning("Dialogue " + currentDialogueName + " line " + lineNumber + " not found");
         }
 
         return s.source.isPlaying;

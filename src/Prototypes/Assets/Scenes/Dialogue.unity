@@ -469,6 +469,7 @@ MonoBehaviour:
   continueIcon: {fileID: 315610282}
   portraitAnimator: {fileID: 1508603540}
   layoutAnimator: {fileID: 614703808}
+  backgroundImage: {fileID: 833684890}
   inkJsonFile: {fileID: 4900000, guid: 9f16eba441d095a4cb5da9b9867bdf88, type: 3}
 --- !u!1 &699116377
 GameObject:
@@ -530,8 +531,8 @@ MonoBehaviour:
   m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut eros eros.
     Sed magna quam, mattis id metus at, porta placerat tortor.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
+  m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -655,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -962,6 +963,154 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       source: {fileID: 0}
+  - name: LevelTwo
+    lines:
+    - name: L01
+      clip: {fileID: 8300000, guid: 92d219ca66ee010429b3834fceaaa289, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L02
+      clip: {fileID: 8300000, guid: c07f19aea4315ed46baec498ba21bc3f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L03
+      clip: {fileID: 8300000, guid: f59c2a8f9e011a7469b50f2c8a4a6844, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L04
+      clip: {fileID: 8300000, guid: e3a3e2d064c8d4443a5432e28d1e79bf, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L5
+      clip: {fileID: 8300000, guid: 272e03fc988116f42a734259562edd60, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L06
+      clip: {fileID: 8300000, guid: 4d6c4b18d88f08c4f9ce491672ca871f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L07
+      clip: {fileID: 8300000, guid: 27e3fe223f4d67c45aa585cbd523f3d1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L08
+      clip: {fileID: 8300000, guid: a89eb82bd973489419c090685e0c8f23, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L09
+      clip: {fileID: 8300000, guid: d9eef4e6203127842987777a6e1fb6b1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L10
+      clip: {fileID: 8300000, guid: 1f44541e7e1f1aa43a6b96c020d32fc9, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L11
+      clip: {fileID: 8300000, guid: 8003975293673d7488f260b027fce838, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L12
+      clip: {fileID: 8300000, guid: 18c97c3caa1386a498cc2db03ec1eaad, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+  - name: LevelThree
+    lines:
+    - name: L01
+      clip: {fileID: 8300000, guid: 92d219ca66ee010429b3834fceaaa289, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L02
+      clip: {fileID: 8300000, guid: c07f19aea4315ed46baec498ba21bc3f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L03
+      clip: {fileID: 8300000, guid: f59c2a8f9e011a7469b50f2c8a4a6844, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L04
+      clip: {fileID: 8300000, guid: e3a3e2d064c8d4443a5432e28d1e79bf, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L5
+      clip: {fileID: 8300000, guid: 272e03fc988116f42a734259562edd60, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L06
+      clip: {fileID: 8300000, guid: 4d6c4b18d88f08c4f9ce491672ca871f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L07
+      clip: {fileID: 8300000, guid: 27e3fe223f4d67c45aa585cbd523f3d1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L08
+      clip: {fileID: 8300000, guid: a89eb82bd973489419c090685e0c8f23, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L09
+      clip: {fileID: 8300000, guid: d9eef4e6203127842987777a6e1fb6b1, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L10
+      clip: {fileID: 8300000, guid: 1f44541e7e1f1aa43a6b96c020d32fc9, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L11
+      clip: {fileID: 8300000, guid: 8003975293673d7488f260b027fce838, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    - name: L12
+      clip: {fileID: 8300000, guid: 18c97c3caa1386a498cc2db03ec1eaad, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
 --- !u!4 &1588754338
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,8 +1286,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Placeholder Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
+  m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

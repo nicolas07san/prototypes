@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 
@@ -15,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject continueIcon;
     [SerializeField] private Animator portraitAnimator;
     [SerializeField] private Animator layoutAnimator;
+    [SerializeField] private Image backgroundImage;
 
     [Header("Story")]
     [SerializeField] private TextAsset inkJsonFile;
@@ -27,12 +29,18 @@ public class DialogueManager : MonoBehaviour
 
     private Coroutine displayLineCoroutine;
 
-    private bool canContinueToNextLine = false;
+    private bool canContinueToNextLine;
     private bool skipLine;
+    private bool endOfStory;
 
     private string dialogueName = "TestScene";
     private int lineNumber;
     
+    private void Awake() 
+    {
+        inkJsonFile = LevelManager.instance.level.inkJsonFile;
+        backgroundImage.sprite = LevelManager.instance.level.levelImage;
+    }
     private void Start()
     {
         LoadStory(inkJsonFile);
@@ -42,15 +50,21 @@ public class DialogueManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canContinueToNextLine)
         {
-            if(DialogueAudioManager.instance.IsPlaying(dialogueName, lineNumber))
+            if(DialogueAudioManager.instance.IsPlaying(lineNumber))
             {
-                DialogueAudioManager.instance.Stop(dialogueName, lineNumber);
+                DialogueAudioManager.instance.Stop(lineNumber);
             }
             ContinueStory();
         }
         else if(Input.GetMouseButtonDown(0))
         {
             skipLine = true;
+        }
+
+        if(Input.GetMouseButtonDown(0) && endOfStory)
+        {
+            endOfStory = false;
+            LevelManager.instance.LoadScene("Combat");
         }
     }
 
@@ -73,13 +87,14 @@ public class DialogueManager : MonoBehaviour
             displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
             
-            DialogueAudioManager.instance.Play(dialogueName, lineNumber);
+            DialogueAudioManager.instance.Play(lineNumber);
             
         }
         else
         {
+            canContinueToNextLine = false;
+            endOfStory = true;
             dialogueText.text = "...";
-            LevelManager.instance.LoadScene("Combat");
         }
 
     }

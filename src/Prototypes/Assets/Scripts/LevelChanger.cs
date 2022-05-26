@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelChanger : MonoBehaviour
@@ -27,5 +25,18 @@ public class LevelChanger : MonoBehaviour
 
         if(levelDisplay != null)
             levelDisplay.DisplayLevel(levels[currentIndex]);
+    }
+
+    public void PlayLevel()
+    {
+        GameObject playerHand = levels[currentIndex].playerHand.gameObject;
+        GameObject enemyHand = levels[currentIndex].enemyHand.gameObject;
+
+        Object.Instantiate(playerHand, LevelManager.instance.transform);
+        Object.Instantiate(enemyHand, LevelManager.instance.transform);
+
+        LevelManager.instance.level = levels[currentIndex];
+
+        LevelManager.instance.LoadScene("Dialogue");
     }
 }

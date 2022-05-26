@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -41,14 +38,37 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         FindObjectOfType<AudioManager>().Stop("CombatTheme");
-        SceneManager.LoadScene("MainMenu");
+        LevelManager.instance.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
 
-    public void RestartScene()
+    public void Continue()
     {
         FindObjectOfType<AudioManager>().Stop("CombatTheme");
-        SceneManager.LoadScene("MainGame");
+
+        if(CombatManager.isCampaignLevel)
+        {
+
+            if(CombatManager.playerWin)
+            {
+                if(PlayerPrefs.GetInt("lastUnlockedLevel", 0) < LevelManager.instance.level.levelIndex)
+                {
+                    PlayerPrefs.SetInt("lastUnlockedLevel", LevelManager.instance.level.levelIndex + 1);
+                    PlayerPrefs.Save();
+                }
+                
+            }
+
+            LevelManager.instance.level = null;
+
+            LevelManager.instance.LoadScene("LevelSelection");
+            
+        }
+        else
+        {
+            LevelManager.instance.LoadScene("CardSelection");
+        }
+            
         Time.timeScale = 1f;
     }
 }

@@ -16,6 +16,6 @@ MonoBehaviour:
   levelName: Outer Space Encounter
   levelDescription: How did we get here?
   levelImage: {fileID: 21300000, guid: 25ca13ea4409a86448259124cb27bcdd, type: 3}
-  inkJsonFile: {fileID: 0}
-  playerHand: {fileID: 0}
-  enemyHand: {fileID: 0}
+  inkJsonFile: {fileID: 4900000, guid: 8a14a3fd13536fa4ebf036c7315890e4, type: 3}
+  playerHand: {fileID: 5839806772002626747, guid: 230dfffdaa46f6f4fa0e7965beffa973, type: 3}
+  enemyHand: {fileID: 2962660425644419566, guid: e0e280943921bbd448dd9274a0119ea7, type: 3}
