@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
 
             if(CombatManager.playerWin)
             {
-                if(PlayerPrefs.GetInt("lastUnlockedLevel", 0) < LevelManager.instance.level.levelIndex)
+                if(PlayerPrefs.GetInt("lastUnlockedLevel", 0) <= LevelManager.instance.level.levelIndex)
                 {
                     PlayerPrefs.SetInt("lastUnlockedLevel", LevelManager.instance.level.levelIndex + 1);
                     PlayerPrefs.Save();
