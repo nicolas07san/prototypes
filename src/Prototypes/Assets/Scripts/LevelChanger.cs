@@ -10,7 +10,8 @@ public class LevelChanger : MonoBehaviour
 
     private void Awake() 
     {
-        ChangeLevel(0);    
+        ChangeLevel(0); 
+        AudioManager.instance.Play("CardSelectionTheme");   
     }
 
     public void ChangeLevel(int changeValue)
@@ -36,7 +37,15 @@ public class LevelChanger : MonoBehaviour
         Object.Instantiate(enemyHand, LevelManager.instance.transform);
 
         LevelManager.instance.level = levels[currentIndex];
+        
+        AudioManager.instance.Stop("CardSelectionTheme");
 
         LevelManager.instance.LoadScene("Dialogue");
+    }
+
+    public void BackButton()
+    {
+        AudioManager.instance.Stop("CardSelectionTheme");
+        LevelManager.instance.LoadScene("MainMenu");
     }
 }
