@@ -40,6 +40,7 @@ public class DialogueManager : MonoBehaviour
     {
         inkJsonFile = LevelManager.instance.level.inkJsonFile;
         backgroundImage.sprite = LevelManager.instance.level.levelImage;
+        LevelManager.isCampaignLevel = true;
     }
     private void Start()
     {

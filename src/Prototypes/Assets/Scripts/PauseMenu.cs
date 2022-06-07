@@ -46,7 +46,7 @@ public class PauseMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Stop("CombatTheme");
 
-        if(CombatManager.isCampaignLevel)
+        if(LevelManager.isCampaignLevel)
         {
 
             if(CombatManager.playerWin)
@@ -60,6 +60,8 @@ public class PauseMenu : MonoBehaviour
             }
 
             LevelManager.instance.level = null;
+
+            LevelManager.isCampaignLevel = false;
 
             LevelManager.instance.LoadScene("LevelSelection");
             

@@ -96,20 +96,18 @@ public class CombatManager : MonoBehaviour
     private int enemyAtk3Damage;
 
     // Campaign
-    public static bool isCampaignLevel;
     public static bool playerWin;
 
     void Awake()
     {
-        if(LevelManager.instance.level == null)
+        if(LevelManager.isCampaignLevel)
         {
-            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length - 1)];
-            backgroundImage.sprite = randomBg;
+            backgroundImage.sprite = LevelManager.instance.level.levelImage;
         }
         else
         {   
-            backgroundImage.sprite = LevelManager.instance.level.levelImage;
-            isCampaignLevel = true;
+            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length - 1)];
+            backgroundImage.sprite = randomBg;
         }
             
 

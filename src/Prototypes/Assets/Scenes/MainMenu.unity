@@ -1152,37 +1152,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176137219}
   m_CullTransparentMesh: 1
---- !u!1 &176605635
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 176605636}
-  m_Layer: 0
-  m_Name: Canvases
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &176605636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176605635}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 403.18433, y: 275.83984, z: -8.834625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2028698631}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226690237
 GameObject:
   m_ObjectHideFlags: 0
@@ -7912,8 +7881,8 @@ RectTransform:
   - {fileID: 119829560}
   - {fileID: 78319285}
   - {fileID: 812384768}
-  m_Father: {fileID: 176605636}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8172,9 +8141,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<color=#FC7A1E>Programa\xE7\xE3o\n<color=\"white\">Nicolas Gon\xE7alves\nRafael
-    Baldi\nGabriel Medeiros\n\n<color=#FC7A1E> Arte\n<color=\"white\">Leonardo Mitsuo\n\n<color=#FC7A1E>
-    Game Design\n<color=\"white\">Marcos Felix"
+  m_text: "<color=#FC7A1E>Programa\xE7\xE3o\n<color=\"white\">Nicolas Gon\xE7alves\n\n<color=#FC7A1E>
+    Arte\n<color=\"white\">Leonardo Mitsuo\n\n<color=#FC7A1E> Game Design\n<color=\"white\">Marcos
+    Felix\nRafael Baldi"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}
   m_sharedMaterial: {fileID: 2010340452508124410, guid: b2bb74b6038e3d24aaeb4deff3ec7efd, type: 2}

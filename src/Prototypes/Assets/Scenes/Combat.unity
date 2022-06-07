@@ -881,7 +881,7 @@ MonoBehaviour:
   playerWinCount: {fileID: 1635091072}
   enemyWinCount: {fileID: 154306649}
   backgrounds:
-  - {fileID: 21300000, guid: 59c8c8f2c759c4148a83dfb1056301b7, type: 3}
+  - {fileID: 21300000, guid: 1c19fc7ec54a0b84e9d0cc5c403dbe4d, type: 3}
   - {fileID: 21300000, guid: 25a4e1d58fcfeed4f93fc74acb88ccbf, type: 3}
   - {fileID: 21300000, guid: 25ca13ea4409a86448259124cb27bcdd, type: 3}
 --- !u!224 &668395174
