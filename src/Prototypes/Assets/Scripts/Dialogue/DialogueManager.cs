@@ -51,10 +51,10 @@ public class DialogueManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canContinueToNextLine)
         {
-            if(DialogueAudioManager.instance.IsPlaying(lineNumber))
-            {
-                DialogueAudioManager.instance.Stop(lineNumber);
-            }
+            // if(DialogueAudioManager.instance.IsPlaying(lineNumber))
+            // {
+            //     DialogueAudioManager.instance.Stop(lineNumber);
+            // }
             ContinueStory();
         }
         else if(Input.GetMouseButtonDown(0))
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour
             displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
             
-            DialogueAudioManager.instance.Play(lineNumber);
+            // DialogueAudioManager.instance.Play(lineNumber);
             
         }
         else
@@ -167,6 +167,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 dialogueText.text += letter;
+                AudioManager.instance.Play("KeyTap", Random.Range(0.8f, 1.2f));
                 yield return new WaitForSeconds(typingSpeed);
             }
 
