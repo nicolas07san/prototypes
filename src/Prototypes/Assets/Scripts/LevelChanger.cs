@@ -11,7 +11,7 @@ public class LevelChanger : MonoBehaviour
     private void Awake() 
     {
         ChangeLevel(0); 
-        AudioManager.instance.Play("CardSelectionTheme");   
+        AudioManager.instance.Play("LevelSelectionTheme");   
     }
 
     public void ChangeLevel(int changeValue)
@@ -38,14 +38,14 @@ public class LevelChanger : MonoBehaviour
 
         LevelManager.instance.level = levels[currentIndex];
         
-        AudioManager.instance.Stop("CardSelectionTheme");
+        AudioManager.instance.Stop("LevelSelectionTheme");
 
         LevelManager.instance.LoadScene("Dialogue");
     }
 
     public void BackButton()
     {
-        AudioManager.instance.Stop("CardSelectionTheme");
+        AudioManager.instance.Stop("LevelSelectionTheme");
         LevelManager.instance.LoadScene("MainMenu");
     }
 }

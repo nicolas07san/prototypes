@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FaseUm
   m_EditorClassIdentifier: 
   levelIndex: 0
-  levelName: A Batalha do meio dia
-  levelDescription: A longa batalha se inicia
+  levelName: A Batalha do Meio Dia
+  levelDescription: Uma longa batalha se inicia
   levelImage: {fileID: 21300000, guid: ad5ebcfb947e86744aac20a8f36261c4, type: 3}
   inkJsonFile: {fileID: 4900000, guid: 0ceef4e938918c54aa4e6c2250abf340, type: 3}
   playerHand: {fileID: 2253106233985121612, guid: 1fb63dc881a1c7949a1413b3ec55105c, type: 3}

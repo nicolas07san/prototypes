@@ -15,7 +15,7 @@ Foram vocês que planejaram executar a mim e meu exército!
 
 Não fale besteiras, vocês sempre quiseram se livrar de nós. #speaker:Gulrion #portrait:gulrion #position:left 
 
-Vocês eram magos poderosos e repeitados de nosso reino, mas a ganância os afastou. #speaker:Krass #portrait:krass #position:right
+Vocês eram magos poderosos e respeitados de nosso reino, mas a ganância os afastou. #speaker:Krass #portrait:krass #position:right
 
 Foi uma escolha de vocês não nossa !!!
 

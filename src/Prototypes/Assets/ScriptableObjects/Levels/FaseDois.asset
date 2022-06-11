@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FaseDois
   m_EditorClassIdentifier: 
   levelIndex: 1
-  levelName: A batalha da meia noite
-  levelDescription: O fim de uma era
+  levelName: A Batalha da Meia Noite
+  levelDescription: "A conclus\xE3o de uma grande rivalidade"
   levelImage: {fileID: 21300000, guid: 6776697f49457724ba345c4ab95dbede, type: 3}
   inkJsonFile: {fileID: 4900000, guid: cafc8e3b6e85c5f47aedbb615cd10a9e, type: 3}
   playerHand: {fileID: 7322434394268384324, guid: 2e0016e94f8db604ca8b9233d0fcafc3, type: 3}

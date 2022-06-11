@@ -106,7 +106,7 @@ public class CombatManager : MonoBehaviour
         }
         else
         {   
-            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length - 1)];
+            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length)];
             backgroundImage.sprite = randomBg;
         }
             
@@ -302,7 +302,7 @@ public class CombatManager : MonoBehaviour
 
         for (int i = 0; i < 100; i++)
         {
-            diceNumber = Random.Range(1, 6);
+            diceNumber = Random.Range(1, 7);
             diceText.text = diceNumber.ToString();
             yield return new WaitForSecondsRealtime(3f / 100);
         }
@@ -310,7 +310,7 @@ public class CombatManager : MonoBehaviour
         playerMana += diceNumber;
         StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
 
-        diceNumber = Random.Range(1, 6);
+        diceNumber = Random.Range(1, 7);
 
         enemyMana += diceNumber;
         StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
