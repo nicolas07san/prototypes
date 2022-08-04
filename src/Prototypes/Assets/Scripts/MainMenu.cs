@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,10 +9,16 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.Play("MenuTheme");
     }
 
-    public void PlayGame()
+    public void FreePlay()
     {
         AudioManager.instance.Stop("MenuTheme");
-        SceneManager.LoadScene("MainGame");
+        LevelManager.instance.LoadScene("CardSelection");
+    }
+
+    public void Campaign()
+    {
+        AudioManager.instance.Stop("MenuTheme");
+        LevelManager.instance.LoadScene("LevelSelection");
     }
 
     public void QuitGame()

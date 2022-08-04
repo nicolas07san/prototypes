@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 
@@ -15,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject continueIcon;
     [SerializeField] private Animator portraitAnimator;
     [SerializeField] private Animator layoutAnimator;
+    [SerializeField] private Image backgroundImage;
 
     [Header("Story")]
     [SerializeField] private TextAsset inkJsonFile;
@@ -27,12 +29,20 @@ public class DialogueManager : MonoBehaviour
 
     private Coroutine displayLineCoroutine;
 
-    private bool canContinueToNextLine = false;
+    private bool canContinueToNextLine;
     private bool skipLine;
+    private bool endOfStory;
 
     private string dialogueName = "TestScene";
     private int lineNumber;
     
+    private void Awake() 
+    {
+        AudioManager.instance.Play("CardSelectionTheme");
+        inkJsonFile = LevelManager.instance.level.inkJsonFile;
+        backgroundImage.sprite = LevelManager.instance.level.levelImage;
+        LevelManager.isCampaignLevel = true;
+    }
     private void Start()
     {
         LoadStory(inkJsonFile);
@@ -42,15 +52,22 @@ public class DialogueManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canContinueToNextLine)
         {
-            if(DialogueAudioManager.instance.IsPlaying(dialogueName, lineNumber))
-            {
-                DialogueAudioManager.instance.Stop(dialogueName, lineNumber);
-            }
+            // if(DialogueAudioManager.instance.IsPlaying(lineNumber))
+            // {
+            //     DialogueAudioManager.instance.Stop(lineNumber);
+            // }
             ContinueStory();
         }
         else if(Input.GetMouseButtonDown(0))
         {
             skipLine = true;
+        }
+
+        if(Input.GetMouseButtonDown(0) && endOfStory)
+        {
+            endOfStory = false;
+            AudioManager.instance.Stop("CardSelectionTheme");
+            LevelManager.instance.LoadScene("Combat");
         }
     }
 
@@ -73,12 +90,14 @@ public class DialogueManager : MonoBehaviour
             displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
             
-            DialogueAudioManager.instance.Play(dialogueName, lineNumber);
+            // DialogueAudioManager.instance.Play(lineNumber);
             
         }
         else
         {
-            dialogueText.text = "Fim da história";
+            canContinueToNextLine = false;
+            endOfStory = true;
+            dialogueText.text = "...";
         }
 
     }
@@ -150,6 +169,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 dialogueText.text += letter;
+                AudioManager.instance.Play("KeyTap", Random.Range(0.8f, 1.2f));
                 yield return new WaitForSeconds(typingSpeed);
             }
 

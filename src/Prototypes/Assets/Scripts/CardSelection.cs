@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardSelection : MonoBehaviour
@@ -82,7 +81,7 @@ public class CardSelection : MonoBehaviour
     
     public void BackButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        LevelManager.instance.LoadScene("MainMenu");
         AudioManager.instance.Stop("CardSelectionTheme");
     }
 
@@ -97,6 +96,11 @@ public class CardSelection : MonoBehaviour
 
             playerHand.transform.GetChild(i).gameObject.SetActive(false);
         }
+
+        Object.Instantiate(playerHand, LevelManager.instance.transform);
+        Object.Instantiate(enemyHand, LevelManager.instance.transform);
+        
+        LevelManager.instance.LoadScene("Combat");
 
         AudioManager.instance.Stop("CardSelectionTheme");
     }

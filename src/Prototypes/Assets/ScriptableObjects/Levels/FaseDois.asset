@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9911a3a9129243c4a8d6933ec4d9dbb4, type: 3}
+  m_Name: FaseDois
+  m_EditorClassIdentifier: 
+  levelIndex: 1
+  levelName: A Batalha da Meia Noite
+  levelDescription: "A conclus\xE3o de uma grande rivalidade"
+  levelImage: {fileID: 21300000, guid: 6776697f49457724ba345c4ab95dbede, type: 3}
+  inkJsonFile: {fileID: 4900000, guid: cafc8e3b6e85c5f47aedbb615cd10a9e, type: 3}
+  playerHand: {fileID: 7322434394268384324, guid: 2e0016e94f8db604ca8b9233d0fcafc3, type: 3}
+  enemyHand: {fileID: 2253106233985121612, guid: ce6f1ca472292dd41afb66d0ace3d9c9, type: 3}

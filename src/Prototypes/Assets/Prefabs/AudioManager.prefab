@@ -92,3 +92,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: KeyTap
+    clip: {fileID: 8300000, guid: 5ac88947321bd5045b5506162b704ab3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelSelectionTheme
+    clip: {fileID: 8300000, guid: 05dce8e56cb4c634b8e30f1b1339e673, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

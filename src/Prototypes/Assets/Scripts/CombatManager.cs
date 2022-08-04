@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text diceText;
     [SerializeField] private TMP_Text roundText;
 
+    [SerializeField] private Image backgroundImage;
+
     [Header("Player Stats")]
     [SerializeField] private TMP_Text playerManaText;
     [SerializeField] private TMP_Text playerManaTextDifference;
@@ -39,6 +41,9 @@ public class CombatManager : MonoBehaviour
     [Header("Victory Count")]
     [SerializeField] private GameObject playerWinCount;
     [SerializeField] private GameObject enemyWinCount;
+
+    [Header("Backgrounds")]
+    [SerializeField] private Sprite[] backgrounds;
 
     private Vector3 playerHandPosition = new Vector3(-700, 0);
     private Vector3 enemyHandPosition = new Vector3(700, 0);
@@ -89,6 +94,39 @@ public class CombatManager : MonoBehaviour
     // Attack 3
     private int enemyAtk3Cost;
     private int enemyAtk3Damage;
+
+    // Campaign
+    public static bool playerWin;
+
+    void Awake()
+    {
+        if(LevelManager.isCampaignLevel)
+        {
+            backgroundImage.sprite = LevelManager.instance.level.levelImage;
+        }
+        else
+        {   
+            Sprite randomBg = backgrounds[Random.Range(0, backgrounds.Length)];
+            backgroundImage.sprite = randomBg;
+        }
+            
+
+        for(int i = 0; i < 3; i ++)
+        {
+            Transform playerCard;
+            Transform enemyCard;
+            
+            playerCard = LevelManager.instance.transform.GetChild(1).transform.GetChild(0);
+            enemyCard =  LevelManager.instance.transform.GetChild(2).transform.GetChild(0);
+
+            playerCard.SetParent(playerHand.transform);
+            enemyCard.SetParent(enemyHand.transform);
+        }
+
+        Destroy(LevelManager.instance.transform.GetChild(1).gameObject);
+        Destroy(LevelManager.instance.transform.GetChild(2).gameObject);
+        
+    }
 
     void Start()
     {
@@ -264,7 +302,7 @@ public class CombatManager : MonoBehaviour
 
         for (int i = 0; i < 100; i++)
         {
-            diceNumber = Random.Range(1, 6);
+            diceNumber = Random.Range(1, 7);
             diceText.text = diceNumber.ToString();
             yield return new WaitForSecondsRealtime(3f / 100);
         }
@@ -272,7 +310,7 @@ public class CombatManager : MonoBehaviour
         playerMana += diceNumber;
         StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
 
-        diceNumber = Random.Range(1, 6);
+        diceNumber = Random.Range(1, 7);
 
         enemyMana += diceNumber;
         StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
@@ -516,6 +554,7 @@ public class CombatManager : MonoBehaviour
 
                     if (playerWins >= 2)
                     {
+                        playerWin = true;
                         victoryScreen.SetActive(true);
                         AudioManager.instance.Play("VictorySound");
                     }
