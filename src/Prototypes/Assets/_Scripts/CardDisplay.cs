@@ -39,29 +39,29 @@ public class CardDisplay : MonoBehaviour
 
         artworkImage.sprite = card.artwork;
 
-        //Buttons
-        atk1Button.interactable = false;
-        atk2Button.interactable = false;
-        atk3Button.interactable = false;
+        ////Buttons
+        //atk1Button.interactable = false;
+        //atk2Button.interactable = false;
+        //atk3Button.interactable = false;
 
-        // Attack 1
-        atk1NameText.text = card.attack1Name;
-        atk1CostText.text = card.attack1Cost.ToString();
-        atk1DmgText.text = card.attack1Dmg.ToString();
+        //// Attack 1
+        //atk1NameText.text = card.attack1Name;
+        //atk1CostText.text = card.attack1Cost.ToString();
+        //atk1DmgText.text = card.attack1Dmg.ToString();
         
-        // Attack 2
-        atk2NameText.text = card.attack2Name;
-        atk2CostText.text = card.attack2Cost.ToString();
-        atk2DmgText.text = card.attack2Dmg.ToString();
+        //// Attack 2
+        //atk2NameText.text = card.attack2Name;
+        //atk2CostText.text = card.attack2Cost.ToString();
+        //atk2DmgText.text = card.attack2Dmg.ToString();
 
-        // Attack 3
-        atk3NameText.text = card.attack3Name;
-        atk3CostText.text = card.attack3Cost.ToString();
-        atk3DmgText.text = card.attack3Dmg.ToString();
+        //// Attack 3
+        //atk3NameText.text = card.attack3Name;
+        //atk3CostText.text = card.attack3Cost.ToString();
+        //atk3DmgText.text = card.attack3Dmg.ToString();
 
-        //Base stats
-        healthText.text = card.health.ToString();
-        shieldText.text = card.shield.ToString(); 
+        ////Base stats
+        //healthText.text = card.health.ToString();
+        //shieldText.text = card.shield.ToString(); 
     }
 
 }
