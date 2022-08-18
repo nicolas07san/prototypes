@@ -4,40 +4,41 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [SerializeField]private Card card;
+    [SerializeField]private Card _card;
 
-    [SerializeField]private TMP_Text nameText;
+    [SerializeField]private TMP_Text _nameText;
 
-    [SerializeField]private Image artworkImage;
+    [SerializeField]private Image _artworkImage;
 
-    [Header("Attack 1")]
-    [SerializeField] private TMP_Text atk1NameText;
-    [SerializeField] private TMP_Text atk1CostText;
-    [SerializeField] private TMP_Text atk1DmgText;
-    [SerializeField] private Button atk1Button;
+    [Header("Light Attack")]
+    [SerializeField] private TMP_Text _lightAttackCostText;
+    [SerializeField] private TMP_Text _lightAttackDmgText;
+    [SerializeField] private Button _lightAttackButton;
 
-    [Header("Attack 2")]
-    [SerializeField] private TMP_Text atk2NameText;
-    [SerializeField] private TMP_Text atk2CostText;
-    [SerializeField] private TMP_Text atk2DmgText;
-    [SerializeField] private Button atk2Button;
+    [Header("Heavy Attack")]
+    [SerializeField] private TMP_Text _heavyAttackCostText;
+    [SerializeField] private TMP_Text _heavyAttackDmgText;
+    [SerializeField] private Button _heavyAttackButton;
 
-    [Header("Attack 3")]
-    [SerializeField] private TMP_Text atk3NameText;
-    [SerializeField] private TMP_Text atk3CostText;
-    [SerializeField] private TMP_Text atk3DmgText;
-    [SerializeField] private Button atk3Button;
+    [Header("Support Action")]
+    [SerializeField] private TMP_Text _supportActionCostText;
+    [SerializeField] private TMP_Text _supportActionAmountText;
+    [SerializeField] private Button _supportActionButton;
+
+    [Header("Special Attack")]
+    [SerializeField] private TMP_Text _specialAttackDmgText;
+
 
     [Header("Base Stats")]
-    [SerializeField] private TMP_Text healthText;
-    [SerializeField] private TMP_Text shieldText;
+    [SerializeField] private TMP_Text _healthText;
+    [SerializeField] private TMP_Text _shieldText;
 
 
     void Start()
     {
-        nameText.text = card.characterName;
+        _nameText.text = _card.characterName;
 
-        artworkImage.sprite = card.artwork;
+        _artworkImage.sprite = _card.artwork;
 
         ////Buttons
         //atk1Button.interactable = false;
