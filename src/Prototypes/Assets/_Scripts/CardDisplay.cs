@@ -27,11 +27,18 @@ public class CardDisplay : MonoBehaviour
 
     [Header("Special Attack")]
     [SerializeField] private TMP_Text _specialAttackDmgText;
+    [SerializeField] private Button _specialAttackButton;
 
 
     [Header("Base Stats")]
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] private TMP_Text _shieldText;
+
+    [Header("Icons")]
+    [SerializeField] private Image _lightAttackIcon;
+    [SerializeField] private Image _heavyAttackIcon;
+    [SerializeField] private Image _shieldIcon;
+    [SerializeField] private Image _healthIcon;
 
 
     void Start()
@@ -45,24 +52,24 @@ public class CardDisplay : MonoBehaviour
         //atk2Button.interactable = false;
         //atk3Button.interactable = false;
 
-        //// Attack 1
-        //atk1NameText.text = card.attack1Name;
-        //atk1CostText.text = card.attack1Cost.ToString();
-        //atk1DmgText.text = card.attack1Dmg.ToString();
-        
-        //// Attack 2
-        //atk2NameText.text = card.attack2Name;
-        //atk2CostText.text = card.attack2Cost.ToString();
-        //atk2DmgText.text = card.attack2Dmg.ToString();
+        // Light Attack
+        _lightAttackCostText.text = _card.lightAttackCost.ToString();
+        _lightAttackDmgText.text = _card.lightAttackDmg.ToString();
 
-        //// Attack 3
-        //atk3NameText.text = card.attack3Name;
-        //atk3CostText.text = card.attack3Cost.ToString();
-        //atk3DmgText.text = card.attack3Dmg.ToString();
+        // Heavy Atttack
+        _heavyAttackCostText.text = _card.heavyAttackCost.ToString();
+        _heavyAttackDmgText.text = _card.heavyAttackDmg.ToString();
 
-        ////Base stats
-        //healthText.text = card.health.ToString();
-        //shieldText.text = card.shield.ToString(); 
+        // Support Action
+        _supportActionCostText.text = _card.supportActionCost.ToString();
+        _supportActionAmountText.text = _card.supportActionAmount.ToString();
+
+        // Special Attack
+        _specialAttackDmgText.text = _card.specialAttackDmg.ToString();
+
+        //Base stats
+        _healthText.text = _card.health.ToString();
+        _shieldText.text = _card.shield.ToString(); 
     }
 
 }
