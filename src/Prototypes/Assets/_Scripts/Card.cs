@@ -1,32 +1,31 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+[CreateAssetMenu(fileName = "New Card", menuName = "ScriptableObjects/Card")]
 public class Card : ScriptableObject
 {
-    public string characterName;
+    [field:SerializeField]public string CharacterName {get; private set;}
+    [field:SerializeField]public Sprite Artwork{get; private set;}
 
-    public Sprite artwork;
+    [field:Header("Light Attack")]
+    [field:SerializeField]public int LightAttackCost {get; private set;}
+    [field:SerializeField]public int LightAttackDmg {get; private set;}
 
-    [Header("Light Attack")]
-    public int lightAttackCost;
-    public int lightAttackDmg;
+    [field:Header("Heavy Attack")]
+    [field:SerializeField]public int HeavyAttackCost {get; private set;}
+    [field:SerializeField]public int HeavyAttackDmg {get; private set;}
 
-    [Header("Heavy Attack")]
-    public int heavyAttackCost;
-    public int heavyAttackDmg;
+    [field:Header("Support Action")]
+    [field:SerializeField]public bool IsShield {get; private set;}
+    [field:SerializeField]public int SupportActionCost {get; private set;}   
+    [field:SerializeField]public int SupportActionAmount {get; private set;}
 
-    [Header("Support Action")]
-    public bool isShield;
-    public int supportActionCost;   
-    public int supportActionAmount;
+    [field:Header("Special Attack")]
+    [field:SerializeField]public int SpecialAttackDmg {get; private set;}
+    [field:SerializeField]public Action[] Combo {get; private set;}
 
-    [Header("Special Attack")]
-    public int specialAttackDmg;
-    public Action[] combo;
-
-    [Header("Base Stats")]
-    public int health;
-    public int shield;
+    [field:Header("Base Stats")]
+    [field:SerializeField]public int Health {get; private set;}
+    [field:SerializeField]public int Shield {get; private set;}
 
     public enum Action
     {

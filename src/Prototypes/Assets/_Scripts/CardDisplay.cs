@@ -45,36 +45,31 @@ public class CardDisplay : MonoBehaviour
 
     void Start()
     {
-        _nameText.text = _card.characterName;
+        _nameText.text = _card.CharacterName;
 
-        _artworkImage.sprite = _card.artwork;
-
-        ////Buttons
-        //atk1Button.interactable = false;
-        //atk2Button.interactable = false;
-        //atk3Button.interactable = false;
+        _artworkImage.sprite = _card.Artwork;
 
         // Light Attack
-        _lightAttackCostText.text = _card.lightAttackCost.ToString();
-        _lightAttackDmgText.text = _card.lightAttackDmg.ToString();
+        _lightAttackCostText.text = _card.LightAttackCost.ToString();
+        _lightAttackDmgText.text = _card.LightAttackDmg.ToString();
 
         // Heavy Atttack
-        _heavyAttackCostText.text = _card.heavyAttackCost.ToString();
-        _heavyAttackDmgText.text = _card.heavyAttackDmg.ToString();
+        _heavyAttackCostText.text = _card.HeavyAttackCost.ToString();
+        _heavyAttackDmgText.text = _card.HeavyAttackDmg.ToString();
 
         // Support Action
-        _supportActionCostText.text = _card.supportActionCost.ToString();
-        _supportActionAmountText.text = _card.supportActionAmount.ToString();
-        if (_card.isShield)
+        _supportActionCostText.text = _card.SupportActionCost.ToString();
+        _supportActionAmountText.text = _card.SupportActionAmount.ToString();
+        if (_card.IsShield)
             _supportActionShieldIcon.SetActive(true);
         else
             _supportActionHealthIcon.SetActive(true);
 
         // Special Attack
-        _specialAttackDmgText.text = _card.specialAttackDmg.ToString();
-        for(int i = 0; i < _card.combo.Length; i++)
+        _specialAttackDmgText.text = _card.SpecialAttackDmg.ToString();
+        for(int i = 0; i < _card.Combo.Length; i++)
         {
-            switch (_card.combo[i])
+            switch (_card.Combo[i])
             {
                 case (Card.Action.LightAttack):
                     Instantiate(_lightAttackIcon, _specialAttackCombo.transform);
@@ -83,7 +78,7 @@ public class CardDisplay : MonoBehaviour
                     Instantiate(_heavyAttackIcon, _specialAttackCombo.transform);
                     break;
                 case (Card.Action.SupportAction):
-                    if(_card.isShield)
+                    if(_card.IsShield)
                         Instantiate(_shieldIcon, _specialAttackCombo.transform);
                     else
                         Instantiate(_healthIcon, _specialAttackCombo.transform);
@@ -91,9 +86,11 @@ public class CardDisplay : MonoBehaviour
             }
         }
 
-        //Base stats
-        _healthText.text = _card.health.ToString();
-        _shieldText.text = _card.shield.ToString(); 
+        _specialAttackButton.interactable = false;
+
+        // Base stats
+        _healthText.text = _card.Health.ToString();
+        _shieldText.text = _card.Shield.ToString(); 
     }
 
 }

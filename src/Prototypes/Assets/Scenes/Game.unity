@@ -455,8 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: 
-  _contentText: "A\xE7\xE3o de suporte"
+  _scaleUpValue: 1.35
+  _animationTime: 0.25
 --- !u!1 &148786529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: Cura
-  _contentText: Adiciona pontos de vida a carta atual
+  _scaleUpValue: 0
+  _animationTime: 0
 --- !u!114 &576150195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,8 +1410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: 
-  _contentText: Ataque Leve
+  _scaleUpValue: 1.35
+  _animationTime: 0.25
 --- !u!1 &768602244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1450,7 @@ MonoBehaviour:
   _contentField: {fileID: 72267518}
   _layoutElement: {fileID: 768602246}
   characterWrapLimit: 80
+  _rectTransform: {fileID: 0}
 --- !u!114 &768602246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,8 +1833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: 
-  _contentText: Ataque Especial
+  _scaleUpValue: 1.35
+  _animationTime: 0.25
 --- !u!1 &979433005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,8 +2478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: 
-  _contentText: Ataque Pesado
+  _scaleUpValue: 1.35
+  _animationTime: 0.25
 --- !u!1 &1323536664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,8 +2841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f376fed2d1414545b9b7fa4c5b90608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headerText: Ataque Leve
-  _contentText: Causa dano ao inimigo
+  _scaleUpValue: 0
+  _animationTime: 0
 --- !u!114 &1540057123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4393,7 +4394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 606, y: 34}
+  m_AnchoredPosition: {x: 668, y: 0}
   m_SizeDelta: {x: 350, y: 575}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6201662663041038317
