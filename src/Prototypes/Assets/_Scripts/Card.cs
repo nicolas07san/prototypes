@@ -17,7 +17,7 @@ public class Card : ScriptableObject
     [field:Header("Support Action")]
     [field:SerializeField]public bool IsShield {get; private set;}
     [field:SerializeField]public int SupportActionCost {get; private set;}   
-    [field:SerializeField]public int SupportActionAmount {get; private set;}
+    [field:SerializeField]public int SupportActionValue {get; private set;}
 
     [field:Header("Special Attack")]
     [field:SerializeField]public int SpecialAttackDmg {get; private set;}

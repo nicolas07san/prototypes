@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [SerializeField]private Card _card;
+    [field:SerializeField]public Card Card{private set; get;}
 
     [SerializeField]private TMP_Text _nameText;
 
@@ -13,24 +13,24 @@ public class CardDisplay : MonoBehaviour
     [Header("Light Attack")]
     [SerializeField] private TMP_Text _lightAttackCostText;
     [SerializeField] private TMP_Text _lightAttackDmgText;
-    [SerializeField] private Button _lightAttackButton;
+    [field:SerializeField] public Button LightAttackButton{private set; get;}
 
     [Header("Heavy Attack")]
     [SerializeField] private TMP_Text _heavyAttackCostText;
     [SerializeField] private TMP_Text _heavyAttackDmgText;
-    [SerializeField] private Button _heavyAttackButton;
+    [field:SerializeField] public Button HeavyAttackButton{private set; get;}
 
     [Header("Support Action")]
     [SerializeField] private TMP_Text _supportActionCostText;
     [SerializeField] private TMP_Text _supportActionAmountText;
-    [SerializeField] private Button _supportActionButton;
     [SerializeField] private GameObject _supportActionShieldIcon;
     [SerializeField] private GameObject _supportActionHealthIcon;
+    [field:SerializeField] public Button SupportActionButton {private set; get;}
 
     [Header("Special Attack")]
     [SerializeField] private TMP_Text _specialAttackDmgText;
-    [SerializeField] private Button _specialAttackButton;
     [SerializeField] private GameObject _specialAttackCombo;
+    [field:SerializeField] public Button SpecialAttackButton {private set; get;}
 
     [Header("Base Stats")]
     [SerializeField] private TMP_Text _healthText;
@@ -45,31 +45,31 @@ public class CardDisplay : MonoBehaviour
 
     void Start()
     {
-        _nameText.text = _card.CharacterName;
+        _nameText.text = Card.CharacterName;
 
-        _artworkImage.sprite = _card.Artwork;
+        _artworkImage.sprite = Card.Artwork;
 
         // Light Attack
-        _lightAttackCostText.text = _card.LightAttackCost.ToString();
-        _lightAttackDmgText.text = _card.LightAttackDmg.ToString();
+        _lightAttackCostText.text = Card.LightAttackCost.ToString();
+        _lightAttackDmgText.text = Card.LightAttackDmg.ToString();
 
         // Heavy Atttack
-        _heavyAttackCostText.text = _card.HeavyAttackCost.ToString();
-        _heavyAttackDmgText.text = _card.HeavyAttackDmg.ToString();
+        _heavyAttackCostText.text = Card.HeavyAttackCost.ToString();
+        _heavyAttackDmgText.text = Card.HeavyAttackDmg.ToString();
 
         // Support Action
-        _supportActionCostText.text = _card.SupportActionCost.ToString();
-        _supportActionAmountText.text = _card.SupportActionAmount.ToString();
-        if (_card.IsShield)
+        _supportActionCostText.text = Card.SupportActionCost.ToString();
+        _supportActionAmountText.text = Card.SupportActionValue.ToString();
+        if (Card.IsShield)
             _supportActionShieldIcon.SetActive(true);
         else
             _supportActionHealthIcon.SetActive(true);
 
         // Special Attack
-        _specialAttackDmgText.text = _card.SpecialAttackDmg.ToString();
-        for(int i = 0; i < _card.Combo.Length; i++)
+        _specialAttackDmgText.text = Card.SpecialAttackDmg.ToString();
+        for(int i = 0; i < Card.Combo.Length; i++)
         {
-            switch (_card.Combo[i])
+            switch (Card.Combo[i])
             {
                 case (Card.Action.LightAttack):
                     Instantiate(_lightAttackIcon, _specialAttackCombo.transform);
@@ -78,7 +78,7 @@ public class CardDisplay : MonoBehaviour
                     Instantiate(_heavyAttackIcon, _specialAttackCombo.transform);
                     break;
                 case (Card.Action.SupportAction):
-                    if(_card.IsShield)
+                    if(Card.IsShield)
                         Instantiate(_shieldIcon, _specialAttackCombo.transform);
                     else
                         Instantiate(_healthIcon, _specialAttackCombo.transform);
@@ -86,11 +86,11 @@ public class CardDisplay : MonoBehaviour
             }
         }
 
-        _specialAttackButton.interactable = false;
+        SpecialAttackButton.interactable = false;
 
         // Base stats
-        _healthText.text = _card.Health.ToString();
-        _shieldText.text = _card.Shield.ToString(); 
+        _healthText.text = Card.Health.ToString();
+        _shieldText.text = Card.Shield.ToString(); 
     }
 
 }
