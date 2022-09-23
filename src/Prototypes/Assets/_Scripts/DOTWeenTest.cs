@@ -10,6 +10,16 @@ public class DOTWeenTest : MonoBehaviour
 
     void Start()
     {
-        transform.DOMove(_destination.transform.position, _animationTime).SetEase(Ease.InElastic);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(transform.DOLocalMoveX(-20f, 0.5f));
+        sequence.Append(transform.DOLocalMoveX(20f, 2f));
+        sequence.Append(transform.DOLocalMoveX(1476f, 0.5f).OnComplete(Completed));
+        DOTween.Play(sequence);
+        
     }
+
+    private void Completed(){
+        Debug.Log("Tween Finished");
+    }
+
 }

@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
+
+    [Header("Announcement Text")]
+    [SerializeField] private TMP_Text announcementText;
+    [SerializeField] private Vector2 aTxtStartPos;
+    [SerializeField] private Vector2 aTxtFinalPos;
 
     [Header("Card Hands")]
     [SerializeField] GameObject playerHand;
@@ -51,6 +57,9 @@ public class GameManager : MonoBehaviour
     private Card enemyCard;
     private CardDisplay enemyCardDisplay;
 
+    // Game stats
+    private int round = 1;
+
     private void Awake() {
         Instance = this;
     }
@@ -69,6 +78,7 @@ public class GameManager : MonoBehaviour
                 GetInitialBasicStats();
                 break;
             case GameState.PlayerTurn:
+                RollDice();
                 break;
             case GameState.EnemyTurn:
                 break;
@@ -166,6 +176,22 @@ public class GameManager : MonoBehaviour
     }
 
     private void StartRoundAnimation(){
+        announcementText.transform.position = aTxtStartPos;
+        announcementText.gameObject.SetActive(true);
+        announcementText.text = "Rodada " + round;
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f));
+        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f));
+        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(GameStart));
+        DOTween.Play(sequence);
+    }
+
+    private void RollDice(){
+
+    }
+
+    private void TurnAnimation(){
 
     }
 
@@ -175,6 +201,10 @@ public class GameManager : MonoBehaviour
 
     private void EnemyAction(int acitonCost, int actionValue){
 
+    }
+
+    private void GameStart(){
+        UpdateGameState(GameState.PlayerTurn);
     }
 
     public enum GameState {
