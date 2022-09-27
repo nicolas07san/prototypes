@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     private int playerShield;
     private int playerHealth;
     private int playerWins = 0;
+    private bool[] specialComboConfirm;
     private CardDisplay playerCardDisplay;
     private Card playerCard;
 
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
                 GetInitialBasicStats();
                 break;
             case GameState.PlayerTurn:
+                TurnAnimation("Turno do Jogador");
                 RollDice();
                 break;
             case GameState.EnemyTurn:
@@ -132,15 +134,15 @@ public class GameManager : MonoBehaviour
 
         // Light Attack 
         playerCardDisplay.LightAttackButton.onClick.AddListener(delegate { 
-            PlayerAction(playerCard.LightAttackCost, playerCard.LightAttackDmg); });
+            PlayerAction(playerCard.LightAttackCost, playerCard.LightAttackDmg, Card.Action.LightAttack); });
 
         // Heavy Attack 
         playerCardDisplay.HeavyAttackButton.onClick.AddListener(delegate { 
-            PlayerAction(playerCard.HeavyAttackCost, playerCard.HeavyAttackDmg); });
+            PlayerAction(playerCard.HeavyAttackCost, playerCard.HeavyAttackDmg, Card.Action.HeavyAttack); });
 
         // Support Action 
         playerCardDisplay.SupportActionButton.onClick.AddListener(delegate { 
-            PlayerAction(playerCard.SupportActionCost, playerCard.SupportActionValue); });
+            PlayerAction(playerCard.SupportActionCost, playerCard.SupportActionValue, Card.Action.SupportAction); });
         
         // TODO:Special Attack
 
@@ -157,18 +159,6 @@ public class GameManager : MonoBehaviour
         enemyMana = 0;
         enemyManaText.text = enemyMana.ToString();
 
-        // Light Attack
-        enemyCardDisplay.LightAttackButton.onClick.AddListener(delegate { 
-            EnemyAction(enemyCard.LightAttackCost, enemyCard.LightAttackDmg); });
-
-        // Heavy Attack
-        enemyCardDisplay.HeavyAttackButton.onClick.AddListener(delegate { 
-            EnemyAction(enemyCard.HeavyAttackCost, enemyCard.HeavyAttackDmg); });
-
-        // Support Action
-        enemyCardDisplay.SupportActionButton.onClick.AddListener(delegate { 
-            EnemyAction(enemyCard.SupportActionCost, enemyCard.SupportActionValue); });
-
         // TODO:Special Attack
 
         // StartCoroutine(StartRoundAnimation());
@@ -183,7 +173,7 @@ public class GameManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f));
         sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f));
-        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(GameStart));
+        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(StartRound));
         DOTween.Play(sequence);
     }
 
@@ -191,19 +181,88 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void TurnAnimation(){
+    private void TurnAnimation(string text){
 
     }
 
-    private void PlayerAction(int actionCost, int actionValue){
+    private void PlayerActionController()
+    {
 
+        if(playerMana >= playerCard.LightAttackCost)
+            playerCardDisplay.LightAttackButton.interactable = true;
+
+        if(playerMana >= playerCard.HeavyAttackCost)
+            playerCardDisplay.HeavyAttackButton.interactable = true;
+
+        if(playerMana >= playerCard.SupportActionCost)
+            playerCardDisplay.SupportActionButton.interactable = true;
+    }
+
+    private void PlayerAction(int actionCost, int actionValue, Card.Action actionType)
+    {
+        playerMana -= actionCost;
+        // Update Text Animation
+        if(actionType == Card.Action.LightAttack)
+        {
+            if(enemyShield > 0){
+                enemyShield -= actionValue;
+                if(enemyShield < 0)
+                    enemyShield = 0;
+                // Update Text Animation
+            }
+            else{
+                enemyHealth -= actionValue;
+                if(enemyHealth < 0)
+                    enemyHealth = 0;
+                // Update Text Animation
+            }
+
+            // Play Damage  or Light Damage Sound
+            // Play Damage or Light Damage Animation
+
+        }
+
+        else if(actionType == Card.Action.HeavyAttack)
+        {
+            enemyShield -= actionValue;
+            if(enemyShield < 0)
+            {
+                enemyHealth -= enemyShield;
+                enemyShield = 0;
+            }
+            // Update Text Animation
+            // Play Damage or Heavy Damage Sound
+            // Play Damage or Heavy Damage Animation
+        }
+        else if(actionType == Card.Action.SupportAction){
+            if(playerCard.IsShield){
+                playerShield += actionValue;
+                // Update Text Animation
+                // Play Shield or Support Action Sound
+                // Play Shield or Support Action Animation
+                
+            }
+            else{
+                playerHealth += actionValue;
+                // Update Text Animation
+                // Play Heal or Support Action Sound
+                // Play Heal or Support Action Animation
+            }
+        }
+
+        playerCardDisplay.LightAttackButton.interactable = false;
+        playerCardDisplay.HeavyAttackButton.interactable = false;
+        playerCardDisplay.SupportActionButton.interactable = false;
+
+        // Set Pass Button GameObejct Inactive
+        // Start Method to Check Game Stats
     }
 
     private void EnemyAction(int acitonCost, int actionValue){
 
     }
 
-    private void GameStart(){
+    private void StartRound(){
         UpdateGameState(GameState.PlayerTurn);
     }
 
