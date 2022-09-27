@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     private int playerShield;
     private int playerHealth;
     private int playerWins = 0;
-    private bool[] specialComboConfirm;
+    private bool[] playerSpecialComboConfirm;
     private CardDisplay playerCardDisplay;
     private Card playerCard;
 
@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     private int enemyShield;
     private int enemyHealth;
     private int enemyWins = 0;
+    private bool[] enemySpecialComboConfirm;
     private Card enemyCard;
     private CardDisplay enemyCardDisplay;
 
@@ -132,6 +133,8 @@ public class GameManager : MonoBehaviour
         playerMana = 0;
         playerManaText.text = playerMana.ToString();
 
+        playerSpecialComboConfirm = new bool[playerCard.Combo.Length];
+
         // Light Attack 
         playerCardDisplay.LightAttackButton.onClick.AddListener(delegate { 
             PlayerAction(playerCard.LightAttackCost, playerCard.LightAttackDmg, Card.Action.LightAttack); });
@@ -145,6 +148,8 @@ public class GameManager : MonoBehaviour
             PlayerAction(playerCard.SupportActionCost, playerCard.SupportActionValue, Card.Action.SupportAction); });
         
         // TODO:Special Attack
+            playerCardDisplay.SpecialAttackButton.onClick.AddListener(delegate{
+              PlayerAction(0, playerCard.SpecialAttackDmg, Card.Action.SpecialAttack); });
 
         GameObject enemyCardGO = enemyHand.transform.GetChild(0).gameObject;
         enemyCardDisplay = enemyCardGO.GetComponent<CardDisplay>();
@@ -158,6 +163,8 @@ public class GameManager : MonoBehaviour
 
         enemyMana = 0;
         enemyManaText.text = enemyMana.ToString();
+
+        enemySpecialComboConfirm = new bool[enemyCard.Combo.Length];
 
         // TODO:Special Attack
 
@@ -196,6 +203,15 @@ public class GameManager : MonoBehaviour
 
         if(playerMana >= playerCard.SupportActionCost)
             playerCardDisplay.SupportActionButton.interactable = true;
+        
+        int confirmCount = 0;
+        for(int i = 0; i < playerSpecialComboConfirm.Length; i++){
+            if(playerSpecialComboConfirm[i])
+                confirmCount++;
+        }
+        
+        if(confirmCount == playerSpecialComboConfirm.Length)
+            playerCardDisplay.SpecialAttackButton.interactable = true;
     }
 
     private void PlayerAction(int actionCost, int actionValue, Card.Action actionType)
@@ -234,7 +250,8 @@ public class GameManager : MonoBehaviour
             // Play Damage or Heavy Damage Sound
             // Play Damage or Heavy Damage Animation
         }
-        else if(actionType == Card.Action.SupportAction){
+        else if(actionType == Card.Action.SupportAction)
+        {
             if(playerCard.IsShield){
                 playerShield += actionValue;
                 // Update Text Animation
@@ -250,9 +267,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        else if(actionType == Card.Action.SpecialAttack)
+        {
+            //Special Attack Animation or Video
+            enemyShield -= actionValue;
+            if(enemyShield < 0)
+            {
+                enemyHealth -= enemyShield;
+            }
+            // Update Text Animation
+            // Play Damage or Special Attack Sound
+            // Play Damage or Special Attack Animation
+        }
+
         playerCardDisplay.LightAttackButton.interactable = false;
         playerCardDisplay.HeavyAttackButton.interactable = false;
         playerCardDisplay.SupportActionButton.interactable = false;
+        playerCardDisplay.SpecialAttackButton.interactable = false;
 
         // Set Pass Button GameObejct Inactive
         // Start Method to Check Game Stats
@@ -265,6 +296,28 @@ public class GameManager : MonoBehaviour
     private void StartRound(){
         UpdateGameState(GameState.PlayerTurn);
     }
+
+    private void UpdateComboConfirm(Card.Action actionType, ref bool[] specialComboConfirm, Card.Action[] combo)
+    {
+        // TODO: Update visual clues using specialComboConfirm
+
+        for(int i = 0; i < specialComboConfirm.Length; i++){
+            // Current index is true and next is false
+            if(!specialComboConfirm[i])
+            {
+                if(actionType == combo[i]){
+                    specialComboConfirm[i] = true;
+                    break;
+                }
+                else
+                {
+                    for(int j = 0; j < specialComboConfirm.Length; j++)
+                        specialComboConfirm[j] = false;
+                    break;
+                }
+            }    
+        }
+    }    
 
     public enum GameState {
         RoundStart,

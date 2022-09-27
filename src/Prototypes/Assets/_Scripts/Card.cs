@@ -31,6 +31,7 @@ public class Card : ScriptableObject
     {
         LightAttack,
         HeavyAttack,
-        SupportAction
+        SupportAction,
+        SpecialAttack
     }
 }
