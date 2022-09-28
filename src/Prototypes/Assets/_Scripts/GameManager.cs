@@ -220,6 +220,8 @@ public class GameManager : MonoBehaviour
         // Update Text Animation
         if(actionType == Card.Action.LightAttack)
         {
+            ComboCheck(Card.Action.LightAttack, ref playerSpecialComboConfirm, playerCard.Combo);
+
             if(enemyShield > 0){
                 enemyShield -= actionValue;
                 if(enemyShield < 0)
@@ -240,11 +242,15 @@ public class GameManager : MonoBehaviour
 
         else if(actionType == Card.Action.HeavyAttack)
         {
+            ComboCheck(Card.Action.HeavyAttack, ref playerSpecialComboConfirm, playerCard.Combo);
+
             enemyShield -= actionValue;
             if(enemyShield < 0)
             {
                 enemyHealth -= enemyShield;
                 enemyShield = 0;
+                if(enemyHealth < 0)
+                    enemyHealth = 0;
             }
             // Update Text Animation
             // Play Damage or Heavy Damage Sound
@@ -252,6 +258,8 @@ public class GameManager : MonoBehaviour
         }
         else if(actionType == Card.Action.SupportAction)
         {
+            ComboCheck(Card.Action.SupportAction, ref playerSpecialComboConfirm, playerCard.Combo);
+
             if(playerCard.IsShield){
                 playerShield += actionValue;
                 // Update Text Animation
@@ -269,11 +277,16 @@ public class GameManager : MonoBehaviour
 
         else if(actionType == Card.Action.SpecialAttack)
         {
+            ComboCheck(Card.Action.SpecialAttack, ref playerSpecialComboConfirm, playerCard.Combo);
+
             //Special Attack Animation or Video
             enemyShield -= actionValue;
             if(enemyShield < 0)
             {
                 enemyHealth -= enemyShield;
+                enemyShield = 0;
+                if(enemyHealth <  0)
+                    enemyHealth = 0;
             }
             // Update Text Animation
             // Play Damage or Special Attack Sound
@@ -289,33 +302,163 @@ public class GameManager : MonoBehaviour
         // Start Method to Check Game Stats
     }
 
-    private void EnemyAction(int acitonCost, int actionValue){
+    private void EnemyActionController()
+    {
+        if(UnityEngine.Random.Range(0, 100) < 10)
+        {
+            Array values = Enum.GetValues(typeof(Card.Action));
+            Card.Action randomAction = (Card.Action)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+            switch(randomAction)
+            {
+                case Card.Action.LightAttack:
+                    if(enemyMana >= enemyCard.LightAttackCost)
+                    {
+                        EnemyAction(enemyCard.LightAttackCost, enemyCard.LightAttackDmg, Card.Action.LightAttack);
+                        break;
+                    }
+                    goto default;
 
+                case Card.Action.HeavyAttack:
+                    if(enemyMana >= enemyCard.HeavyAttackCost)
+                    {
+                        EnemyAction(enemyCard.HeavyAttackCost, enemyCard.HeavyAttackDmg, Card.Action.HeavyAttack);
+                        break;
+                    }
+                    goto default;
+
+                case Card.Action.SupportAction:
+                    if(enemyMana >= enemyCard.SupportActionCost)
+                    {
+                        EnemyAction(enemyCard.SupportActionCost, enemyCard.SupportActionValue, Card.Action.SupportAction);
+                        break;
+                    }
+                    goto default;
+
+                case Card.Action.SpecialAttack:
+                    int confirmCount = 0;
+                    for(int i = 0; i < enemySpecialComboConfirm.Length; i++)
+                        if(enemySpecialComboConfirm[i])
+                            confirmCount++;
+                    
+                    if(confirmCount == enemySpecialComboConfirm.Length)
+                    {
+                        EnemyAction(0, enemyCard.SpecialAttackDmg, Card.Action.SpecialAttack);
+                        break;
+                    }
+                    goto default;
+                
+                default:
+                    // Pass()
+                    break;
+                        
+            }
+        }
+        
     }
 
-    private void StartRound(){
+    private void EnemyAction(int actionCost, int actionValue, Card.Action actionType)
+    {
+        enemyMana -= actionCost;
+        // Update Text Animation
+        if(actionType == Card.Action.LightAttack)
+        {
+            ComboCheck(Card.Action.LightAttack, ref enemySpecialComboConfirm, enemyCard.Combo);
+
+            if(playerShield > 0){
+                playerShield -= actionValue;
+                if(playerShield < 0)
+                    playerShield = 0;
+                // Update Text Animation
+            }
+            else{
+                playerHealth -= actionValue;
+                if(playerHealth < 0)
+                    playerHealth = 0;
+                // Update Text Animation
+            }
+
+            // Play Damage or Light Damage Sound
+            // Play Damage or Light Damage Animation
+        }
+
+        else if(actionType == Card.Action.HeavyAttack)
+        {
+            ComboCheck(Card.Action.HeavyAttack, ref enemySpecialComboConfirm, enemyCard.Combo);
+
+            playerShield -= actionValue;
+            if(playerShield < 0)
+            {
+                playerHealth -= playerShield;
+                playerShield = 0;
+            }
+            // Update Text Animation
+            // Play Damage or Heavy Damage Sound
+            // Play Damage or Heavy Damage Animation
+        }
+
+        else if(actionType == Card.Action.SupportAction)
+        {
+            ComboCheck(Card.Action.SupportAction, ref enemySpecialComboConfirm, enemyCard.Combo);
+
+            if(enemyCard.IsShield){
+                enemyShield += actionValue;
+                // Update Text Animation
+                // Play Shield or Support Action Sound
+                // Play Shield or Support Action Animation
+            }else{
+                enemyHealth += actionValue;
+                // Update Text Animation
+                // Play Heal or Support Action Sound
+                // Play Heal or Support Action Animation
+            }
+        }
+        else if(actionType == Card.Action.SpecialAttack)
+        {
+            ComboCheck(Card.Action.SpecialAttack, ref enemySpecialComboConfirm, enemyCard.Combo);
+            //Special Attack Animation or Video
+            playerShield -= actionValue;
+            if(playerShield < 0)
+            {
+                playerHealth -= playerShield;
+                playerShield = 0;
+                if(playerHealth < 0)
+                    playerHealth = 0;
+            }
+            // Update Text Animation
+            // Play Damage or Special Attack Sound
+            // Play Damage or Special Attack Animation
+        }
+    }
+
+    private void StartRound()
+    {
         UpdateGameState(GameState.PlayerTurn);
     }
 
-    private void UpdateComboConfirm(Card.Action actionType, ref bool[] specialComboConfirm, Card.Action[] combo)
+    private void ComboCheck(Card.Action actionType, ref bool[] specialComboConfirm, Card.Action[] combo)
     {
         // TODO: Update visual clues using specialComboConfirm
-
-        for(int i = 0; i < specialComboConfirm.Length; i++){
-            // Current index is true and next is false
-            if(!specialComboConfirm[i])
-            {
-                if(actionType == combo[i]){
-                    specialComboConfirm[i] = true;
-                    break;
-                }
-                else
+        if(actionType == Card.Action.SpecialAttack)
+            for(int i = 0; i < specialComboConfirm.Length; i++)
+                specialComboConfirm[i] = false;
+        else
+        {
+            for(int i = 0; i < specialComboConfirm.Length; i++){
+                // Current index is false
+                if(!specialComboConfirm[i])
                 {
-                    for(int j = 0; j < specialComboConfirm.Length; j++)
-                        specialComboConfirm[j] = false;
-                    break;
-                }
-            }    
+                    if(actionType == combo[i]){
+                        specialComboConfirm[i] = true;
+                        break;
+                    }
+                    else
+                    {
+                        for(int j = 0; j < specialComboConfirm.Length; j++)
+                            specialComboConfirm[j] = false;
+                        break;
+                    }
+                }    
+            }
         }
     }    
 
