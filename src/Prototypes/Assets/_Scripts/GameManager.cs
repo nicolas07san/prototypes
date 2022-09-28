@@ -204,13 +204,7 @@ public class GameManager : MonoBehaviour
         if(playerMana >= playerCard.SupportActionCost)
             playerCardDisplay.SupportActionButton.interactable = true;
         
-        int confirmCount = 0;
-        for(int i = 0; i < playerSpecialComboConfirm.Length; i++){
-            if(playerSpecialComboConfirm[i])
-                confirmCount++;
-        }
-        
-        if(confirmCount == playerSpecialComboConfirm.Length)
+        if(IsSpecialAvailable(playerSpecialComboConfirm))
             playerCardDisplay.SpecialAttackButton.interactable = true;
     }
 
@@ -334,13 +328,8 @@ public class GameManager : MonoBehaviour
                     }
                     goto default;
 
-                case Card.Action.SpecialAttack:
-                    int confirmCount = 0;
-                    for(int i = 0; i < enemySpecialComboConfirm.Length; i++)
-                        if(enemySpecialComboConfirm[i])
-                            confirmCount++;
-                    
-                    if(confirmCount == enemySpecialComboConfirm.Length)
+                case Card.Action.SpecialAttack:                 
+                    if(IsSpecialAvailable(enemySpecialComboConfirm))
                     {
                         EnemyAction(0, enemyCard.SpecialAttackDmg, Card.Action.SpecialAttack);
                         break;
@@ -352,6 +341,46 @@ public class GameManager : MonoBehaviour
                     break;
                         
             }
+        }
+        else if(IsSpecialAvailable(enemySpecialComboConfirm)){
+            EnemyAction(0, enemyCard.SpecialAttackDmg, Card.Action.SpecialAttack);
+        }
+        else if(enemyMana >= enemyCard.LightAttackCost || enemyMana >= enemyCard.HeavyAttackCost || enemyMana >= enemyCard.SupportActionCost){
+            for(int i = 0; i < enemySpecialComboConfirm.Length; i++)
+            {
+                if(!enemySpecialComboConfirm[i])
+                {
+                    switch(enemyCard.Combo[i]){
+                        case(Card.Action.LightAttack):
+                            if(enemyMana >= enemyCard.LightAttackCost)
+                            {
+                                EnemyAction(enemyCard.LightAttackCost, enemyCard.LightAttackDmg, Card.Action.LightAttack);
+                                i = 100;
+                            }
+                            break;
+                            
+                        case(Card.Action.HeavyAttack):
+                            if(enemyMana >= enemyCard.HeavyAttackCost)
+                            {
+                                EnemyAction(enemyCard.HeavyAttackCost, enemyCard.HeavyAttackDmg, Card.Action.HeavyAttack);
+                                i = 100;
+                            }
+                            break;
+
+                        case(Card.Action.SupportAction):
+                            if(enemyMana >= enemyCard.SupportActionCost)
+                            {
+                                EnemyAction(enemyCard.SupportActionCost, enemyCard.SupportActionValue, Card.Action.SupportAction);
+                                i = 100;
+                            }
+                            break;      
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Pass()
         }
         
     }
@@ -460,6 +489,14 @@ public class GameManager : MonoBehaviour
                 }    
             }
         }
+    }
+
+    private bool IsSpecialAvailable(bool[] specialComboConfirm){
+        int confirmCount = 0;
+        for(int i = 0; i < specialComboConfirm.Length; i++)
+            if(specialComboConfirm[i])
+                confirmCount++;
+        return confirmCount == specialComboConfirm.Length;
     }    
 
     public enum GameState {
