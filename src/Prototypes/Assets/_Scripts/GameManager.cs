@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 aTxtStartPos;
     [SerializeField] private Vector2 aTxtFinalPos;
 
+    [Header("Dice")]
+    [SerializeField] private Sprite[] diceSides;
+    [SerializeField] private Image diceImage;
+
     [Header("Card Hands")]
     [SerializeField] GameObject playerHand;
     [SerializeField] GameObject enemyHand;
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour
     private int playerHealth;
     private int playerWins = 0;
     private bool playerWin = false;
-    private bool playerTurn = false;
+    private bool playerTurn = true;
     private bool[] playerSpecialComboConfirm;
     private CardDisplay playerCardDisplay;
     private Card playerCard;
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     // Game stats
     private int round = 1;
+    private int diceNumber;
 
     private void Awake() {
         Instance = this;
@@ -174,7 +179,7 @@ public class GameManager : MonoBehaviour
 
         enemySpecialComboConfirm = new bool[enemyCard.Combo.Length];
 
-        // StartCoroutine(StartRoundAnimation());
+        StartRoundAnimation();
 
     }
 
@@ -190,8 +195,24 @@ public class GameManager : MonoBehaviour
         DOTween.Play(sequence);
     }
 
-    private void RollDice(){
+    private IEnumerator RollDice(){
+        int randomDiceSide = 0;
+        for(int i = 0; i < 20; i++)
+        {
+            randomDiceSide = UnityEngine.Random.Range(0, 6);
 
+            diceImage.sprite = diceSides[randomDiceSide];
+
+            yield return new WaitForSeconds(0.1f);
+
+        }
+
+        diceNumber = randomDiceSide + 1;
+
+        if(playerTurn)
+        {
+            
+        }
     }
 
     private void TurnAnimation(string text){
@@ -237,7 +258,6 @@ public class GameManager : MonoBehaviour
 
             // Play Damage  or Light Damage Sound
             // Play Damage or Light Damage Animation
-
         }
 
         else if(actionType == Card.Action.HeavyAttack)
@@ -292,6 +312,10 @@ public class GameManager : MonoBehaviour
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
+
+        StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
+        StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
+        StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
 
         playerCardDisplay.LightAttackButton.interactable = false;
         playerCardDisplay.HeavyAttackButton.interactable = false;
@@ -463,6 +487,10 @@ public class GameManager : MonoBehaviour
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
+
+        StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
+        StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
+        StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
     }
 
     private void Pass()
@@ -599,6 +627,59 @@ public class GameManager : MonoBehaviour
             if(specialComboConfirm[i])
                 confirmCount++;
         return confirmCount == specialComboConfirm.Length;
+    }
+
+    private IEnumerator UpdateStatText(TMP_Text statText, TMP_Text statTextDifference,int statVariable)
+    {
+        int valueDifference = 0;
+        float animationTime = 1f;
+
+        if(statVariable > int.Parse(statText.text))
+        {
+            valueDifference = int.Parse(statText.text) - statVariable;
+            valueDifference *= -1;
+        }
+        else
+        {
+            valueDifference = int.Parse(statText.text) - statVariable;
+            valueDifference *= -1;
+        }
+        
+
+        if(valueDifference > 0)
+        {
+            statTextDifference.color = Color.green;
+            statTextDifference.text = "+" + valueDifference;
+            statTextDifference.gameObject.SetActive(true);
+
+            yield return null;
+
+            for(int i = valueDifference; i > 0; i--)
+            {
+                statText.text = (int.Parse(statText.text) + 1).ToString();
+                yield return new WaitForSeconds(animationTime/valueDifference);
+            }
+        }
+
+        else if(valueDifference < 0)
+        {
+            statTextDifference.color = Color.red;
+            statTextDifference.text = "" + valueDifference;
+            statTextDifference.gameObject.SetActive(true);
+
+            yield return null;
+
+            for(int i = valueDifference; i < 0; i++)
+            {
+                statText.text = (int.Parse(statText.text) - 1).ToString();
+                yield return new WaitForSeconds(animationTime/(valueDifference *-1));
+            }
+        }
+
+        statText.text = statVariable.ToString();
+        statTextDifference.gameObject.SetActive(false);
+
+        yield return null;
     }    
 
     public enum GameState {
