@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     private int playerShield;
     private int playerHealth;
     private int playerWins = 0;
+    private bool playerWin = false;
+    private bool playerTurn = false;
     private bool[] playerSpecialComboConfirm;
     private CardDisplay playerCardDisplay;
     private Card playerCard;
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
     private int enemyShield;
     private int enemyHealth;
     private int enemyWins = 0;
+    private bool enemyWin = false;
+    private bool enemyTurn = false;
     private bool[] enemySpecialComboConfirm;
     private Card enemyCard;
     private CardDisplay enemyCardDisplay;
@@ -80,10 +84,14 @@ public class GameManager : MonoBehaviour
                 GetInitialBasicStats();
                 break;
             case GameState.PlayerTurn:
+                playerTurn = true;
                 TurnAnimation("Turno do Jogador");
                 RollDice();
                 break;
             case GameState.EnemyTurn:
+                enemyTurn = true;
+                TurnAnimation("Turno do Inimigo");
+                RollDice();
                 break;
             case GameState.Victory:
                 break;
@@ -165,8 +173,6 @@ public class GameManager : MonoBehaviour
         enemyManaText.text = enemyMana.ToString();
 
         enemySpecialComboConfirm = new bool[enemyCard.Combo.Length];
-
-        // TODO:Special Attack
 
         // StartCoroutine(StartRoundAnimation());
 
@@ -457,6 +463,102 @@ public class GameManager : MonoBehaviour
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
+    }
+
+    private void Pass()
+    {
+        if(playerHealth <= 0 || enemyHealth <= 0)
+        {
+            
+            if(playerHealth <= 0 && enemyHealth <= 0)
+            {
+                //Sudden Death
+            }
+            else
+            {
+                round += 1;
+                if(playerHealth <= 0)
+                {
+                    enemyWins += 1;
+                    //Change Icon Color
+                }
+                else if(enemyHealth <= 0)
+                {
+                    playerWins += 1;
+                    // Change Icon Color
+                }
+
+                if(playerWins >= 2 || enemyWins >= 2)
+                {
+                    //Stop Music
+                    if(playerWins >= 2)
+                    {
+                        playerWin = true;
+                        UpdateGameState(GameState.Victory);
+                    }
+                    else if(enemyWins >= 2)
+                    {
+                        UpdateGameState(GameState.Lose);
+                    }
+                }
+                else
+                {
+                    Destroy(playerHand.transform.GetChild(0).gameObject);
+                    Destroy(enemyHand.transform.GetChild(0).gameObject);
+                    UpdateGameState(GameState.RoundStart);
+                }
+            }
+        }
+        else
+        {
+            if(playerTurn)
+            {
+                playerTurn = false;
+                UpdateGameState(GameState.EnemyTurn);
+            }
+            else if(enemyTurn)
+            {
+                enemyTurn = false;
+                UpdateGameState(GameState.PlayerTurn);
+            }
+        }
+    }
+
+    private void SuddenDeath()
+    {
+        // Sound Management
+
+        playerHealth = 10;
+        playerHealthText.text = playerHealth.ToString();
+
+        playerShield = 10;
+        playerShieldText.text = playerShield.ToString();
+
+        enemyMana = 0;
+        enemyManaText.text = enemyMana.ToString();
+
+        enemyHealth = 10;
+        enemyHealthText.text = enemyHealth.ToString();
+
+        enemyShield = 10;
+        enemyShieldText.text = enemyShield.ToString();
+
+        enemyMana = 0;
+        enemyManaText.text = enemyMana.ToString();
+
+        // Announcement Text Animation
+
+        if(playerTurn)
+        {
+            playerTurn = false;
+            UpdateGameState(GameState.EnemyTurn);
+        }
+        else if (enemyTurn)
+        {
+            enemyTurn = false;
+            UpdateGameState(GameState.PlayerTurn);
+        }
+
     }
 
     private void StartRound()
