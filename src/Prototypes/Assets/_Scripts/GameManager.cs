@@ -91,12 +91,10 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerTurn:
                 playerTurn = true;
                 TurnAnimation("Turno do Jogador");
-                RollDice();
                 break;
             case GameState.EnemyTurn:
                 enemyTurn = true;
                 TurnAnimation("Turno do Inimigo");
-                RollDice();
                 break;
             case GameState.Victory:
                 break;
@@ -211,12 +209,27 @@ public class GameManager : MonoBehaviour
 
         if(playerTurn)
         {
-            
+            playerMana += diceNumber;
+            UpdateStatText(playerManaText, playerManaTextDifference, playerMana);
+        }
+
+        else
+        {
+            enemyMana += diceNumber;
+            UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana);
         }
     }
 
     private void TurnAnimation(string text){
-
+        announcementText.transform.position = aTxtStartPos;
+        announcementText.gameObject.SetActive(true);
+        announcementText.text = text;
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f));
+        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f));
+        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(StartRollDice));
+        DOTween.Play(sequence);
     }
 
     private void PlayerActionController()
@@ -238,7 +251,8 @@ public class GameManager : MonoBehaviour
     private void PlayerAction(int actionCost, int actionValue, Card.Action actionType)
     {
         playerMana -= actionCost;
-        // Update Text Animation
+        UpdateStatText(playerManaText, playerManaTextDifference, playerMana);
+
         if(actionType == Card.Action.LightAttack)
         {
             ComboCheck(Card.Action.LightAttack, ref playerSpecialComboConfirm, playerCard.Combo);
@@ -247,13 +261,13 @@ public class GameManager : MonoBehaviour
                 enemyShield -= actionValue;
                 if(enemyShield < 0)
                     enemyShield = 0;
-                // Update Text Animation
+                UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield);
             }
             else{
                 enemyHealth -= actionValue;
                 if(enemyHealth < 0)
                     enemyHealth = 0;
-                // Update Text Animation
+                UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
             }
 
             // Play Damage  or Light Damage Sound
@@ -272,7 +286,9 @@ public class GameManager : MonoBehaviour
                 if(enemyHealth < 0)
                     enemyHealth = 0;
             }
-            // Update Text Animation
+            
+            UpdateStatText(enemyShieldText, enemyHealthTextDifference, enemyShield);
+            UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
             // Play Damage or Heavy Damage Sound
             // Play Damage or Heavy Damage Animation
         }
@@ -282,14 +298,14 @@ public class GameManager : MonoBehaviour
 
             if(playerCard.IsShield){
                 playerShield += actionValue;
-                // Update Text Animation
+                UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
                 // Play Shield or Support Action Sound
                 // Play Shield or Support Action Animation
                 
             }
             else{
                 playerHealth += actionValue;
-                // Update Text Animation
+                UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
                 // Play Heal or Support Action Sound
                 // Play Heal or Support Action Animation
             }
@@ -308,14 +324,11 @@ public class GameManager : MonoBehaviour
                 if(enemyHealth <  0)
                     enemyHealth = 0;
             }
-            // Update Text Animation
+            UpdateStatText(enemyShieldText, enemyHealthTextDifference, enemyShield);
+            UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
-
-        StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
-        StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
-        StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
 
         playerCardDisplay.LightAttackButton.interactable = false;
         playerCardDisplay.HeavyAttackButton.interactable = false;
@@ -367,7 +380,7 @@ public class GameManager : MonoBehaviour
                     goto default;
                 
                 default:
-                    // Pass()
+                    Pass();
                     break;
                         
             }
@@ -410,7 +423,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Pass()
+            Pass();
         }
         
     }
@@ -418,7 +431,8 @@ public class GameManager : MonoBehaviour
     private void EnemyAction(int actionCost, int actionValue, Card.Action actionType)
     {
         enemyMana -= actionCost;
-        // Update Text Animation
+        UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana);
+
         if(actionType == Card.Action.LightAttack)
         {
             ComboCheck(Card.Action.LightAttack, ref enemySpecialComboConfirm, enemyCard.Combo);
@@ -427,13 +441,13 @@ public class GameManager : MonoBehaviour
                 playerShield -= actionValue;
                 if(playerShield < 0)
                     playerShield = 0;
-                // Update Text Animation
+                UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
             }
             else{
                 playerHealth -= actionValue;
                 if(playerHealth < 0)
                     playerHealth = 0;
-                // Update Text Animation
+                UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
             }
 
             // Play Damage or Light Damage Sound
@@ -450,7 +464,8 @@ public class GameManager : MonoBehaviour
                 playerHealth -= playerShield;
                 playerShield = 0;
             }
-            // Update Text Animation
+            UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
+            UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
             // Play Damage or Heavy Damage Sound
             // Play Damage or Heavy Damage Animation
         }
@@ -461,12 +476,12 @@ public class GameManager : MonoBehaviour
 
             if(enemyCard.IsShield){
                 enemyShield += actionValue;
-                // Update Text Animation
+                UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield);
                 // Play Shield or Support Action Sound
                 // Play Shield or Support Action Animation
             }else{
                 enemyHealth += actionValue;
-                // Update Text Animation
+                UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth);
                 // Play Heal or Support Action Sound
                 // Play Heal or Support Action Animation
             }
@@ -475,6 +490,7 @@ public class GameManager : MonoBehaviour
         {
             ComboCheck(Card.Action.SpecialAttack, ref enemySpecialComboConfirm, enemyCard.Combo);
             //Special Attack Animation or Video
+
             playerShield -= actionValue;
             if(playerShield < 0)
             {
@@ -483,7 +499,9 @@ public class GameManager : MonoBehaviour
                 if(playerHealth < 0)
                     playerHealth = 0;
             }
-            // Update Text Animation
+
+            UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield);
+            UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth);
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
@@ -500,7 +518,7 @@ public class GameManager : MonoBehaviour
             
             if(playerHealth <= 0 && enemyHealth <= 0)
             {
-                //Sudden Death
+                SuddenDeath();
             }
             else
             {
@@ -575,6 +593,15 @@ public class GameManager : MonoBehaviour
         enemyManaText.text = enemyMana.ToString();
 
         // Announcement Text Animation
+        announcementText.transform.position = aTxtStartPos;
+        announcementText.gameObject.SetActive(true);
+        announcementText.text = "Morte Súbita";
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(announcementText.transform.DOLocalMoveY(-20f, 0.5f));
+        sequence.Append(announcementText.transform.DOLocalMoveY(20f, 2f));
+        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(StartRound));
+        DOTween.Play(sequence);
 
         if(playerTurn)
         {
@@ -592,6 +619,11 @@ public class GameManager : MonoBehaviour
     private void StartRound()
     {
         UpdateGameState(GameState.PlayerTurn);
+    }
+
+    private void StartRollDice()
+    {
+        StartCoroutine(RollDice());
     }
 
     private void ComboCheck(Card.Action actionType, ref bool[] specialComboConfirm, Card.Action[] combo)
