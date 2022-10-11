@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 aTxtStartPos;
     [SerializeField] private Vector2 aTxtFinalPos;
 
+    [Header("Pass Button")]
+    [SerializeField] private GameObject passButton;
+
     [Header("Dice")]
     [SerializeField] private Sprite[] diceSides;
     [SerializeField] private Image diceImage;
@@ -335,8 +338,9 @@ public class GameManager : MonoBehaviour
         playerCardDisplay.SupportActionButton.interactable = false;
         playerCardDisplay.SpecialAttackButton.interactable = false;
 
-        // Set Pass Button GameObejct Inactive
-        // Start Method to Check Game Stats
+        passButton.SetActive(false);
+
+        Pass();
     }
 
     private void EnemyActionController()

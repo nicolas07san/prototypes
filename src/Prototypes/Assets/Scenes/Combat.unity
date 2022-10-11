@@ -939,6 +939,7 @@ MonoBehaviour:
   announcementText: {fileID: 145053423}
   aTxtStartPos: {x: 0, y: -600}
   aTxtFinalPos: {x: 0, y: 600}
+  passButton: {fileID: 0}
   diceSides:
   - {fileID: 21300000, guid: 139c0749cbb3acd46bb80b22a0db2c17, type: 3}
   - {fileID: 21300000, guid: 6259ad77f656ce04a85f99addea76348, type: 3}
@@ -2552,7 +2553,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1241391059
