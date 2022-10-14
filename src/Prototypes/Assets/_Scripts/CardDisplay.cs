@@ -32,9 +32,9 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private GameObject _specialAttackCombo;
     [field:SerializeField] public Button SpecialAttackButton {private set; get;}
 
-    [Header("Base Stats")]
-    [SerializeField] private TMP_Text _healthText;
-    [SerializeField] private TMP_Text _shieldText;
+    // [Header("Base Stats")]
+    // [SerializeField] private TMP_Text _healthText;
+    // [SerializeField] private TMP_Text _shieldText;
 
     [Header("Icons")]
     [SerializeField] private Image _lightAttackIcon;
@@ -86,11 +86,14 @@ public class CardDisplay : MonoBehaviour
             }
         }
 
+        LightAttackButton.interactable = false;
+        HeavyAttackButton.interactable = false;
+        SupportActionButton.interactable = false;
         SpecialAttackButton.interactable = false;
 
         // Base stats
-        _healthText.text = Card.Health.ToString();
-        _shieldText.text = Card.Shield.ToString(); 
+        // _healthText.text = Card.Health.ToString();
+        // _shieldText.text = Card.Shield.ToString(); 
     }
 
 }
