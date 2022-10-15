@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Kin'Dragont
   m_EditorClassIdentifier: 
-  characterName: Kin'Dragont
-  artwork: {fileID: 21300000, guid: 5e37cbb5c653e414d83e9ced3a8bfcfe, type: 3}
-  attack1Name: Bomba de fogo
-  attack1Cost: 2
-  attack1Dmg: 4
-  attack2Name: Pacto de sangue
-  attack2Cost: 3
-  attack2Dmg: 5
-  attack3Name: Seta demoniaca
-  attack3Cost: 4
-  attack3Dmg: 6
-  health: 15
-  shield: 35
+  <CharacterName>k__BackingField: Kin'Dragont
+  <Artwork>k__BackingField: {fileID: 21300000, guid: 5e37cbb5c653e414d83e9ced3a8bfcfe, type: 3}
+  <LightAttackCost>k__BackingField: 3
+  <LightAttackDmg>k__BackingField: 5
+  <HeavyAttackCost>k__BackingField: 5
+  <HeavyAttackDmg>k__BackingField: 8
+  <IsShield>k__BackingField: 0
+  <SupportActionCost>k__BackingField: 4
+  <SupportActionValue>k__BackingField: 5
+  <SpecialAttackDmg>k__BackingField: 15
+  <Combo>k__BackingField: 0200000001000000000000000000000000000000
+  <Health>k__BackingField: 20
+  <Shield>k__BackingField: 30

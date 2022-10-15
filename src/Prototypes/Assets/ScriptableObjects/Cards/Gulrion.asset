@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Gulrion
   m_EditorClassIdentifier: 
-  characterName: Gulrion
-  artwork: {fileID: 21300000, guid: b2873678a47917d418e501122861098b, type: 3}
-  attack1Name: Espiral da morte
-  attack1Cost: 2
-  attack1Dmg: 5
-  attack2Name: Dreno de alma
-  attack2Cost: 3
-  attack2Dmg: 7
-  attack3Name: Ira sombria
-  attack3Cost: 6
-  attack3Dmg: 10
-  health: 15
-  shield: 50
+  <CharacterName>k__BackingField: Gulrion
+  <Artwork>k__BackingField: {fileID: 21300000, guid: b2873678a47917d418e501122861098b, type: 3}
+  <LightAttackCost>k__BackingField: 2
+  <LightAttackDmg>k__BackingField: 5
+  <HeavyAttackCost>k__BackingField: 7
+  <HeavyAttackDmg>k__BackingField: 12
+  <IsShield>k__BackingField: 0
+  <SupportActionCost>k__BackingField: 4
+  <SupportActionValue>k__BackingField: 5
+  <SpecialAttackDmg>k__BackingField: 20
+  <Combo>k__BackingField: 0000000002000000000000000200000001000000
+  <Health>k__BackingField: 20
+  <Shield>k__BackingField: 35
