@@ -3339,7 +3339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "OP\xC7\xD5ES"
+  m_text: "Op\xE7\xF5es"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28269d048af040948bf043b79aa39c58, type: 2}
   m_sharedMaterial: {fileID: -9053767443354019729, guid: 28269d048af040948bf043b79aa39c58, type: 2}
