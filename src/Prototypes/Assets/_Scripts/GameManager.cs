@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 aTxtStartPos;
     [SerializeField] private Vector2 aTxtFinalPos;
 
+    [Header("Backgrounds")]
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Sprite[] backgrounds;
+
     [Header("Pass Button")]
     [SerializeField] private GameObject passButton;
 
@@ -48,6 +52,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text enemyHealthText;
     [SerializeField] private TMP_Text enemyHealthTextDifference;
 
+    private Vector3 playerHandPosition = new Vector3(-700, 0);
+    private Vector3 enemyHandPosition = new Vector3(700, 0);
+
     // Player stats
     private int playerMana = 0;
     private int playerShield;
@@ -76,6 +83,33 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         Instance = this;
+
+        if(LevelManager.isCampaignLevel)
+        {
+            backgroundImage.sprite = LevelManager.instance.level.levelImage;
+        }
+        else
+        {   
+            Sprite randomBg = backgrounds[UnityEngine.Random.Range(0, backgrounds.Length)];
+            backgroundImage.sprite = randomBg;
+        }
+            
+
+        for(int i = 0; i < 3; i ++)
+        {
+            Transform playerCard;
+            Transform enemyCard;
+            
+            playerCard = LevelManager.instance.transform.GetChild(1).transform.GetChild(0);
+            enemyCard =  LevelManager.instance.transform.GetChild(2).transform.GetChild(0);
+
+            playerCard.SetParent(playerHand.transform);
+            enemyCard.SetParent(enemyHand.transform);
+        }
+
+        Destroy(LevelManager.instance.transform.GetChild(1).gameObject);
+        Destroy(LevelManager.instance.transform.GetChild(2).gameObject);
+        
     }
 
     private void Start() {
@@ -87,6 +121,8 @@ public class GameManager : MonoBehaviour
 
         switch(newState){
             case GameState.RoundStart:
+                playerHand.transform.localPosition = playerHandPosition;
+                enemyHand.transform.localPosition = enemyHandPosition;
                 InitialCardPlacement(playerHand);
                 InitialCardPlacement(enemyHand);
                 GetInitialBasicStats();
