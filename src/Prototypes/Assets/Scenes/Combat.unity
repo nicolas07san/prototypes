@@ -834,7 +834,6 @@ GameObject:
   m_Component:
   - component: {fileID: 668395174}
   - component: {fileID: 668395175}
-  - component: {fileID: 668395173}
   - component: {fileID: 668395172}
   m_Layer: 5
   m_Name: CombatScreen
@@ -856,44 +855,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1318693319}
---- !u!114 &668395173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668395171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4b04a4a91528f4aa780e4e76c5da39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHand: {fileID: 178630350}
-  enemyHand: {fileID: 1203699325}
-  diceText: {fileID: 0}
-  roundText: {fileID: 145053423}
-  backgroundImage: {fileID: 1566354014}
-  playerManaText: {fileID: 1409579031}
-  playerManaTextDifference: {fileID: 404279629}
-  playerShieldText: {fileID: 902695660}
-  playerShieldTextDifference: {fileID: 733807597}
-  playerHealthText: {fileID: 2139829268}
-  playerHealthTextDifference: {fileID: 1743876373}
-  enemyManaText: {fileID: 2111396968}
-  enemyManaTextDifference: {fileID: 1674357839}
-  enemyShieldText: {fileID: 1011252004}
-  enemyShieldTextDifference: {fileID: 1537515264}
-  enemyHealthText: {fileID: 993699845}
-  enemyHealthTextDifference: {fileID: 1576418026}
-  victoryScreen: {fileID: 344817404}
-  gameoverScreen: {fileID: 1917957032}
-  passButton: {fileID: 1675256283}
-  playerWinCount: {fileID: 1635091072}
-  enemyWinCount: {fileID: 154306649}
-  backgrounds:
-  - {fileID: 21300000, guid: 1c19fc7ec54a0b84e9d0cc5c403dbe4d, type: 3}
-  - {fileID: 21300000, guid: ad5ebcfb947e86744aac20a8f36261c4, type: 3}
-  - {fileID: 21300000, guid: 6776697f49457724ba345c4ab95dbede, type: 3}
 --- !u!224 &668395174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4403,7 +4364,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 668395173}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: PassButton
         m_Mode: 1

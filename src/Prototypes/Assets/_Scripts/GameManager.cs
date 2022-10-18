@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             backgroundImage.sprite = randomBg;
         }
             
-
+        
         for(int i = 0; i < 3; i ++)
         {
             Transform playerCard;
@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
 
         Destroy(LevelManager.instance.transform.GetChild(1).gameObject);
         Destroy(LevelManager.instance.transform.GetChild(2).gameObject);
+    
         
     }
 
