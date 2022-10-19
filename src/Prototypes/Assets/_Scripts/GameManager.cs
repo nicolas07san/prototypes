@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     private int playerHealth;
     private int playerWins = 0;
     private bool playerWin = false;
-    private bool playerTurn = true;
+    private bool playerTurn = false;
     private bool[] playerSpecialComboConfirm;
     private CardDisplay playerCardDisplay;
     private Card playerCard;
@@ -152,16 +152,16 @@ public class GameManager : MonoBehaviour
             GameObject card = cardHand.transform.GetChild(i).gameObject;
             switch(i){
                 case 0:
-                    card.transform.localScale = new Vector3(1, 1);
-                    card.transform.localPosition = new Vector3(0, 200);
+                    card.transform.localScale = new Vector2(1, 1);
+                    card.transform.localPosition = new Vector2(0, 60);
                     break;
                 case 1:
-                    card.transform.localScale = new Vector3(0.5f, 0.5f);
-                    card.transform.localPosition = new Vector3(100, -300);
+                    card.transform.localScale = new Vector2(0.25f, 0.25f);
+                    card.transform.localPosition = new Vector2(129, -350);
                     break;
                 case 2:
-                    card.transform.localScale = new Vector3(0.5f, 0.5f);
-                    card.transform.localPosition = new Vector3(-100, -300);
+                    card.transform.localScale = new Vector2(0.25f, 0.25f);
+                    card.transform.localPosition = new Vector2(-129, -350);
                     break;
             }
 
@@ -222,13 +222,20 @@ public class GameManager : MonoBehaviour
     }
 
     private void StartRoundAnimation(){
+        int coinSide = UnityEngine.Random.Range(0, 2);
+
+        if(coinSide == 0)
+            playerTurn = true;
+        else
+            enemyTurn = true;
+        
         announcementText.transform.position = aTxtStartPos;
         announcementText.gameObject.SetActive(true);
         announcementText.text = "Rodada " + round;
         
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f));
-        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f));
+        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f * Time.deltaTime));
+        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f * Time.deltaTime));
         sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(StartRound));
         DOTween.Play(sequence);
     }
@@ -245,18 +252,22 @@ public class GameManager : MonoBehaviour
 
         }
 
+        yield return null;
+
         diceNumber = randomDiceSide + 1;
 
         if(playerTurn)
         {
             playerMana += diceNumber;
-            UpdateStatText(playerManaText, playerManaTextDifference, playerMana);
+            StartCoroutine(UpdateStatText(playerManaText, playerManaTextDifference, playerMana));
+            PlayerActionController();
         }
 
         else
         {
             enemyMana += diceNumber;
-            UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana);
+            StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
+            EnemyActionController();
         }
     }
 
@@ -659,7 +670,10 @@ public class GameManager : MonoBehaviour
 
     private void StartRound()
     {
-        UpdateGameState(GameState.PlayerTurn);
+        if(playerTurn)
+            UpdateGameState(GameState.PlayerTurn);
+        else
+            UpdateGameState(GameState.EnemyTurn);
     }
 
     private void StartRollDice()
