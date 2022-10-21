@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
         playerCardDisplay.SupportActionButton.onClick.AddListener(delegate { 
             PlayerAction(playerCard.SupportActionCost, playerCard.SupportActionValue, Card.Action.SupportAction); });
         
-        // TODO:Special Attack
+        // Special Attack
             playerCardDisplay.SpecialAttackButton.onClick.AddListener(delegate{
               PlayerAction(0, playerCard.SpecialAttackDmg, Card.Action.SpecialAttack); });
 
@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
         {
             enemyMana += diceNumber;
             StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
-            EnemyActionController();
+            Invoke(nameof(EnemyActionController), 2f);
         }
     }
 
@@ -566,10 +566,6 @@ public class GameManager : MonoBehaviour
             // Play Damage or Special Attack Sound
             // Play Damage or Special Attack Animation
         }
-
-        StartCoroutine(UpdateStatText(enemyManaText, enemyManaTextDifference, enemyMana));
-        StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
-        StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
 
         Invoke(nameof(Pass), 2f);
     }
