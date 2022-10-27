@@ -110,6 +110,9 @@ public class GameManager : MonoBehaviour
 
         Destroy(LevelManager.instance.transform.GetChild(1).gameObject);
         Destroy(LevelManager.instance.transform.GetChild(2).gameObject);
+
+        playerHand.transform.localPosition = playerHandPosition;
+        enemyHand.transform.localPosition = enemyHandPosition;
     
         
     }
@@ -123,8 +126,6 @@ public class GameManager : MonoBehaviour
 
         switch(newState){
             case GameState.RoundStart:
-                playerHand.transform.localPosition = playerHandPosition;
-                enemyHand.transform.localPosition = enemyHandPosition;
                 InitialCardPlacement(playerHand);
                 InitialCardPlacement(enemyHand);
                 GetInitialBasicStats();
@@ -397,7 +398,7 @@ public class GameManager : MonoBehaviour
         playerCardDisplay.SpecialAttackButton.interactable = false;
 
         passButton.SetActive(false);
-        Invoke(nameof(Pass), 2f);
+        Invoke(nameof(StartPassCoroutine), 2f);
     }
 
     private void EnemyActionController()
@@ -441,7 +442,7 @@ public class GameManager : MonoBehaviour
                     goto default;
                 
                 default:
-                    Pass();
+                    StartCoroutine(nameof(Pass));
                     break;
                         
             }
@@ -484,7 +485,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Pass();
+            StartCoroutine(nameof(Pass));
         }
         
     }
@@ -567,10 +568,10 @@ public class GameManager : MonoBehaviour
             // Play Damage or Special Attack Animation
         }
 
-        Invoke(nameof(Pass), 2f);
+        Invoke(nameof(StartPassCoroutine), 2f);
     }
 
-    public void Pass()
+    private IEnumerator Pass()
     {
         if(playerHealth <= 0 || enemyHealth <= 0)
         {
@@ -585,17 +586,17 @@ public class GameManager : MonoBehaviour
                 if(playerHealth <= 0)
                 {
                     enemyWins += 1;
-                    //Change Icon Color
+                    //TODO:Change Icon Color
                 }
                 else if(enemyHealth <= 0)
                 {
                     playerWins += 1;
-                    // Change Icon Color
+                    //TODO:Change Icon Color
                 }
 
                 if(playerWins >= 2 || enemyWins >= 2)
                 {
-                    //Stop Music
+                    //TODO:Stop Music
                     if(playerWins >= 2)
                     {
                         playerWin = true;
@@ -610,6 +611,9 @@ public class GameManager : MonoBehaviour
                 {
                     Destroy(playerHand.transform.GetChild(0).gameObject);
                     Destroy(enemyHand.transform.GetChild(0).gameObject);
+
+                    yield return null;
+
                     UpdateGameState(GameState.RoundStart);
                 }
             }
@@ -631,7 +635,7 @@ public class GameManager : MonoBehaviour
 
     private void SuddenDeath()
     {
-        // Sound Management
+        // TODO: Sound Management
 
         playerHealth = 10;
         playerHealthText.text = playerHealth.ToString();
@@ -688,6 +692,16 @@ public class GameManager : MonoBehaviour
         announcementText.gameObject.SetActive(false);
         fadeImg.gameObject.SetActive(false);
         StartCoroutine(RollDice());
+    }
+
+    public void StartPassCoroutine(){
+
+        playerCardDisplay.LightAttackButton.interactable = false;
+        playerCardDisplay.HeavyAttackButton.interactable = false;
+        playerCardDisplay.SupportActionButton.interactable = false;
+        playerCardDisplay.SpecialAttackButton.interactable = false;
+        
+        StartCoroutine(nameof(Pass));
     }
 
     private void ComboCheck(Card.Action actionType, ref bool[] specialComboConfirm, Card.Action[] combo)
