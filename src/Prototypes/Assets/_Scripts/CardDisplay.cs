@@ -67,24 +67,28 @@ public class CardDisplay : MonoBehaviour
 
         // Special Attack
         _specialAttackDmgText.text = Card.SpecialAttackDmg.ToString();
-        for(int i = 0; i < Card.Combo.Length; i++)
+        if(_specialAttackCombo.transform.childCount < Card.Combo.Length)
         {
-            switch (Card.Combo[i])
+            for(int i = 0; i < Card.Combo.Length; i++)
             {
-                case (Card.Action.LightAttack):
-                    Instantiate(_lightAttackIcon, _specialAttackCombo.transform);
-                    break;
-                case (Card.Action.HeavyAttack):
-                    Instantiate(_heavyAttackIcon, _specialAttackCombo.transform);
-                    break;
-                case (Card.Action.SupportAction):
-                    if(Card.IsShield)
-                        Instantiate(_shieldIcon, _specialAttackCombo.transform);
-                    else
-                        Instantiate(_healthIcon, _specialAttackCombo.transform);
-                    break;
+                switch (Card.Combo[i])
+                {
+                    case (Card.Action.LightAttack):
+                        Instantiate(_lightAttackIcon, _specialAttackCombo.transform);
+                        break;
+                    case (Card.Action.HeavyAttack):
+                        Instantiate(_heavyAttackIcon, _specialAttackCombo.transform);
+                        break;
+                    case (Card.Action.SupportAction):
+                        if(Card.IsShield)
+                            Instantiate(_shieldIcon, _specialAttackCombo.transform);
+                        else
+                            Instantiate(_healthIcon, _specialAttackCombo.transform);
+                        break;
+                }
             }
         }
+        
 
         LightAttackButton.interactable = false;
         HeavyAttackButton.interactable = false;
