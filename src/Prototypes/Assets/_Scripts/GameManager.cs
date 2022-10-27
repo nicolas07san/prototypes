@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     [Header("Pass Button")]
     [SerializeField] private GameObject passButton;
 
+    [Header("Screens Control")]
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private GameObject gameoverScreen;
+
     [Header("Dice")]
     [SerializeField] private Sprite[] diceSides;
     [SerializeField] private Image diceImage;
@@ -139,8 +143,14 @@ public class GameManager : MonoBehaviour
                 TurnAnimation("Turno do Inimigo");
                 break;
             case GameState.Victory:
+                playerWin = true;
+                victoryScreen.SetActive(true);
+                Time.timeScale = 0f;
                 break;
             case GameState.Lose:
+                enemyWin = true;
+                gameoverScreen.SetActive(true);
+                Time.timeScale = 0f;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
