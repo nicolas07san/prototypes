@@ -1063,12 +1063,14 @@ MonoBehaviour:
   playerShieldTextDifference: {fileID: 733807597}
   playerHealthText: {fileID: 2139829268}
   playerHealthTextDifference: {fileID: 1743876373}
+  playerWinCount: {fileID: 1635091072}
   enemyManaText: {fileID: 2111396968}
   enemyManaTextDifference: {fileID: 1674357839}
   enemyShieldText: {fileID: 1011252004}
   enemyShieldTextDifference: {fileID: 1537515264}
   enemyHealthText: {fileID: 993699845}
   enemyHealthTextDifference: {fileID: 1576418026}
+  enemyWinCount: {fileID: 154306649}
 --- !u!1 &673431960
 GameObject:
   m_ObjectHideFlags: 0

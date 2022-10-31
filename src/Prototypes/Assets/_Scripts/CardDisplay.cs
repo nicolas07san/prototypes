@@ -29,7 +29,7 @@ public class CardDisplay : MonoBehaviour
 
     [Header("Special Attack")]
     [SerializeField] private TMP_Text _specialAttackDmgText;
-    [SerializeField] private GameObject _specialAttackCombo;
+    [field:SerializeField] public GameObject SpecialAttackCombo {private set; get;}
     [field:SerializeField] public Button SpecialAttackButton {private set; get;}
 
     // [Header("Base Stats")]
@@ -67,23 +67,23 @@ public class CardDisplay : MonoBehaviour
 
         // Special Attack
         _specialAttackDmgText.text = Card.SpecialAttackDmg.ToString();
-        if(_specialAttackCombo.transform.childCount < Card.Combo.Length)
+        if(SpecialAttackCombo.transform.childCount < Card.Combo.Length)
         {
             for(int i = 0; i < Card.Combo.Length; i++)
             {
                 switch (Card.Combo[i])
                 {
                     case (Card.Action.LightAttack):
-                        Instantiate(_lightAttackIcon, _specialAttackCombo.transform);
+                        Instantiate(_lightAttackIcon, SpecialAttackCombo.transform);
                         break;
                     case (Card.Action.HeavyAttack):
-                        Instantiate(_heavyAttackIcon, _specialAttackCombo.transform);
+                        Instantiate(_heavyAttackIcon, SpecialAttackCombo.transform);
                         break;
                     case (Card.Action.SupportAction):
                         if(Card.IsShield)
-                            Instantiate(_shieldIcon, _specialAttackCombo.transform);
+                            Instantiate(_shieldIcon, SpecialAttackCombo.transform);
                         else
-                            Instantiate(_healthIcon, _specialAttackCombo.transform);
+                            Instantiate(_healthIcon, SpecialAttackCombo.transform);
                         break;
                 }
             }

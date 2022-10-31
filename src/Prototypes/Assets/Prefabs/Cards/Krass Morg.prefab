@@ -2045,7 +2045,7 @@ MonoBehaviour:
   _supportActionHealthIcon: {fileID: 1279856699979532271}
   <SupportActionButton>k__BackingField: {fileID: 1279856700911269887}
   _specialAttackDmgText: {fileID: 1279856699236901211}
-  _specialAttackCombo: {fileID: 1279856700446929949}
+  <SpecialAttackCombo>k__BackingField: {fileID: 1279856700446929949}
   <SpecialAttackButton>k__BackingField: {fileID: 1279856699889874428}
   _lightAttackIcon: {fileID: 3226837707197828737, guid: f756287ef6a8cfb4285cc69c32c22e21, type: 3}
   _heavyAttackIcon: {fileID: 5390918487778046776, guid: 710595d5362c10d4b8add8157abf19ce, type: 3}

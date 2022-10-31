@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text playerHealthText;
     [SerializeField] private TMP_Text playerHealthTextDifference;
 
+    [SerializeField] private GameObject playerWinCount;
+
     [Header("Enemy Stats")]
     [SerializeField] private TMP_Text enemyManaText;
     [SerializeField] private TMP_Text enemyManaTextDifference;
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text enemyHealthText;
     [SerializeField] private TMP_Text enemyHealthTextDifference;
+
+    [SerializeField] private GameObject enemyWinCount;
 
     private Vector3 playerHandPosition = new Vector3(-700, 0);
     private Vector3 enemyHandPosition = new Vector3(700, 0);
@@ -586,46 +590,39 @@ public class GameManager : MonoBehaviour
         if(playerHealth <= 0 || enemyHealth <= 0)
         {
             
-            if(playerHealth <= 0 && enemyHealth <= 0)
+            round += 1;
+            if(playerHealth <= 0)
             {
-                SuddenDeath();
+                enemyWins += 1;
+                enemyWinCount.transform.GetChild(enemyWins - 1).GetComponent<Image>().color = Color.green;
+            }
+            else if(enemyHealth <= 0)
+            {
+                playerWins += 1;
+                playerWinCount.transform.GetChild(playerWins - 1).GetComponent<Image>().color = Color.green;
+            }
+
+            if(playerWins >= 2 || enemyWins >= 2)
+            {
+                //TODO:Stop Music
+                if(playerWins >= 2)
+                {
+                    playerWin = true;
+                    UpdateGameState(GameState.Victory);
+                }
+                else if(enemyWins >= 2)
+                {
+                    UpdateGameState(GameState.Lose);
+                }
             }
             else
             {
-                round += 1;
-                if(playerHealth <= 0)
-                {
-                    enemyWins += 1;
-                    //TODO:Change Icon Color
-                }
-                else if(enemyHealth <= 0)
-                {
-                    playerWins += 1;
-                    //TODO:Change Icon Color
-                }
+                Destroy(playerHand.transform.GetChild(0).gameObject);
+                Destroy(enemyHand.transform.GetChild(0).gameObject);
 
-                if(playerWins >= 2 || enemyWins >= 2)
-                {
-                    //TODO:Stop Music
-                    if(playerWins >= 2)
-                    {
-                        playerWin = true;
-                        UpdateGameState(GameState.Victory);
-                    }
-                    else if(enemyWins >= 2)
-                    {
-                        UpdateGameState(GameState.Lose);
-                    }
-                }
-                else
-                {
-                    Destroy(playerHand.transform.GetChild(0).gameObject);
-                    Destroy(enemyHand.transform.GetChild(0).gameObject);
+                yield return null;
 
-                    yield return null;
-
-                    UpdateGameState(GameState.RoundStart);
-                }
+                UpdateGameState(GameState.RoundStart);
             }
         }
         else
@@ -641,52 +638,6 @@ public class GameManager : MonoBehaviour
                 UpdateGameState(GameState.PlayerTurn);
             }
         }
-    }
-
-    private void SuddenDeath()
-    {
-        // TODO: Sound Management
-
-        playerHealth = 10;
-        playerHealthText.text = playerHealth.ToString();
-
-        playerShield = 10;
-        playerShieldText.text = playerShield.ToString();
-
-        enemyMana = 0;
-        enemyManaText.text = enemyMana.ToString();
-
-        enemyHealth = 10;
-        enemyHealthText.text = enemyHealth.ToString();
-
-        enemyShield = 10;
-        enemyShieldText.text = enemyShield.ToString();
-
-        enemyMana = 0;
-        enemyManaText.text = enemyMana.ToString();
-
-        // Announcement Text Animation
-        announcementText.transform.position = aTxtStartPos;
-        announcementText.gameObject.SetActive(true);
-        announcementText.text = "Morte Súbita";
-        
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(announcementText.transform.DOLocalMoveY(-20f, 0.5f));
-        sequence.Append(announcementText.transform.DOLocalMoveY(20f, 2f));
-        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f).OnComplete(StartRound));
-        DOTween.Play(sequence);
-
-        if(playerTurn)
-        {
-            playerTurn = false;
-            UpdateGameState(GameState.EnemyTurn);
-        }
-        else if (enemyTurn)
-        {
-            enemyTurn = false;
-            UpdateGameState(GameState.PlayerTurn);
-        }
-
     }
 
     private void StartRound()
@@ -718,8 +669,16 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Update visual clues using specialComboConfirm
         if(actionType == Card.Action.SpecialAttack)
+        {
             for(int i = 0; i < specialComboConfirm.Length; i++)
+            {
                 specialComboConfirm[i] = false;
+                if(playerTurn)
+                    playerCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                else
+                    enemyCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+            }
+        }
         else
         {
             for(int i = 0; i < specialComboConfirm.Length; i++){
@@ -728,12 +687,23 @@ public class GameManager : MonoBehaviour
                 {
                     if(actionType == combo[i]){
                         specialComboConfirm[i] = true;
+                        if(playerTurn)
+                            playerCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.green;
+                        else
+                            enemyCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.green;
                         break;
                     }
                     else
                     {
                         for(int j = 0; j < specialComboConfirm.Length; j++)
+                        {
                             specialComboConfirm[j] = false;
+                            if(playerTurn)
+                                playerCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                            else
+                                enemyCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                        }
+                            
                         break;
                     }
                 }    
@@ -743,9 +713,11 @@ public class GameManager : MonoBehaviour
 
     private bool IsSpecialAvailable(bool[] specialComboConfirm){
         int confirmCount = 0;
+
         for(int i = 0; i < specialComboConfirm.Length; i++)
             if(specialComboConfirm[i])
                 confirmCount++;
+
         return confirmCount == specialComboConfirm.Length;
     }
 
