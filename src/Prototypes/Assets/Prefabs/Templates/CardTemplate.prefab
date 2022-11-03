@@ -557,7 +557,7 @@ MonoBehaviour:
   _supportActionHealthIcon: {fileID: 3099194795176456193}
   <SupportActionButton>k__BackingField: {fileID: 3099194793975889937}
   _specialAttackDmgText: {fileID: 3099194794585298613}
-  _specialAttackCombo: {fileID: 3099194793631056883}
+  <SpecialAttackCombo>k__BackingField: {fileID: 0}
   <SpecialAttackButton>k__BackingField: {fileID: 3099194795269194258}
   _lightAttackIcon: {fileID: 3226837707197828737, guid: f756287ef6a8cfb4285cc69c32c22e21, type: 3}
   _heavyAttackIcon: {fileID: 5390918487778046776, guid: 710595d5362c10d4b8add8157abf19ce, type: 3}
@@ -2331,7 +2331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 216fee9b014803d47abc5ad252bf6517, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ca66d614516b9748a1aab4a3153cc97, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
