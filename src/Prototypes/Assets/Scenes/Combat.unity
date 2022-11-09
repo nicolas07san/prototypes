@@ -1045,8 +1045,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6776697f49457724ba345c4ab95dbede, type: 3}
   - {fileID: 21300000, guid: 25ca13ea4409a86448259124cb27bcdd, type: 3}
   passButton: {fileID: 1675256282}
-  victoryScreen: {fileID: 0}
-  gameoverScreen: {fileID: 0}
+  victoryScreen: {fileID: 344817404}
+  gameoverScreen: {fileID: 1917957032}
   diceSides:
   - {fileID: 21300000, guid: 139c0749cbb3acd46bb80b22a0db2c17, type: 3}
   - {fileID: 21300000, guid: 6259ad77f656ce04a85f99addea76348, type: 3}
