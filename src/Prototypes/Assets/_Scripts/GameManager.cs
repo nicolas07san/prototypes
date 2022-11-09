@@ -699,9 +699,9 @@ public class GameManager : MonoBehaviour
                         {
                             specialComboConfirm[j] = false;
                             if(playerTurn)
-                                playerCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                                playerCardDisplay.SpecialAttackCombo.transform.GetChild(j).GetComponent<Image>().color = Color.white;
                             else
-                                enemyCardDisplay.SpecialAttackCombo.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                                enemyCardDisplay.SpecialAttackCombo.transform.GetChild(j).GetComponent<Image>().color = Color.white;
                         }
                             
                         break;
