@@ -10427,8 +10427,8 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1.91, y: -3.54, z: 0}
+    m_Rotation: {x: -0, y: 0, z: 0}
+    m_Scale: {x: 3.219375, y: -3.54, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -29748,6 +29748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3099194793379061970}
   - component: {fileID: 3099194793379061971}
+  - component: {fileID: 596017031}
   m_Layer: 5
   m_Name: CardTemplate
   m_TagString: Untagged
@@ -29811,12 +29812,34 @@ MonoBehaviour:
   _supportActionHealthIcon: {fileID: 3099194795176456193}
   <SupportActionButton>k__BackingField: {fileID: 3099194793975889937}
   _specialAttackDmgText: {fileID: 3099194794585298613}
-  <SpecialAttackCombo>k__BackingField: {fileID: 0}
+  <SpecialAttackCombo>k__BackingField: {fileID: 3099194793631056883}
   <SpecialAttackButton>k__BackingField: {fileID: 3099194795269194258}
+  <LightAttackVFX>k__BackingField: {fileID: 2083699142}
+  <HeavyAttackVFX>k__BackingField: {fileID: 1261099185}
+  <ShieldVFX>k__BackingField: {fileID: 1032848640}
+  <HealVFX>k__BackingField: {fileID: 563637057}
+  _shakeableTransform: {fileID: 596017031}
   _lightAttackIcon: {fileID: 3226837707197828737, guid: f756287ef6a8cfb4285cc69c32c22e21, type: 3}
   _heavyAttackIcon: {fileID: 5390918487778046776, guid: 710595d5362c10d4b8add8157abf19ce, type: 3}
   _shieldIcon: {fileID: 5328235088618620557, guid: 5ba7d7b41cc69fd439dac0d1686050ba, type: 3}
   _healthIcon: {fileID: 7954830253751656879, guid: cc859764d16a1bd4a8a4f41c1a3f7630, type: 3}
+--- !u!114 &596017031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099194793379061969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c953fb7139ee7248837dc29d1e62ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumTranslationShake: {x: 1, y: 1, z: 1}
+  maximumAngularShake: {x: 15, y: 15, z: 15}
+  frequency: 25
+  traumaExponent: 1
+  recoverySpeed: 1
 --- !u!1 &3099194793417451304
 GameObject:
   m_ObjectHideFlags: 0
@@ -30516,7 +30539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000029981, y: -150.26678}
+  m_AnchoredPosition: {x: -0.000029981, y: -153.6}
   m_SizeDelta: {x: 331.8712, y: 39.174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3099194794363909404
@@ -30549,8 +30572,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a66f9b74ffc7ee4eb0743ef0b812252, type: 2}
-  m_sharedMaterial: {fileID: 7262821616849447328, guid: 5a66f9b74ffc7ee4eb0743ef0b812252, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
+  m_sharedMaterial: {fileID: 4973638998262119773, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30574,8 +30597,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

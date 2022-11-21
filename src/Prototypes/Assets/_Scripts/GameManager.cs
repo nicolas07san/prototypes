@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         Instance = this;
 
+        AudioManager.instance.Play("BattleTheme");
+
         if(LevelManager.isCampaignLevel)
         {
             backgroundImage.sprite = LevelManager.instance.level.levelImage;
@@ -347,7 +349,10 @@ public class GameManager : MonoBehaviour
             }
 
             // Play Damage  or Light Damage Sound
+            AudioManager.instance.Play("DamageSound");
             // Play Damage or Light Damage Animation
+            enemyCardDisplay.Shake(0.8f);
+            enemyCardDisplay.LightAttackVFX.Play();
         }
 
         else if(actionType == Card.Action.HeavyAttack)
@@ -366,7 +371,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
             StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
             // Play Damage or Heavy Damage Sound
+            AudioManager.instance.Play("DamageSound");
             // Play Damage or Heavy Damage Animation
+            enemyCardDisplay.Shake(1.0f);
+            enemyCardDisplay.HeavyAttackVFX.Play();
         }
         else if(actionType == Card.Action.SupportAction)
         {
@@ -376,14 +384,18 @@ public class GameManager : MonoBehaviour
                 playerShield += actionValue;
                 StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
                 // Play Shield or Support Action Sound
+                AudioManager.instance.Play("ShieldSound");
                 // Play Shield or Support Action Animation
+                playerCardDisplay.ShieldVFX.Play();
                 
             }
             else{
                 playerHealth += actionValue;
                 StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
                 // Play Heal or Support Action Sound
+                AudioManager.instance.Play("HealSound");
                 // Play Heal or Support Action Animation
+                playerCardDisplay.HealVFX.Play();
             }
         }
 
@@ -402,8 +414,13 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
             StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
+
             // Play Damage or Special Attack Sound
+            AudioManager.instance.Play("DamageSound");
+
             // Play Damage or Special Attack Animation
+            enemyCardDisplay.Shake(1.2f);
+            enemyCardDisplay.HeavyAttackVFX.Play();
         }
 
         playerCardDisplay.LightAttackButton.interactable = false;
@@ -527,7 +544,10 @@ public class GameManager : MonoBehaviour
             }
 
             // Play Damage or Light Damage Sound
+            AudioManager.instance.Play("DamageSound");
             // Play Damage or Light Damage Animation
+            playerCardDisplay.Shake(0.8f);
+            playerCardDisplay.LightAttackVFX.Play();
         }
 
         else if(actionType == Card.Action.HeavyAttack)
@@ -542,8 +562,12 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
             StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
+
             // Play Damage or Heavy Damage Sound
+            AudioManager.instance.Play("DamageSound");
             // Play Damage or Heavy Damage Animation
+            playerCardDisplay.Shake(1f);
+            playerCardDisplay.HeavyAttackVFX.Play();
         }
 
         else if(actionType == Card.Action.SupportAction)
@@ -553,13 +577,19 @@ public class GameManager : MonoBehaviour
             if(enemyCard.IsShield){
                 enemyShield += actionValue;
                 StartCoroutine(UpdateStatText(enemyShieldText, enemyShieldTextDifference, enemyShield));
+
                 // Play Shield or Support Action Sound
+                AudioManager.instance.Play("ShieldSound");
                 // Play Shield or Support Action Animation
+                enemyCardDisplay.ShieldVFX.Play();
             }else{
                 enemyHealth += actionValue;
                 StartCoroutine(UpdateStatText(enemyHealthText, enemyHealthTextDifference, enemyHealth));
+
                 // Play Heal or Support Action Sound
+                AudioManager.instance.Play("HealSound");
                 // Play Heal or Support Action Animation
+                enemyCardDisplay.HealVFX.Play();
             }
         }
         else if(actionType == Card.Action.SpecialAttack)
@@ -578,8 +608,12 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(UpdateStatText(playerShieldText, playerShieldTextDifference, playerShield));
             StartCoroutine(UpdateStatText(playerHealthText, playerHealthTextDifference, playerHealth));
+
             // Play Damage or Special Attack Sound
+            AudioManager.instance.Play("DamageSound");
             // Play Damage or Special Attack Animation
+            playerCardDisplay.Shake(1.2f);
+            playerCardDisplay.HeavyAttackVFX.Play();
         }
 
         Invoke(nameof(StartPassCoroutine), 2f);
@@ -604,7 +638,8 @@ public class GameManager : MonoBehaviour
 
             if(playerWins >= 2 || enemyWins >= 2)
             {
-                //TODO:Stop Music
+                //Stop Music
+                AudioManager.instance.Stop("BattleTheme");
                 if(playerWins >= 2)
                 {
                     playerWin = true;

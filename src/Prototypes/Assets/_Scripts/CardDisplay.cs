@@ -36,6 +36,15 @@ public class CardDisplay : MonoBehaviour
     // [SerializeField] private TMP_Text _healthText;
     // [SerializeField] private TMP_Text _shieldText;
 
+    [field:Header("Particles VFX")]
+    [field:SerializeField] public ParticleSystem LightAttackVFX {private set; get;}
+    [field:SerializeField] public ParticleSystem HeavyAttackVFX {private set; get;}
+    [field:SerializeField] public ParticleSystem ShieldVFX {private set; get;}
+    [field:SerializeField] public ParticleSystem HealVFX {private set; get;}
+
+    [Header("FX")]
+    [SerializeField] private ShakeableTransform _shakeableTransform;
+
     [Header("Icons")]
     [SerializeField] private Image _lightAttackIcon;
     [SerializeField] private Image _heavyAttackIcon;
@@ -98,6 +107,10 @@ public class CardDisplay : MonoBehaviour
         // Base stats
         // _healthText.text = Card.Health.ToString();
         // _shieldText.text = Card.Shield.ToString(); 
+    }
+
+    public void Shake(float intensity){
+        _shakeableTransform.InduceStress(intensity);
     }
 
 }

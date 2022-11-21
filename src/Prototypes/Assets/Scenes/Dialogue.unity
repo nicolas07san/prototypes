@@ -614,8 +614,8 @@ MonoBehaviour:
   m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut eros eros.
     Sed magna quam, mattis id metus at, porta placerat tortor.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0e1fd09f8cf193e448587bd41bacef93, type: 2}
-  m_sharedMaterial: {fileID: -6755196280081290562, guid: 0e1fd09f8cf193e448587bd41bacef93, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1221,8 +1221,8 @@ Canvas:
   m_GameObject: {fileID: 1666422004}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1383848560}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1316,8 +1316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Placeholder Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a66f9b74ffc7ee4eb0743ef0b812252, type: 2}
-  m_sharedMaterial: {fileID: 7262821616849447328, guid: 5a66f9b74ffc7ee4eb0743ef0b812252, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
+  m_sharedMaterial: {fileID: 4973638998262119773, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1341,8 +1341,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -161,10 +161,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rodada 1
+  m_text: Turno do Inimigo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28269d048af040948bf043b79aa39c58, type: 2}
-  m_sharedMaterial: {fileID: -9053767443354019729, guid: 28269d048af040948bf043b79aa39c58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
+  m_sharedMaterial: {fileID: 4973638998262119773, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -400,8 +400,8 @@ Canvas:
   m_GameObject: {fileID: 241095808}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1042222039}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1940,8 +1940,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Vit\xF3ria"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28269d048af040948bf043b79aa39c58, type: 2}
-  m_sharedMaterial: {fileID: -9053767443354019729, guid: 28269d048af040948bf043b79aa39c58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
+  m_sharedMaterial: {fileID: 4973638998262119773, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4308,8 +4308,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Derrota
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28269d048af040948bf043b79aa39c58, type: 2}
-  m_sharedMaterial: {fileID: -9053767443354019729, guid: 28269d048af040948bf043b79aa39c58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
+  m_sharedMaterial: {fileID: 4973638998262119773, guid: 3745fbe6cdf99ee4082ace584d0222b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
