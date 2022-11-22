@@ -24,7 +24,7 @@ public class CardSelection : MonoBehaviour
     {
         AudioManager.instance.Stop("VictorySound");
         AudioManager.instance.Stop("DefeatSound");
-        AudioManager.instance.Play("CardSelectionTheme");
+        AudioManager.instance.Play("MenuTheme");
     }
 
     public void SelectCard(int index)
@@ -82,7 +82,7 @@ public class CardSelection : MonoBehaviour
     public void BackButton()
     {
         LevelManager.instance.LoadScene("MainMenu");
-        AudioManager.instance.Stop("CardSelectionTheme");
+        AudioManager.instance.Stop("MenuTheme");
     }
 
     public void ConfirmButton()
@@ -102,6 +102,6 @@ public class CardSelection : MonoBehaviour
         
         LevelManager.instance.LoadScene("Combat");
 
-        AudioManager.instance.Stop("CardSelectionTheme");
+        AudioManager.instance.Stop("MenuTheme");
     }
 }

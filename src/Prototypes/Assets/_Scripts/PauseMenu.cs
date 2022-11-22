@@ -37,14 +37,14 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        FindObjectOfType<AudioManager>().Stop("CombatTheme");
+        FindObjectOfType<AudioManager>().Stop("BattleTheme");
         LevelManager.instance.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
 
     public void Continue()
     {
-        FindObjectOfType<AudioManager>().Stop("CombatTheme");
+        FindObjectOfType<AudioManager>().Stop("BattleTheme");
 
         if(LevelManager.isCampaignLevel)
         {

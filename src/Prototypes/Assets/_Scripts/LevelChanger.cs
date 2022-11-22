@@ -11,7 +11,7 @@ public class LevelChanger : MonoBehaviour
     private void Awake() 
     {
         ChangeLevel(0); 
-        AudioManager.instance.Play("LevelSelectionTheme");   
+        AudioManager.instance.Play("MenuTheme");   
     }
 
     public void ChangeLevel(int changeValue)
@@ -45,7 +45,7 @@ public class LevelChanger : MonoBehaviour
 
     public void BackButton()
     {
-        AudioManager.instance.Stop("LevelSelectionTheme");
+        AudioManager.instance.Stop("MenuTheme");
         LevelManager.instance.LoadScene("MainMenu");
     }
 }
