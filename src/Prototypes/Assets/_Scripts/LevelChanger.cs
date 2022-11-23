@@ -38,14 +38,14 @@ public class LevelChanger : MonoBehaviour
 
         LevelManager.instance.level = levels[currentIndex];
         
-        AudioManager.instance.Stop("LevelSelectionTheme");
+        AudioManager.instance.Stop("MenuTheme");
 
         LevelManager.instance.LoadScene("Dialogue");
     }
 
     public void BackButton()
     {
-        AudioManager.instance.Stop("MenuTheme");
+        // AudioManager.instance.Stop("MenuTheme");
         LevelManager.instance.LoadScene("MainMenu");
     }
 }

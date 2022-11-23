@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
     
     private void Awake() 
     {
-        AudioManager.instance.Play("CardSelectionTheme");
+        AudioManager.instance.Play("BattleTheme");
         inkJsonFile = LevelManager.instance.level.inkJsonFile;
         backgroundImage.sprite = LevelManager.instance.level.levelImage;
         LevelManager.isCampaignLevel = true;
@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && endOfStory)
         {
             endOfStory = false;
-            AudioManager.instance.Stop("CardSelectionTheme");
+            // AudioManager.instance.Stop("CardSelectionTheme");
             LevelManager.instance.LoadScene("Combat");
         }
     }

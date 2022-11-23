@@ -93,8 +93,6 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         Instance = this;
 
-        AudioManager.instance.Play("BattleTheme");
-
         if(LevelManager.isCampaignLevel)
         {
             backgroundImage.sprite = LevelManager.instance.level.levelImage;
@@ -128,7 +126,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-       UpdateGameState(GameState.RoundStart); 
+        AudioManager.instance.Play("BattleTheme");
+        UpdateGameState(GameState.RoundStart); 
     }
 
     public void UpdateGameState(GameState newState){
@@ -149,11 +148,13 @@ public class GameManager : MonoBehaviour
                 TurnAnimation("Turno do Inimigo");
                 break;
             case GameState.Victory:
+                AudioManager.instance.Play("VictorySound");
                 playerWin = true;
                 victoryScreen.SetActive(true);
                 Time.timeScale = 0f;
                 break;
             case GameState.Lose:
+                AudioManager.instance.Play("DefeatSound");
                 enemyWin = true;
                 gameoverScreen.SetActive(true);
                 Time.timeScale = 0f;

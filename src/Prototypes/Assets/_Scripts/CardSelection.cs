@@ -82,7 +82,7 @@ public class CardSelection : MonoBehaviour
     public void BackButton()
     {
         LevelManager.instance.LoadScene("MainMenu");
-        AudioManager.instance.Stop("MenuTheme");
+        // AudioManager.instance.Stop("MenuTheme");
     }
 
     public void ConfirmButton()

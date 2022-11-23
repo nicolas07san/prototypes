@@ -11,13 +11,13 @@ public class MainMenu : MonoBehaviour
 
     public void FreePlay()
     {
-        AudioManager.instance.Stop("MenuTheme");
+        // AudioManager.instance.Stop("MenuTheme");
         LevelManager.instance.LoadScene("CardSelection");
     }
 
     public void Campaign()
     {
-        AudioManager.instance.Stop("MenuTheme");
+        // AudioManager.instance.Stop("MenuTheme");
         LevelManager.instance.LoadScene("LevelSelection");
     }
 
