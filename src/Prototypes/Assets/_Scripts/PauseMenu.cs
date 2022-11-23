@@ -49,7 +49,7 @@ public class PauseMenu : MonoBehaviour
         if(LevelManager.isCampaignLevel)
         {
 
-            if(CombatManager.playerWin)
+            if(GameManager.Instance.playerWin)
             {
                 if(PlayerPrefs.GetInt("lastUnlockedLevel", 0) <= LevelManager.instance.level.levelIndex)
                 {

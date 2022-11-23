@@ -182,4 +182,8 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void Skip(){
+        LevelManager.instance.LoadScene("Combat");
+    }
+
 }

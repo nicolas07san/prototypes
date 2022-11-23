@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     private int playerShield;
     private int playerHealth;
     private int playerWins = 0;
-    private bool playerWin = false;
+    public bool playerWin = false;
     private bool playerTurn = false;
     private bool[] playerSpecialComboConfirm;
     private CardDisplay playerCardDisplay;
@@ -300,11 +300,11 @@ public class GameManager : MonoBehaviour
         announcementText.text = text;
         
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(fadeImg.DOFade(0.5f, 0.25f));
-        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.5f));
-        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 2f));
-        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.5f));
-        sequence.Append(fadeImg.DOFade(0f, 0.25f).OnComplete(StartRollDice));
+        sequence.Append(fadeImg.DOFade(0.5f, 0.15f));
+        sequence.Append(announcementText.transform.DOLocalMoveX(-20f, 0.3f));
+        sequence.Append(announcementText.transform.DOLocalMoveX(20f, 1f));
+        sequence.Append(announcementText.transform.DOLocalMove(aTxtFinalPos, 0.3f));
+        sequence.Append(fadeImg.DOFade(0f, 0.15f).OnComplete(StartRollDice));
         DOTween.Play(sequence);
 
     }
@@ -435,7 +435,7 @@ public class GameManager : MonoBehaviour
 
     private void EnemyActionController()
     {
-        if(UnityEngine.Random.Range(0, 100) < 10)
+        if(UnityEngine.Random.Range(1, 101) <= 11)
         {
             Array values = Enum.GetValues(typeof(Card.Action));
             Card.Action randomAction = (Card.Action)values.GetValue(UnityEngine.Random.Range(0, values.Length));
@@ -483,6 +483,8 @@ public class GameManager : MonoBehaviour
             EnemyAction(0, enemyCard.SpecialAttackDmg, Card.Action.SpecialAttack);
         }
         else if(enemyMana >= enemyCard.LightAttackCost || enemyMana >= enemyCard.HeavyAttackCost || enemyMana >= enemyCard.SupportActionCost){
+            bool attackHasBeenFound = false;
+
             for(int i = 0; i < enemySpecialComboConfirm.Length; i++)
             {
                 if(!enemySpecialComboConfirm[i])
@@ -510,10 +512,15 @@ public class GameManager : MonoBehaviour
                                 EnemyAction(enemyCard.SupportActionCost, enemyCard.SupportActionValue, Card.Action.SupportAction);
                                 i = 100;
                             }
-                            break;      
+                            break;    
                     }
                 }
+                if(i == 100)
+                    attackHasBeenFound = true;
             }
+
+            if(!attackHasBeenFound)
+                StartCoroutine(nameof(Pass));
         }
         else
         {
