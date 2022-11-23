@@ -42,14 +42,13 @@ public class CardDisplay : MonoBehaviour
     [field:SerializeField] public ParticleSystem ShieldVFX {private set; get;}
     [field:SerializeField] public ParticleSystem HealVFX {private set; get;}
 
-    [Header("FX")]
-    [SerializeField] private ShakeableTransform _shakeableTransform;
-
     [Header("Icons")]
     [SerializeField] private Image _lightAttackIcon;
     [SerializeField] private Image _heavyAttackIcon;
     [SerializeField] private Image _shieldIcon;
     [SerializeField] private Image _healthIcon;
+
+     private ShakeableTransform _shakeableTransform;
 
 
     void Start()
@@ -103,6 +102,8 @@ public class CardDisplay : MonoBehaviour
         HeavyAttackButton.interactable = false;
         SupportActionButton.interactable = false;
         SpecialAttackButton.interactable = false;
+
+        _shakeableTransform = this.GetComponent<ShakeableTransform>();
 
         // Base stats
         // _healthText.text = Card.Health.ToString();
