@@ -111,6 +111,7 @@ public class CardDisplay : MonoBehaviour
     }
 
     public void Shake(float intensity){
+        _shakeableTransform.enabled = true;
         _shakeableTransform.InduceStress(intensity);
     }
 

@@ -45,9 +45,12 @@ public class ShakeableTransform : MonoBehaviour
 
     private float seed;
 
+    private Vector3 initialPos;
+
     private void Awake()
     {
         seed = Random.value;
+        this.enabled = false;
     }
 
     private void Update()
@@ -61,11 +64,11 @@ public class ShakeableTransform : MonoBehaviour
         // of the translational and rotational shake.
         // PerlinNoise returns a value in the 0...1 range; this is transformed to
         // be in the -1...1 range to ensure the shake travels in all directions.
-        transform.localPosition = new Vector3(
-            maximumTranslationShake.x * (Mathf.PerlinNoise(seed, Time.time * frequency) * 2 - 1),
-            maximumTranslationShake.y * (Mathf.PerlinNoise(seed + 1, Time.time * frequency) * 2 - 1),
-            maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.time * frequency) * 2 - 1)
-        ) * shake;
+        // transform.localPosition = new Vector3(
+        //     maximumTranslationShake.x * (Mathf.PerlinNoise(seed, Time.time * frequency) * 2 - 1),
+        //     maximumTranslationShake.y * (Mathf.PerlinNoise(seed + 1, Time.time * frequency) * 2 - 1),
+        //     maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.time * frequency) * 2 - 1)
+        // ) * shake;
 
         transform.localRotation = Quaternion.Euler(new Vector3(
             maximumAngularShake.x * (Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2 - 1),

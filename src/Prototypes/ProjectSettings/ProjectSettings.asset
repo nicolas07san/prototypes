@@ -140,8 +140,9 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.2.1
+  bundleVersion: 0.2.2
   preloadedAssets:
+  - {fileID: 0}
   - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -350,7 +351,7 @@ PlayerSettings:
       m_SubKind: 
     - m_Textures:
       - {fileID: 2800000, guid: 59c8c8f2c759c4148a83dfb1056301b7, type: 3}
-      - {fileID: 2800000, guid: 59c8c8f2c759c4148a83dfb1056301b7, type: 3}
+      - {fileID: 2800000, guid: 228744d7f9c38f949a7d1dca9d7779e9, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
