@@ -31304,8 +31304,8 @@ MonoBehaviour:
   <SpecialAttackButton>k__BackingField: {fileID: 1279856699889874428}
   <LightAttackVFX>k__BackingField: {fileID: 433253693}
   <HeavyAttackVFX>k__BackingField: {fileID: 1346289223}
-  <ShieldVFX>k__BackingField: {fileID: 1132545176}
-  <HealVFX>k__BackingField: {fileID: 712641542}
+  <ShieldVFX>k__BackingField: {fileID: 712641542}
+  <HealVFX>k__BackingField: {fileID: 1132545176}
   _lightAttackIcon: {fileID: 3226837707197828737, guid: f756287ef6a8cfb4285cc69c32c22e21, type: 3}
   _heavyAttackIcon: {fileID: 5390918487778046776, guid: 710595d5362c10d4b8add8157abf19ce, type: 3}
   _shieldIcon: {fileID: 5328235088618620557, guid: 5ba7d7b41cc69fd439dac0d1686050ba, type: 3}
