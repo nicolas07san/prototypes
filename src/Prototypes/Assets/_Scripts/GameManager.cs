@@ -93,17 +93,6 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         Instance = this;
 
-        if(LevelManager.isCampaignLevel)
-        {
-            backgroundImage.sprite = LevelManager.instance.level.levelImage;
-        }
-        else
-        {   
-            Sprite randomBg = backgrounds[UnityEngine.Random.Range(0, backgrounds.Length)];
-            backgroundImage.sprite = randomBg;
-        }
-            
-        
         for(int i = 0; i < 3; i ++)
         {
             Transform playerCard;
@@ -126,6 +115,17 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        
+        if(LevelManager.isCampaignLevel)
+        {
+            backgroundImage.sprite = LevelManager.instance.level.levelImage;
+        }
+        else
+        {   
+            Sprite randomBg = backgrounds[UnityEngine.Random.Range(0, backgrounds.Length)];
+            backgroundImage.sprite = randomBg;
+        }
+
         AudioManager.instance.Play("BattleTheme");
         UpdateGameState(GameState.RoundStart); 
     }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
+  m_Name: Doro Milaj
+  m_EditorClassIdentifier: 
+  <CharacterName>k__BackingField: Doro Milaj
+  <Artwork>k__BackingField: {fileID: 21300000, guid: 34259cacb297a6049b268a96e0df5ea9, type: 3}
+  <LightAttackCost>k__BackingField: 2
+  <LightAttackDmg>k__BackingField: 4
+  <HeavyAttackCost>k__BackingField: 8
+  <HeavyAttackDmg>k__BackingField: 18
+  <IsShield>k__BackingField: 1
+  <SupportActionCost>k__BackingField: 5
+  <SupportActionValue>k__BackingField: 5
+  <SpecialAttackDmg>k__BackingField: 30
+  <Combo>k__BackingField: 0000000000000000020000000100000001000000
+  <Health>k__BackingField: 45
+  <Shield>k__BackingField: 10

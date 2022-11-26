@@ -140,8 +140,9 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.2.3
+  bundleVersion: 0.2.4
   preloadedAssets:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   metroInputSource: 0
@@ -350,8 +351,8 @@ PlayerSettings:
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 59c8c8f2c759c4148a83dfb1056301b7, type: 3}
-      - {fileID: 2800000, guid: 21a0a942e703ffa4691d6566a1b16a74, type: 3}
+      - {fileID: 2800000, guid: 804fa8f34a925894492a4ba80b17a9ab, type: 3}
+      - {fileID: 2800000, guid: f9379c6c3c1aa634bbd2ac2c0197a637, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
