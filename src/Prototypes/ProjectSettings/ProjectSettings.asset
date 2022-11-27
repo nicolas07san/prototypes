@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Giant Hamster Games
-  productName: Rainha Tereza
+  productName: JOGO RAINHA TEREZA
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -142,6 +142,10 @@ PlayerSettings:
     Others: 1
   bundleVersion: 0.2.4
   preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -351,8 +355,8 @@ PlayerSettings:
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
+      - {fileID: 2800000, guid: bb4db8c6181e4ad4bb9a068fb3d8d429, type: 3}
       - {fileID: 2800000, guid: 804fa8f34a925894492a4ba80b17a9ab, type: 3}
-      - {fileID: 2800000, guid: f9379c6c3c1aa634bbd2ac2c0197a637, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
