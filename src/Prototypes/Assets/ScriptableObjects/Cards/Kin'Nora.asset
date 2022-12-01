@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Kin'Nora
   m_EditorClassIdentifier: 
-  characterName: Kin'Nora
-  artwork: {fileID: 21300000, guid: 10e21a95a7b83434f9904344dfe47a42, type: 3}
-  attack1Name: Pacto mortal
-  attack1Cost: 2
-  attack1Dmg: 5
-  attack2Name: "Maldi\xE7\xE3o sombria"
-  attack2Cost: 3
-  attack2Dmg: 6
-  attack3Name: Seta demoniaca
-  attack3Cost: 5
-  attack3Dmg: 7
-  health: 15
-  shield: 40
+  <CharacterName>k__BackingField: Kin'Nora
+  <Artwork>k__BackingField: {fileID: 21300000, guid: 10e21a95a7b83434f9904344dfe47a42, type: 3}
+  <LightAttackCost>k__BackingField: 3
+  <LightAttackDmg>k__BackingField: 6
+  <HeavyAttackCost>k__BackingField: 4
+  <HeavyAttackDmg>k__BackingField: 10
+  <IsShield>k__BackingField: 0
+  <SupportActionCost>k__BackingField: 6
+  <SupportActionValue>k__BackingField: 4
+  <SpecialAttackDmg>k__BackingField: 20
+  <Combo>k__BackingField: 0000000001000000
+  <Health>k__BackingField: 25
+  <Shield>k__BackingField: 35

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Eratos
   m_EditorClassIdentifier: 
-  characterName: Eratos
-  artwork: {fileID: 21300000, guid: 55670b41d12c50348925274de86e2c29, type: 3}
-  attack1Name: Espada lunar
-  attack1Cost: 4
-  attack1Dmg: 12
-  attack2Name: "L\xE2mina Real"
-  attack2Cost: 3
-  attack2Dmg: 7
-  attack3Name: "Corte r\xE1pido"
-  attack3Cost: 1
-  attack3Dmg: 5
-  health: 20
-  shield: 25
+  <CharacterName>k__BackingField: Eratos
+  <Artwork>k__BackingField: {fileID: 21300000, guid: 55670b41d12c50348925274de86e2c29, type: 3}
+  <LightAttackCost>k__BackingField: 3
+  <LightAttackDmg>k__BackingField: 5
+  <HeavyAttackCost>k__BackingField: 6
+  <HeavyAttackDmg>k__BackingField: 12
+  <IsShield>k__BackingField: 1
+  <SupportActionCost>k__BackingField: 3
+  <SupportActionValue>k__BackingField: 2
+  <SpecialAttackDmg>k__BackingField: 15
+  <Combo>k__BackingField: 0000000000000000020000000000000001000000
+  <Health>k__BackingField: 25
+  <Shield>k__BackingField: 30

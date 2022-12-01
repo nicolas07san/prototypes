@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,25 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MenuTheme
-    clip: {fileID: 8300000, guid: cb645ea9b62616a4dba819076b08f862, type: 3}
+    clip: {fileID: 8300000, guid: f0805a47f89cab943a9d8e616d71ca01, type: 3}
     volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: CardSelectionTheme
-    clip: {fileID: 8300000, guid: 67e6f5f749522d8439580cc73fed0580, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: CombatTheme
-    clip: {fileID: 8300000, guid: dc6ed568f27dae94baa59c83ea2cf419, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: SuddenDeathTheme
-    clip: {fileID: 8300000, guid: 824bf89b7644a844ebb997a9155fcb37, type: 3}
+  - name: BattleTheme
+    clip: {fileID: 8300000, guid: b7e967e3598e4cb48ab3762ac17d4e26, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1
@@ -98,9 +87,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: LevelSelectionTheme
-    clip: {fileID: 8300000, guid: 05dce8e56cb4c634b8e30f1b1339e673, type: 3}
-    volume: 0.8
+  - name: HealSound
+    clip: {fileID: 8300000, guid: a247553110311bb469edbbdae280e42f, type: 3}
+    volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ShieldSound
+    clip: {fileID: 8300000, guid: a3b6ef595730ba743835a43ff1338b56, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}

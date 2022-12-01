@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Krass Morg
   m_EditorClassIdentifier: 
-  characterName: Krass Morg
-  artwork: {fileID: 21300000, guid: f32b053cca518f34cb9e8b3d1756478a, type: 3}
-  attack1Name: Bola de fogo
-  attack1Cost: 2
-  attack1Dmg: 5
-  attack2Name: Seta de Gelo
-  attack2Cost: 4
-  attack2Dmg: 8
-  attack3Name: "M\xEDssil estelar"
-  attack3Cost: 7
-  attack3Dmg: 10
-  health: 20
-  shield: 45
+  <CharacterName>k__BackingField: Krass Morg
+  <Artwork>k__BackingField: {fileID: 21300000, guid: f32b053cca518f34cb9e8b3d1756478a, type: 3}
+  <LightAttackCost>k__BackingField: 2
+  <LightAttackDmg>k__BackingField: 4
+  <HeavyAttackCost>k__BackingField: 5
+  <HeavyAttackDmg>k__BackingField: 10
+  <IsShield>k__BackingField: 1
+  <SupportActionCost>k__BackingField: 3
+  <SupportActionValue>k__BackingField: 3
+  <SpecialAttackDmg>k__BackingField: 15
+  <Combo>k__BackingField: 0200000002000000000000000000000001000000
+  <Health>k__BackingField: 30
+  <Shield>k__BackingField: 20

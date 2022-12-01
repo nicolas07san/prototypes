@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd09a09f761beb43a29cfd63258025d, type: 3}
   m_Name: Megan
   m_EditorClassIdentifier: 
-  characterName: Megan
-  artwork: {fileID: 21300000, guid: ba098f2b77889534080ec787a37df6ac, type: 3}
-  attack1Name: Tiro certeiro
-  attack1Cost: 6
-  attack1Dmg: 8
-  attack2Name: Arco real
-  attack2Cost: 3
-  attack2Dmg: 5
-  attack3Name: Flechada
-  attack3Cost: 2
-  attack3Dmg: 3
-  health: 10
-  shield: 40
+  <CharacterName>k__BackingField: Megan
+  <Artwork>k__BackingField: {fileID: 21300000, guid: ba098f2b77889534080ec787a37df6ac, type: 3}
+  <LightAttackCost>k__BackingField: 2
+  <LightAttackDmg>k__BackingField: 2
+  <HeavyAttackCost>k__BackingField: 5
+  <HeavyAttackDmg>k__BackingField: 10
+  <IsShield>k__BackingField: 0
+  <SupportActionCost>k__BackingField: 5
+  <SupportActionValue>k__BackingField: 4
+  <SpecialAttackDmg>k__BackingField: 15
+  <Combo>k__BackingField: 0000000001000000000000000100000000000000
+  <Health>k__BackingField: 30
+  <Shield>k__BackingField: 20
